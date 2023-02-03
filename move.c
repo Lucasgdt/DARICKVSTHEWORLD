@@ -6,6 +6,7 @@
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 
+const int speed = 30;
 
 
 int main(int argc, char *argv[]) {
@@ -46,10 +47,10 @@ int main(int argc, char *argv[]) {
   // Définir la source et la destination du rendu
   srcRect.x = 0;
   srcRect.y = 0;
-  srcRect.w = destRect.w = 48;
-  srcRect.h = destRect.h = 48;
-  destRect.x = 0;
-  destRect.y = 0;
+  srcRect.w = destRect.w = 96;
+  srcRect.h = destRect.h = 96;
+  destRect.x = 600;
+  destRect.y = 624;
 int up = 0, down = 0, left = 0, right = 0;
 
 while (!quit) {
@@ -113,6 +114,9 @@ while (!quit) {
 
   // Afficher le rendu
   SDL_RenderPresent(renderer);
+
+
+  SDL_Delay(1000/(speed*10));
 }
 
 
