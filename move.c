@@ -6,6 +6,8 @@
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 
+const int DARICK_SIZE = 96;
+
 int speed = 30;
 
 
@@ -47,8 +49,8 @@ int main(int argc, char *argv[]) {
   // Définir la source et la destination du rendu
   srcRect.x = 0;
   srcRect.y = 0;
-  srcRect.w = destRect.w = 96;
-  srcRect.h = destRect.h = 96;
+  srcRect.w = destRect.w = DARICK_SIZE;
+  srcRect.h = destRect.h = DARICK_SIZE;
   destRect.x = 600;
   destRect.y = 624;
 int up = 0, down = 0, left = 0, right = 0;
@@ -93,16 +95,16 @@ while (!quit) {
       break;
   }
 
-  if (up) {
+  if (up && destRect.y > 0) {
     destRect.y -= 1;
   }
-  if (down) {
+  if (down && destRect.y < (SCREEN_HEIGHT - DARICK_SIZE)) {
     destRect.y += 1;
   }
-  if (left) {
+  if (left && destRect.x > 0) {
     destRect.x -= 1;
   }
-  if (right) {
+  if (right && destRect.x < (SCREEN_WIDTH - DARICK_SIZE)) {
     destRect.x += 1;
   }
 
