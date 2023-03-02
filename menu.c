@@ -1,6 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "move.h"
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 #define BUTTON_WIDTH 100
@@ -92,10 +96,7 @@ int menu() {
 	SDL_BlitScaled(optionButtonTexture, NULL, screenSurface, &optionButton);
     SDL_UpdateWindowSurface(window);
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
     while (!quit) {
-            SDL_RenderClear(renderer);
             while (SDL_PollEvent(&event)) {
                 if (event.type == SDL_QUIT) {
                     goto quit;
@@ -112,45 +113,31 @@ int menu() {
     				if (x >= optionButton.x && x  && y >= optionButton.y && y <= optionButton.y + optionButton.h){
     					goto option;
     				}
-
                 }
-                if (event.type == SDL_MOUSEMOTION) {
-                    int x1, y1;
-                    SDL_GetMouseState(&x1, &y1);
-                    
-                    // Check if the mouse is over the play button
-                    if (x1 > playButton.x && x1 < playButton.x + playButton.w && y1 > playButton.y && y1 < playButton.y + playButton.h) {
-                        // Increase the size of the play button
-                        playButton.w = 300;
-                        playButton.h = 150;
-                        printf("Dans le if : %d %d \n",playButton.w, playButton.h);
-                    }
-                    else {
-                        // Reset the size of the play button
-                        playButton.w = 150;
-                        playButton.h = 75;
-                    }
-                }
-            }
-            printf("Apres : %d %d \n",playButton.w, playButton.h);
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            SDL_RenderFillRect(renderer, &playButton);
-            SDL_RenderPresent(renderer);
         }
+    }
 
 quit:
     SDL_FreeSurface(background);
     SDL_FreeSurface(quitButtonTexture);
+    SDL_FreeSurface(screenSurface);
+    SDL_FreeSurface(playButtonTexture);
+    SDL_FreeSurface(optionButtonTexture);
     SDL_DestroyWindow(window);
     SDL_Quit();
 	return 0;
 
 play:
-	SDL_FreeSurface(background);
+    SDL_FreeSurface(background);
     SDL_FreeSurface(quitButtonTexture);
+    SDL_FreeSurface(screenSurface);
+    SDL_FreeSurface(playButtonTexture);
+    SDL_FreeSurface(optionButtonTexture);
     SDL_DestroyWindow(window);
     SDL_Quit();
-	return 1;
+    move();
+
+    
 
 option:
 	SDL_FreeSurface(background);
@@ -158,12 +145,4 @@ option:
     SDL_DestroyWindow(window);
     SDL_Quit();
 	return 2;
-}
-
-
-
-	
-
-int main(){
-    menu();
 }

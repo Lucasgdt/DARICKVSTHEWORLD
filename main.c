@@ -3,7 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "move.h"
-
+#include "inventaire.h"
 
 int main(){
 
@@ -22,20 +22,32 @@ int main(){
     printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
     goto quit;
   }
-
-    move(window);
-
-
-
-
+  menu();
   quit:
-
     //Fermer la fenetre
     SDL_DestroyWindow(window);
-
-
-
     // Quitter SDL
   SDL_Quit();
+
+  int choix;
+  int i;
+  inventaire_t * joueur = create_inventaire();
+  objet_t * obj = malloc(sizeof(objet_t));
+  printf("Chiffre entre 1 et 3 : ");
+  scanf("%d",&choix);
+  obj->id = choix; 
+  loot(joueur, obj);
+
+  printf("Chiffre entre 1 et 3 : ");
+  scanf("%d",&choix);
+  obj->id = choix; 
+  loot(joueur, obj);
+  printf("Vous avez dans votre inventaire : \n");
+  for(i = 0; i<TAILLE_INV; i++){
+      if (joueur->liste[i]->id != -1){
+
+          printf("- %s \n",liste_objets[joueur->liste[i]->id-1].nom);
+      }
+  }
 
 }

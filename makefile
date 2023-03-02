@@ -1,19 +1,29 @@
 CC=gcc
-FLAGS=-Wall -g
-
+CFLAGS=-Wall
 SDL_DIR=${HOME}/SDL2
-SDL_LIB_DIR=${SDL_DIR}/lib
-SDL_INC_DIR=${SDL_DIR}/include
-LIBS=-L${SDL_LIB_DIR} -lSDL2 -lSDL2 image -lSDL2 ttf
+SDLLIB_DIR=${SDL_DIR}/lib
+SDLINC_DIR=${SDL_DIR}/include
 
 
-INCS=-I${SDL_INC_DIR}
-PROG=interface
+LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
+INCLUDES=-I${SDLINC_DIR} 
 
-all: interface
+all: jeu
 
-sdl_text: interface.c
-	${CC} -o ${PROG} interface.c ${LIBS} ${INCS} ${FLAGS}
+jeu: menu.o move.o inventaire.o main.o
+	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o -o jeu ${LIBS} ${INCLUDES}
+
+menu.o: menu.c
+	$(CC) $(CFLAGS) -c menu.c ${LIBS} ${INCLUDES}
+
+move.o: move.c
+	$(CC) $(CFLAGS) -c move.c ${LIBS} ${INCLUDES}
+
+inventaire.o: inventaire.c
+	$(CC) $(CFLAGS) -c inventaire.c ${LIBS} ${INCLUDES}
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c ${LIBS} ${INCLUDES}
+
 clean:
-	rm -f ${PROG}
-	rm -f *.o
+	rm -f *.o jeu

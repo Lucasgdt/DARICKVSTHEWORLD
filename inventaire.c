@@ -1,39 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define SIZE_MAX 256
-#define TAILLE_INV 20
-
-
-typedef struct object_s{
-    int id;
-    char nom[SIZE_MAX];
-    char texture[SIZE_MAX];
-    int degats;
-    int armure;
-    int regen;
-    int as;
-}objet_t;
-
-// Liste total des objects du jeu
-static objet_t liste_objets[] = {
-    {1, "Epee du Nain", "daricksword.png", 1, 0, 0, 1},
-    {2, "Epee du feur", "daricksword.png", 1, 0, 0, 1},
-    {3, "Baton du vide", "daricksword.png", 1, 0, 0, 1}
-};
-
-
-typedef struct inv_objet_s{
-    int id;
-    // Nombre d'objet dans une case (permet de stack plusieurs items, comme des potions par exemple)
-    int nb;
-}inv_objet_t;
-
-typedef struct inventaire_s{
-    // Taille inventaire = nb;
-    int taille;
-    inv_objet_t ** liste;
-}inventaire_t;
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include "inventaire.h"
 
 /*
     TEST EFFECTUER : - Limite de la taille de l'inventaire, exemple : Si nous avez 20 items dans l'inventaire, et que je rajoute un 21 eme item, ça me met comme quoi l'inventaire est full
@@ -50,6 +20,8 @@ typedef struct inventaire_s{
     Au cas ou si jamais il faut libéré toute la mémoire de l'inventaire
 
     */
+
+
 
 /* Nombre d'elements */
 
@@ -106,29 +78,4 @@ void loot(inventaire_t * joueur, objet_t * obj){
         }
     }
     printf("Vous avez ramassez l'item suivant : %s \n",liste_objets[joueur->liste[temp]->id-1].nom);
-}
-
-
-
-// Quand tu compiles, met tout le main en commentaire en attendant
-
-int main(){
-
-    int choix;
-    int i;
-    inventaire_t * joueur = create_inventaire();
-    objet_t * obj = malloc(sizeof(objet_t));
-
-    printf("Chiffre entre 1 et 3 : ");
-    scanf("%d",&choix);
-
-    obj->id = choix; 
-    loot(joueur, obj);
-
-    for(i = 0; i<TAILLE_INV; i++){
-        if (joueur->liste[i]->id != -1){
-            printf("Vous avez dans votre inventaire : \n");
-            printf("- %s \n",liste_objets[joueur->liste[i]->id-1].nom);
-        }
-    }
 }

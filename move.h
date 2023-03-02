@@ -14,6 +14,6 @@
 
 #define speed 30
 
-int move(SDL_Window *window);
+int move();
 
 #endif

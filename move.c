@@ -1,16 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "move.h"
 
-int move(SDL_Window *window) {
-
+int move() {
+  SDL_Window *window = NULL;
   SDL_Renderer *renderer = NULL;
-  SDL_Texture *texture = NULL;
+  SDL_Texture *skin = NULL;
+  SDL_Texture *textureright = NULL;
+  SDL_Texture *textureleft = NULL;
+  SDL_Texture *inventaire = NULL;
   SDL_Event event;
   SDL_Rect srcRect, destRect;
+  bool showInventaire = false;
+  bool iPressed = false;
   int quit = 0;
+  window = SDL_CreateWindow("DARICK VS THE WORLD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
   // Créer le rendu
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -20,11 +27,26 @@ int move(SDL_Window *window) {
   }
 
   // Charger l'image
-  texture = IMG_LoadTexture(renderer, "ressources/perso/darickdsgn.png");
-  if (!texture) {
+  textureright = IMG_LoadTexture(renderer, "ressources/perso/darickright.png");
+  if (!textureright) {
     printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
     goto quit;
   }
+
+  textureleft = IMG_LoadTexture(renderer, "ressources/perso/darickleft.png");
+  if (!textureleft) {
+    printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
+    goto quit;
+  }
+
+  inventaire = IMG_LoadTexture(renderer, "ressources/Inventaire/UI/container/with_slots_variation_1.png");
+  if (!inventaire) {
+    printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
+    goto quit;
+  }
+
+  // Perso de depart a l'initialisation (il est du côté droit)
+  skin = textureright;
 
   // Définir la source et la destination du rendu
   srcRect.x = 0;
@@ -50,10 +72,18 @@ int move(SDL_Window *window) {
             down = 1;
             break;
           case SDLK_q:
+            skin = textureleft;
             left = 1;
             break;
           case SDLK_d:
+            skin = textureright;
             right = 1;
+            break;
+          case SDLK_i:
+            if (!iPressed) { // Si la touche i n'a pas déjà été pressée
+              iPressed = true; // Marquer la touche comme pressée
+              showInventaire = !showInventaire; // Inverser l'état d'affichage de l'inventaire
+            }
             break;
         }
         break;
@@ -70,6 +100,9 @@ int move(SDL_Window *window) {
             break;
           case SDLK_d:
             right = 0;
+            break;
+          case SDLK_i:
+            iPressed = false; // Marquer la touche comme relâchée
             break;
         }
         break;
@@ -92,19 +125,22 @@ int move(SDL_Window *window) {
     SDL_RenderClear(renderer);
 
     // Copier la texture sur le rendu
-    SDL_RenderCopy(renderer, texture, &srcRect, &destRect);
+    SDL_RenderCopy(renderer, skin, &srcRect, &destRect);
+
+    if (showInventaire) { // Si l'inventaire doit être affiché
+      SDL_Rect invRect = {0, 0, 640, 480};
+      SDL_RenderCopy(renderer, inventaire, NULL, &invRect);
+    }
 
     // Afficher le rendu
     SDL_RenderPresent(renderer);
 
-
-    SDL_Delay(1000/(speed*10));
+    SDL_Delay(1000 / (speed * 10));
   }
-
 
 quit:
   // Nettoyer les ressources
-  SDL_DestroyTexture(texture);
+  SDL_DestroyTexture(skin);
   SDL_DestroyRenderer(renderer);
 
   return 0;
