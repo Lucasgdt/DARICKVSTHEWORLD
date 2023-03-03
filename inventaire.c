@@ -63,7 +63,7 @@ inventaire_t * create_inventaire() {
 
 void loot(inventaire_t * joueur, objet_t * obj){
     int i;
-    int temp;
+    int temp = 0;
 
     for (i = 0; i < TAILLE_INV; i++){
         if (joueur->liste[i]->id == -1){

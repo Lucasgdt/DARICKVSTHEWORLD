@@ -30,3 +30,4 @@ personnage.o : personnage.c
 
 clean:
 	rm -f *.o jeu
+	rm menu inventaire test tqt

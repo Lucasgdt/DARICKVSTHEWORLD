@@ -134,8 +134,6 @@ play:
     SDL_FreeSurface(playButtonTexture);
     SDL_FreeSurface(optionButtonTexture);
     SDL_DestroyWindow(window);
-    SDL_Quit();
-    move();
 
     
 

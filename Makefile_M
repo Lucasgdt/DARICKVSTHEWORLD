@@ -1,0 +1,26 @@
+CC=gcc
+CFLAGS=-Wall -Wextra -I/usr/local/include/SDL2 -D_REENTRANT
+LDFLAGS=-L/usr/local/lib -lSDL2 -lSDL2_image
+
+jeu: menu.o move.o inventaire.o main.o personnage.o
+	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o -o jeu $(LDFLAGS)
+
+menu.o: menu.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c menu.c
+
+move.o: move.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c move.c
+
+inventaire.o: inventaire.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c inventaire.c
+
+main.o: main.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c main.c
+
+personnage.o : personnage.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c personnage.c
+
+clean:
+	rm -f *.o jeu
+	rm menu inventaire test tqt
+.PHONY: clean
