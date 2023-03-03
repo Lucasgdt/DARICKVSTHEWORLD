@@ -24,7 +24,7 @@ typedef struct coord_s{
 }coord_t;
 
 
-int move(SDL_Texture *skin, SDL_Renderer *renderer, coord_t dir, SDL_Rect * destRect, SDL_Texture *textureright, SDL_Texture *textureleft) ;
+int move(coord_t dir, SDL_Rect * destRect) ;
 
 
 #endif

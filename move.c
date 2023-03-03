@@ -3,8 +3,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "move.h"
-
-int move(SDL_Texture *skin, SDL_Renderer *renderer, coord_t dir, SDL_Rect * destRect, SDL_Texture *textureright, SDL_Texture *textureleft) {
+int move(coord_t dir, SDL_Rect * destRect)
+{
 
   if (dir.up && destRect->y > 0) {
     destRect->y -= 1;
@@ -14,21 +14,13 @@ int move(SDL_Texture *skin, SDL_Renderer *renderer, coord_t dir, SDL_Rect * dest
   }
   if (dir.left && destRect->x > 0) {
     destRect->x -= 1;
-    skin = textureleft;
   }
   if (dir.right && destRect->x < (SCREEN_WIDTH - DARICK_SIZE)) {
     destRect->x += 1;
-    skin = textureright;
   }
 
   SDL_Delay(1000 / (speed * 10));
   return 1;
-
-
-
-quit:
-  return 0;
-
 }
 
 

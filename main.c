@@ -113,11 +113,11 @@ int main(){
             dir.down = 1;
             break;
           case SDLK_q:
-            //skin = textureleft;
+            skin = textureleft;
             dir.left = 1;
             break;
           case SDLK_d:
-            //skin = textureright;
+            skin = textureright;
             dir.right = 1;
             break;
           case SDLK_i:
@@ -151,7 +151,7 @@ int main(){
   
 
   // Appelle de fonction move
-  move(skin, renderer, dir, &destRect, textureright, textureleft);
+  move(dir, &destRect);
   
 
   // Effacer l'écran
