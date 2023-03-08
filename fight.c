@@ -3,75 +3,39 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <math.h>
+#include "joueur.h"
+
+#define ATTSPD 30
 
 
-int fight(SDL_Renderer *renderer, SDL_Texture *texture, SDL_Rect destRect){
+void fight(SDL_Renderer* renderer, SDL_Texture* characterTexture, SDL_Rect destRect, MOUSE_COORD mouse, coord_t dir) {
+    // Charger la texture d'animation de combat
+    if( dir.left )
+      SDL_Surface* fightSurface = SDL_LoadBMP("fight_animation_left.bmp");
+    else
+      SDL_Surface* fightSurface = SDL_LoadBMP("fight_animation_right.bmp");
     
-    SDL_Event event;
-    int quit = 0;
-    int mouseX, mouseY;
+    SDL_Texture* fightTexture = SDL_CreateTextureFromSurface(renderer, fightSurface);
+    SDL_FreeSurface(fightSurface);
 
-    Uint32 mouseState = SDL_GetMouseState(&mouseX, &mouseY);
-
-  while (!quit) {
-    mouseState = SDL_GetMouseState(&mouseX, &mouseY);
-    SDL_PollEvent(&event);
-    switch (event.type) {
-      case SDL_QUIT:
-        quit = 1;
-        break;
-      case SDL_:
-        switch (event.key.keysym.sym) {
-          case SDLK_z:
-            up = 1;
-            break;
-          case SDLK_s:
-            down = 1;
-            break;
-          case SDLK_q:
-            left = 1;
-            break;
-          case SDLK_d:
-            right = 1;
-            break;
-        }
-        break;
-      case SDL_KEYUP:
-        switch (event.key.keysym.sym) {
-          case SDLK_z:
-            up = 0;
-            break;
-          case SDLK_s:
-            down = 0;
-            break;
-          case SDLK_q:
-            left = 0;
-            break;
-          case SDLK_d:
-            right = 0;
-            break;
-        }
-        break;
-    }
-
-
-    // Effacer l'écran
-    SDL_RenderClear(renderer);
-
-    // Copier la texture sur le rendu
-    SDL_RenderCopy(renderer, texture, &srcRect, &destRect);
-
-    // Afficher le rendu
+    // Afficher la texture d'animation de combat
+    SDL_RenderCopy(renderer, fightTexture, NULL, &destRect);
     SDL_RenderPresent(renderer);
 
+    // Créer une hitbox dans la direction de la souris
+    SDL_Rect hitbox;
+    hitbox.w = 50;
+    hitbox.h = 50;
+    hitbox.x = mouse.x - hitbox.w/2;
+    hitbox.y = mouse.y - hitbox.h/2;
 
-    SDL_Delay(1000/(speed*10));
-  }
+    // Attendre un certain temps pour afficher l'animation de combat
+    SDL_Delay(1000 / (ATTSPD * 15));
 
+    // Afficher à nouveau la texture du personnage
+    SDL_RenderCopy(renderer, characterTexture, NULL, &destRect);
+    SDL_RenderPresent(renderer);
 
-quit:
-
-  return 0;
-
-
+    // Détruire la texture d'animation de combat
+    SDL_DestroyTexture(fightTexture);
 }

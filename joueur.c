@@ -16,10 +16,12 @@ int joueur(SDL_Window *window){
   SDL_Texture *inventaire = NULL;
   SDL_Event event;
   SDL_Rect srcRect, destRect;
+  MOUSE_COORD mouse;
   coord_t dir = {0, 0, 0, 0};
   bool showInventaire = false;
   bool iPressed = false;
   int quit = 0;
+  int click;
 
 
   // Créer le rendu
@@ -134,6 +136,15 @@ int joueur(SDL_Window *window){
             break;
         }
         break;
+      case SDL_MOUSEBUTTONDOWN:
+        if( event.button.button == SDL_BUTTON_LEFT ){
+          mouse.x = event.button.x; // Position de la souris
+          mouse.y = event.button.y;
+          fight(renderer, skin, destRect, mouse, dir);
+        }
+        break;
+
+
     }
   
 
