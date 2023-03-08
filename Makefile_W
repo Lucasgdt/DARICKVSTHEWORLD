@@ -7,11 +7,13 @@ SDLINC_DIR=${SDL_DIR}/include
 
 LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
 INCLUDES=-I${SDLINC_DIR} 
+OBJ=menu.o move.o inventaire.o main.o personnage.o
+
 
 all: jeu
 
-jeu: menu.o move.o inventaire.o main.o personnage.o
-	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o -o jeu ${LIBS} ${INCLUDES}
+jeu: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o jeu ${LIBS} ${INCLUDES}
 
 menu.o: menu.c
 	$(CC) $(CFLAGS) -c menu.c ${LIBS} ${INCLUDES}
@@ -27,6 +29,9 @@ main.o: main.c
 
 personnage.o : personnage.c
 	$(CC) $(CFLAGS) -c personnage.c ${LIBS} ${INCLUDES}
+
+joueur.o : joueur.c
+	$(CC) $(CFLAGS) -c joueur.c ${LIBS} ${INCLUDES}
 
 clean:
 	rm -f *.o jeu

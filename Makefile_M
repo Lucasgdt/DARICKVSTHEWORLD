@@ -1,9 +1,10 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -I/usr/local/include/SDL2 -D_REENTRANT
 LDFLAGS=-L/usr/local/lib -lSDL2 -lSDL2_image
+OBJ=menu.o move.o inventaire.o main.o personnage.o joueur.o
 
-jeu: menu.o move.o inventaire.o main.o personnage.o
-	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o -o jeu $(LDFLAGS)
+jeu: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o jeu $(LDFLAGS)
 
 menu.o: menu.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -c menu.c
@@ -19,6 +20,9 @@ main.o: main.c
 
 personnage.o : personnage.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -c personnage.c
+
+joueur.o: joueur.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c joueur.c
 
 clean:
 	rm -f *.o jeu

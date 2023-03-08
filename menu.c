@@ -3,14 +3,11 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
 #include "move.h"
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
-#define BUTTON_WIDTH 100
-#define BUTTON_HEIGHT 50
+#include "menu.h"
 
 int menu() {
+    
     SDL_Window *window = NULL;
     SDL_Surface *screenSurface = NULL;
     SDL_Surface *background = NULL;
@@ -25,17 +22,12 @@ int menu() {
 	SDL_Rect optionButton = {WINDOW_WIDTH - BUTTON_WIDTH - 10, 10, BUTTON_WIDTH, BUTTON_HEIGHT};
 
 
-
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        goto quit;
-    }
-
-    window = SDL_CreateWindow("Window with Background and Quit Button", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("DARICK VS THE WORLD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
     if (window == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         goto quit;
     }
+
 
     screenSurface = SDL_GetWindowSurface(window);
 
@@ -124,7 +116,6 @@ quit:
     SDL_FreeSurface(playButtonTexture);
     SDL_FreeSurface(optionButtonTexture);
     SDL_DestroyWindow(window);
-    SDL_Quit();
 	return 0;
 
 play:
@@ -134,13 +125,14 @@ play:
     SDL_FreeSurface(playButtonTexture);
     SDL_FreeSurface(optionButtonTexture);
     SDL_DestroyWindow(window);
-
-    
+    return 1;
 
 option:
 	SDL_FreeSurface(background);
     SDL_FreeSurface(quitButtonTexture);
+    SDL_FreeSurface(screenSurface);
+    SDL_FreeSurface(playButtonTexture);
+    SDL_FreeSurface(optionButtonTexture);
     SDL_DestroyWindow(window);
-    SDL_Quit();
 	return 2;
 }
