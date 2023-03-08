@@ -6,6 +6,12 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
+
+typedef struct MOUSE_COORD_S{
+    int x;
+    int y;
+}MOUSE_COORD;
+
 int joueur(SDL_Window *window);
 
 #endif

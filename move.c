@@ -4,7 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include "move.h"
 int move(coord_t dir, SDL_Rect * destRect)
-{
+{ 
 
   if (dir.up && destRect->y > 0) {
     destRect->y -= 1;
