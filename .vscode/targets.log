@@ -1,0 +1,326 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.82.90
+# Built for i686-pc-mingw32
+# Copyright (C) 1988-2012 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Tue Feb 28 12:15:46 2023
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# environment
+OMP_WAIT_POLICY = PASSIVE
+# default
+.SHELLFLAGS := -c
+# makefile
+MAKEFLAGS = Rrqp
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := c:/Users/Marwan/Desktop/Projet
+# default
+SHELL := sh.exe
+# environment
+WINDIR = C:\Windows
+# environment
+VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"87c61dc25f79d0246a2df16e3e1c6ebb.fr","_translationsConfigFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\87c61dc25f79d0246a2df16e3e1c6ebb.fr\\tcf.json","_cacheRoot":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\87c61dc25f79d0246a2df16e3e1c6ebb.fr","_resolvedLanguagePackCoreLocation":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\87c61dc25f79d0246a2df16e3e1c6ebb.fr\\441438abd1ac652551dbe4d408dfcec8a499b8bf","_corruptedFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\87c61dc25f79d0246a2df16e3e1c6ebb.fr\\corrupted.info","_languagePackSupport":true}
+# environment
+VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+# makefile (from 'Makefile', line 2)
+CFLAGS = -Wall -Wextra -I/usr/local/include/SDL2 -D_REENTRANT
+# environment
+ONEDRIVE = C:\Users\Marwan\OneDrive
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+TMP = C:\Users\Marwan\AppData\Local\Temp
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_CWD = C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code
+# environment
+PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\TDM-GCC-64\bin;C:\Program Files\Go\bin;C:\Program Files\nodejs\;C;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\;C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Marwan\AppData\Local\atom\bin;C:\Users\Marwan\go\bin;C:\Users\Marwan\AppData\Roaming\npm;C:\Program Files (x86)\Dr. Memory\bin\;C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts;
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+USERPROFILE = C:\Users\Marwan
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+GOPATH = C:\Users\Marwan\go
+# environment
+NUMBER_OF_PROCESSORS = 16
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from 'Makefile', line 3)
+LDFLAGS = -L/usr/bin -lSDL2 -lSDL2_image
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver
+# automatic
+%F = $(notdir $%)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\LOCAL\crashpad_14184_DCCAKJTSNIJAJIVE
+# environment
+COMPUTERNAME = DESKTOP-AK2PHGC
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERNAME = Marwan
+# environment
+PUBLIC = C:\Users\Public
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\Marwan\AppData\Roaming\Code\CachedData\441438abd1ac652551dbe4d408dfcec8a499b8bf
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# environment
+LOGONSERVER = \\DESKTOP-AK2PHGC
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = DESKTOP-AK2PHGC
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# makefile (from 'Makefile', line 1)
+CC = gcc
+# default
+MAKE_VERSION := 3.82.90
+# makefile
+.DEFAULT_GOAL := main
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+LOCALAPPDATA = C:\Users\Marwan\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 167 Stepping 1, GenuineIntel
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\464ad8ecc2d7e1ff50b83a5e294a6478-1.75.1-main-sock
+# environment
+KMP_BLOCKTIME = 0
+# environment
+HOMEPATH = \Users\Marwan
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PT8HOME = C:\Program Files\Cisco Packet Tracer 8.2.0
+# environment
+SYSTEMROOT = C:\Windows
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\Marwan\AppData\Roaming
+# environment
+TEMP = C:\Users\Marwan\AppData\Local\Temp
+# environment
+COMSPEC = C:\Windows\system32\cmd.exe
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = a701
+# default
+.INCLUDE_DIRS = C:/MinGW/include
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+VSCODE_PID = 14184
+# environment
+USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
+# variable set hash-table stats:
+# Load=92/1024=9%, Rehash=0, Collisions=7/101=7%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/Marwan/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1677077032): 5 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\Programs\Python\Python37\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/, mtime 1641236289): 18 files, no impossibilities.
+# C:\ProgramData\Oracle\Java\javapath (key C:/ProgramData/Oracle/Java/javapath, mtime 1638481554): 5 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/Scripts/, mtime 1665010924): 8 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts (key C:/Users/Marwan/AppData/Local/JetBrains/Toolbox/scripts, mtime 1677571790): 3 files, no impossibilities.
+# C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR (key C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR, mtime 1638375667): 5 files, no impossibilities.
+# C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1664051791): 32 files, no impossibilities.
+# . (key c:/Users/Marwan/Desktop/Projet, mtime 1677581405): 14 files, no impossibilities.
+# C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/ 
+Java/javapath, mtime 1638481364): 5 files, no impossibilities.
+# C: could not be stat'd.
+# C:\Program Files (x86)\Dr. Memory\bin\ (key C:/Program Files (x86)/Dr. Memory/bin/, mtime 1673906398): 28 files, no impossibilities.
+# C:\TDM-GCC-64\bin (key C:/TDM-GCC-64/bin, mtime 1639689819): 61 files, no impossibilities.
+# C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1677576633): 8 files, no impossibilities.
+# C:\Windows\System32\OpenSSH\: could not be stat'd.
+# C:\MinGW\bin (key C:/MinGW/bin, mtime 1677422055): 128 files, no impossibilities.
+# C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common, mtime 1638375650): 10 files, no impossibilities.
+# C:\Program Files\nodejs\ (key C:/Program Files/nodejs/, mtime 1664040876): 13 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\atom\bin (key C:/Users/Marwan/AppData/Local/atom/bin, mtime 1645467873): 6 files, no impossibilities.
+# C:\Windows (key C:/Windows, mtime 1676741830): 116 files, no impossibilities.
+# C:\Program Files\Go\bin (key C:/Program Files/Go/bin, mtime 1664040842): 4 files, no impossibilities.
+# C:\Users\Marwan\go\bin: could not be stat'd.
+# C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1676741831): 171 files, no impossibilities.
+# C:\Program Files\Common Files\Oracle\Java\javapath (key C:/Program Files/Common Files/Oracle/Java/javapath, mtime 1648905639): 6 files, no impossibilities.
+# C:\Users\Marwan\AppData\Roaming\npm (key C:/Users/Marwan/AppData/Roaming/npm, mtime 1664040874): 2 files, no impossibilities.
+# C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1667155270): 8 files, no impossibilities.
+# C:\Windows\system32 (key C:/Windows/system32, mtime 1677572147): 3005 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps (key C:/Users/Marwan/AppData/Local/Microsoft/WindowsApps, mtime 1677571988): 24 files, no impossibilities.
+
+# 3685 files, no impossibilities in 27 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+move.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+main.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+move.h:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 9):
+	rm -f main
+
+main: main.c move.c move.h
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 6):
+	$(CC) $(CFLAGS) $(LDFLAGS) -o main main.c move.c
+
+# files hash-table stats:
+# Load=10/1024=1%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 7 (6) / strings = 3603 / storage = 54348 B / avg = 15 B
+# current buf: size = 8174 B / used = 5344 B / count = 335 / avg = 15 B
+# other used: total = 46174 B / count = 3268 / avg = 14 B
+# other free: total = 40 B / max = 13 B / min = 2 B / avg = 6 B
+
+# strcache performance: lookups = 3728 / hit rate = 3%
+# hash-table stats:
+# Load=3603/8192=44%, Rehash=0, Collisions=1312/3728=35%
+# Finished Make data base on Tue Feb 28 12:15:46 2023
+
+ 
+Makefile:12: *** missing separator.  Stop.
+
