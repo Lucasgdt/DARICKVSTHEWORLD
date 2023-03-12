@@ -3,6 +3,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "move.h"
+#include "joueur.h"
+
 int move(coord_t dir, SDL_Rect * destRect)
 { 
 
