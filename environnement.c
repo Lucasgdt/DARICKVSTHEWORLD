@@ -13,10 +13,10 @@ void INIT_MAP(SDL_Renderer * renderer, SDL_Rect tile[TILES_X][TILES_Y], SDL_Rect
     
     for(int x = 0; x<TILES_X; x++){
         for(int y = 0; y<TILES_Y; y++){
-            tile[x][y].x = x*32;
-            tile[x][y].y = y*32;
-            tile[x][y].w = 32;
-            tile[x][y].h = 32;
+            tile[x][y].x = x*SIZE_TILES;
+            tile[x][y].y = y*SIZE_TILES;
+            tile[x][y].w = SIZE_TILES;
+            tile[x][y].h = SIZE_TILES;
         }
     }
 
@@ -86,6 +86,9 @@ void INIT_MAP(SDL_Renderer * renderer, SDL_Rect tile[TILES_X][TILES_Y], SDL_Rect
     select_tile[10].w = 16;
     select_tile[10].h = 16;
 
+
+
+
 }
 
 
@@ -95,7 +98,14 @@ void INIT_MAP(SDL_Renderer * renderer, SDL_Rect tile[TILES_X][TILES_Y], SDL_Rect
 
 
 void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], SDL_Rect tile[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y]){
-    
+    int transpose[TILES_X][TILES_Y];
+    // computing the transpose
+    for (int i = 0; i < TILES_X; ++i)
+        for (int j = 0; j < TILES_Y; ++j) {
+            transpose[j][i] = tilemap[i][j];
+    }
+    tilemap = transpose;
+
     for(int x = 0; x < TILES_X; x++){
             for( int y = 0; y < TILES_Y; y++){
                 switch( tilemap[x][y] )

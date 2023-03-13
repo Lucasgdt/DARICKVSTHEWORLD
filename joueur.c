@@ -11,6 +11,9 @@
 #include "map.h"
 //#include "fight.h"
 
+
+
+
 int joueur(SDL_Window *window){
 
   SDL_Renderer *renderer = NULL;
@@ -58,6 +61,7 @@ int joueur(SDL_Window *window){
   SDL_FreeSurface(tile_map_surface);
 
   //menu();
+
 
 
   // Définir la source et la destination du rendu
@@ -165,7 +169,7 @@ int joueur(SDL_Window *window){
   
 
   // Appelle de fonction move
-  move(dir, &destRect);
+  move(dir, &destRect, map1);
   
   
   // Effacer l'écran

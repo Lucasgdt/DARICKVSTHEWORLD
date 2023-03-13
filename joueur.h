@@ -6,7 +6,7 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
-#define DARICK_SIZE 32
+#define DARICK_SIZE 96
 
 typedef struct MOUSE_COORD_S{
     int x;

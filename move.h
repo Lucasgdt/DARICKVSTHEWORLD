@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "environnement.h"
 
 #ifndef MOVE_H
 #define MOVE_H
@@ -23,7 +24,7 @@ typedef struct coord_s{
 }coord_t;
 
 
-int move(coord_t dir, SDL_Rect * destRect) ;
+int move(coord_t dir, SDL_Rect * destRect, int map[TILES_X][TILES_Y]) ;
 
 
 #endif
