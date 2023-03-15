@@ -6,7 +6,17 @@
 #include "move.h"
 #include "inventaire.h"
 #include "personnage.h"
+<<<<<<< HEAD
 #include "joueur.h"
+=======
+#include "environnement.h"
+#include "joueur.h"
+#include "map.h"
+//#include "fight.h"
+
+
+
+>>>>>>> 3e483e02d6f349843882e0076c37087c260770e8
 
 int joueur(SDL_Window *window){
 
@@ -15,9 +25,12 @@ int joueur(SDL_Window *window){
   SDL_Texture *textureright = NULL;
   SDL_Texture *textureleft = NULL;
   SDL_Texture *inventaire = NULL;
+  SDL_Texture *tile_texture = NULL;
   SDL_Event event;
   SDL_Rect srcRect, destRect;
-  MOUSE_COORD mouse;
+  SDL_Rect tile[TILES_X][TILES_Y];
+  SDL_Rect select_tile[NB_TILES];
+  //MOUSE_COORD mouse;
   coord_t dir = {0, 0, 0, 0};
   bool showInventaire = false;
   bool iPressed = false;
@@ -47,7 +60,12 @@ int joueur(SDL_Window *window){
   // Créer la texture de Darick
   skin = textureright;
 
+  SDL_Surface * tile_map_surface = IMG_Load("ressources/map/tiles_map.png");
+  tile_texture = SDL_CreateTextureFromSurface(renderer, tile_map_surface);
+  SDL_FreeSurface(tile_map_surface);
+
   //menu();
+
 
 
   // Définir la source et la destination du rendu
@@ -85,6 +103,11 @@ int joueur(SDL_Window *window){
   free(obj);
 
 */
+
+
+
+  // Fonction d'initialisation des outils de map
+  INIT_MAP(renderer, tile, select_tile);
 
   // Boucle de récupération des events
 
@@ -139,9 +162,9 @@ int joueur(SDL_Window *window){
         break;
       case SDL_MOUSEBUTTONDOWN:
         if( event.button.button == SDL_BUTTON_LEFT ){
-          mouse.x = event.button.x; // Position de la souris
-          mouse.y = event.button.y;
-          fight(renderer, skin, destRect, mouse, dir);
+          //mouse.x = event.button.x; // Position de la souris
+          //mouse.y = event.button.y;
+          //fight(renderer, skin, destRect, mouse, dir);
         }
         break;
 
@@ -150,14 +173,21 @@ int joueur(SDL_Window *window){
   
 
   // Appelle de fonction move
-  move(dir, &destRect);
+  move(dir, &destRect, map1);
   
-
+  
   // Effacer l'écran
+  SDL_SetRenderDrawColor(renderer, 0x3C, 0x1F, 0x1F, 0xFF);
   SDL_RenderClear(renderer);
 
-  // Copier la texture sur le rendu
+  // Chargement de la map
+  LOAD_MAP(renderer, tile_texture, select_tile, tile, map1);
+
+
+  // Copier la texture du perso sur le rendu
   SDL_RenderCopy(renderer, skin, &srcRect, &destRect);
+
+
 
   if (showInventaire) { // Si l'inventaire doit être affiché
     SDL_Rect invRect = {0, 0, 640, 480};
@@ -172,6 +202,7 @@ quit:
   //Libéré la texture
   SDL_DestroyTexture(textureright);
   SDL_DestroyTexture(textureleft);
+  SDL_DestroyTexture(tile_texture);
   //Libéré le rendu
   SDL_DestroyRenderer(renderer);
   //Fermer la fenetre

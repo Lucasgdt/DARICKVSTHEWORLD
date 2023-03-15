@@ -8,6 +8,11 @@
 #define ATTSPD 30
 
 
+
+
+
+
+
 void fight(SDL_Renderer* renderer, SDL_Texture* characterTexture, SDL_Rect destRect, MOUSE_COORD mouse, coord_t dir) {
     // Charger la texture d'animation de combat
     if( dir.left )
@@ -34,7 +39,7 @@ void fight(SDL_Renderer* renderer, SDL_Texture* characterTexture, SDL_Rect destR
 
     // Afficher à nouveau la texture du personnage
     SDL_RenderCopy(renderer, characterTexture, NULL, &destRect);
-    SDL_RenderPresent(renderer);
+    //SDL_RenderPresent(renderer);
 
     // Détruire la texture d'animation de combat
     SDL_DestroyTexture(fightTexture);

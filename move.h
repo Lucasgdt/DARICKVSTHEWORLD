@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_image.h>
 
 #ifndef MOVE_H
 #define MOVE_H
@@ -10,7 +10,6 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
-#define DARICK_SIZE 96
 
 #define speed 30
 
@@ -24,7 +23,7 @@ typedef struct coord_s{
 }coord_t;
 
 
-int move(coord_t dir, SDL_Rect * destRect) ;
+int move(coord_t dir, SDL_Rect * destRect, int map[TILES_X][TILES_Y]) ;
 
 
 #endif

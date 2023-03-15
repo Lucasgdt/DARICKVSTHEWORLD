@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Sun Mar 12 14:15:59 2023
+# Make data base, printed on Wed Mar 15 14:37:30 2023
 
 # Variables
 
@@ -40,7 +40,7 @@ SHELL := sh.exe
 # environment
 WINDIR = C:\Windows
 # environment
-VSCODE_NLS_CONFIG = {"locale":"fr-fr","availableLanguages":{"*":"fr"},"_languagePackId":"c3208bc4efaea1ecfa750d6caae049ee.fr","_translationsConfigFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\c3208bc4efaea1ecfa750d6caae049ee.fr\\tcf.json","_cacheRoot":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\c3208bc4efaea1ecfa750d6caae049ee.fr","_corruptedFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\c3208bc4efaea1ecfa750d6caae049ee.fr\\corrupted.info","_resolvedLanguagePackCoreLocation":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\c3208bc4efaea1ecfa750d6caae049ee.fr\\5e805b79fcb6ba4c2d23712967df89a089da575b","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"fr-fr","availableLanguages":{"*":"fr"},"_languagePackId":"253ddc3663b7050a7fa71b28cd271f7b.fr","_translationsConfigFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\tcf.json","_cacheRoot":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr","_corruptedFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\corrupted.info","_resolvedLanguagePackCoreLocation":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\5e805b79fcb6ba4c2d23712967df89a089da575b","_languagePackSupport":true}
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
@@ -60,7 +60,7 @@ PROGRAMDATA = C:\ProgramData
 # environment
 VSCODE_CWD = C:\Users\Marwan\Desktop\Projet
 # environment
-PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\TDM-GCC-64\bin;C:\Program Files\Go\bin;C:\Program Files\nodejs\;C;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\;C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Marwan\AppData\Local\atom\bin;C:\Users\Marwan\go\bin;C:\Users\Marwan\AppData\Roaming\npm;C:\Program Files (x86)\Dr. Memory\bin\;C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts;
+PATH = C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\TDM-GCC-64\bin;C:\Program Files\Go\bin;C:\Program Files\nodejs\;C;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\IncrediBuild;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\;C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Marwan\AppData\Local\atom\bin;C:\Users\Marwan\go\bin;C:\Users\Marwan\AppData\Roaming\npm;C:\Program Files (x86)\Dr. Memory\bin\;C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Marwan\.dotnet\tools
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # environment
@@ -80,7 +80,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\LOCAL\crashpad_11356_XHMMKJKOYZGDCIAE
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\LOCAL\crashpad_13568_FNXFVEQCFHPAHSJA
 # environment
 COMPUTERNAME = DESKTOP-AK2PHGC
 # environment
@@ -194,7 +194,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 11356
+VSCODE_PID = 13568
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 # variable set hash-table stats:
@@ -206,16 +206,19 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 
 # Directories
 
+# C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin (key C:/Program Files/Microsoft/jdk-11.0.16.101-hotspot/bin, mtime 1678636423): 126 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/Marwan/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1678471353): 5 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\Programs\Python\Python37\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/, mtime 1641236289): 18 files, no impossibilities.
 # C:\ProgramData\Oracle\Java\javapath (key C:/ProgramData/Oracle/Java/javapath, mtime 1638481554): 5 files, no impossibilities.
-# C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/Scripts/, mtime 1665010924): 8 files, no impossibilities.
-# C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts (key C:/Users/Marwan/AppData/Local/JetBrains/Toolbox/scripts, mtime 1678617459): 3 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/Scripts/, mtime 1678822724): 8 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts (key C:/Users/Marwan/AppData/Local/JetBrains/Toolbox/scripts, mtime 1678872453): 3 files, no impossibilities.
 # C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR (key C:/Program Files/NVIDIA Corporation/NVIDIA NvDLISR, mtime 1638375667): 5 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1664051791): 32 files, no impossibilities.
-# . (key c:/Users/Marwan/Desktop/Projet, mtime 1678559983): 37 files, no impossibilities.
+# C:\Users\Marwan\.dotnet\tools: could not be stat'd.
+# . (key c:/Users/Marwan/Desktop/Projet, mtime 1678883382): 42 files, no impossibilities.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1638481364): 5 files, no impossibilities.
 # C: could not be stat'd.
+# C:\Program Files\Microsoft SQL Server\150\Tools\Binn\ (key C:/Program Files/Microsoft SQL Server/150/Tools/Binn/, mtime 1678635648): 4 files, no impossibilities.
 # C:\Program Files (x86)\Dr. Memory\bin\ (key C:/Program Files (x86)/Dr. Memory/bin/, mtime 1673906398): 28 files, no impossibilities.
 # C:\TDM-GCC-64\bin (key C:/TDM-GCC-64/bin, mtime 1639689819): 61 files, no impossibilities.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1677576633): 8 files, no impossibilities.
@@ -224,17 +227,18 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 # C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common, mtime 1638375650): 10 files, no impossibilities.
 # C:\Program Files\nodejs\ (key C:/Program Files/nodejs/, mtime 1664040876): 13 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\atom\bin (key C:/Users/Marwan/AppData/Local/atom/bin, mtime 1645467873): 6 files, no impossibilities.
-# C:\Windows (key C:/Windows, mtime 1676741830): 116 files, no impossibilities.
+# C:\Windows (key C:/Windows, mtime 1678635885): 116 files, no impossibilities.
 # C:\Program Files\Go\bin (key C:/Program Files/Go/bin, mtime 1664040842): 4 files, no impossibilities.
 # C:\Users\Marwan\go\bin: could not be stat'd.
 # C:\Windows\System32\Wbem (key C:/Windows/System32/Wbem, mtime 1676741831): 171 files, no impossibilities.
+# C:\Program Files (x86)\IncrediBuild (key C:/Program Files (x86)/IncrediBuild, mtime 1678636620): 123 files, no impossibilities.
 # C:\Program Files\Common Files\Oracle\Java\javapath (key C:/Program Files/Common Files/Oracle/Java/javapath, mtime 1648905639): 6 files, no impossibilities.
 # C:\Users\Marwan\AppData\Roaming\npm (key C:/Users/Marwan/AppData/Roaming/npm, mtime 1664040874): 2 files, no impossibilities.
-# C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1667155270): 8 files, no impossibilities.
-# C:\Windows\system32 (key C:/Windows/system32, mtime 1678623411): 3005 files, no impossibilities.
+# C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1678635749): 13 files, no impossibilities.
+# C:\Windows\system32 (key C:/Windows/system32, mtime 1678876218): 3087 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps (key C:/Users/Marwan/AppData/Local/Microsoft/WindowsApps, mtime 1677925263): 24 files, no impossibilities.
 
-# 3708 files, no impossibilities in 27 directories.
+# 4053 files, no impossibilities in 31 directories.
 
 # Implicit Rules
 
@@ -244,10 +248,7 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 
 # Not a target:
 all:
-#  Comm 
-make.exe: *** No rule to make target 'all'.  Stop.
-
-and line target.
+#  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
@@ -293,14 +294,16 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 7 (6) / strings = 3626 / storage = 54592 B / avg = 15 B
-# current buf: size = 8174 B / used = 5594 B / count = 354 / avg = 15 B
-# other used: total = 46418 B / count = 3272 / avg = 14 B
-# other free: total = 46 B / max = 12 B / min = 3 B / avg = 7 B
+# strcache buffers: 8 (6) / strings = 3956 / storage = 60373 B / avg = 15 B
+# current buf: size = 8174 B / used = 3234 B / count = 184 / avg = 17 B
+# other used: total = 52199 B / count = 3772 / avg = 13 B
+# other free: total = 79 B / max = 20 B / min = 3 B / avg = 11 B
 
-# strcache performance: lookups = 3743 / hit rate = 3%
+# strcache performance: lookups = 4092 / hit rate = 3%
 # hash-table stats:
-# Load=3626/8192=44%, Rehash=0, Collisions=1327/3743=35%
-# Finished Make data base on Sun Mar 12 14:15:59 2023
+# Load=3956/8192=48%, Rehash=0, Collisions=1618/4092=40%
+# Finished Make data base on Wed Mar 15 14:37:30 2023
 
  
+make.exe: *** No rule to make target 'all'.  Stop.
+

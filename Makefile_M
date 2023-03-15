@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -I/usr/local/include/SDL2 -D_REENTRANT
+CFLAGS=-Wall -Wextra -I/usr/local/include/SDL2 -D_REENTRANT -Wno-unused-parameter
 LDFLAGS=-L/usr/local/lib -lSDL2 -lSDL2_image
-OBJ=menu.o move.o inventaire.o main.o personnage.o joueur.o
+OBJ=menu.o move.o inventaire.o main.o personnage.o joueur.o environnement.o
 
 jeu: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o jeu $(LDFLAGS)
@@ -23,6 +23,9 @@ personnage.o : personnage.c
 
 joueur.o: joueur.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -c joueur.c
+
+environnement.o: environnement.c
+	$(CC) $(CFLAGS) $(LDFLAGS) -c environnement.c
 
 clean:
 	rm -f *.o jeu
