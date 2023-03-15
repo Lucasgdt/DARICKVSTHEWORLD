@@ -23,15 +23,16 @@ int joueur(SDL_Window *window){
   SDL_Texture *inventaire = NULL;
   SDL_Texture *tile_texture = NULL;
   SDL_Event event;
-  SDL_Rect srcRect, destRect;
-  SDL_Rect tile[TILES_X][TILES_Y];
+  SDL_Rect srcRect, player;
   SDL_Rect select_tile[NB_TILES];
+  TILE_MAP map[TILES_X][TILES_Y];
   //MOUSE_COORD mouse;
   coord_t dir = {0, 0, 0, 0};
   bool showInventaire = false;
   bool iPressed = false;
   int quit = 0;
   int click;
+  //SDL_Point viewOffset;
 
 
   // Créer le rendu
@@ -56,6 +57,10 @@ int joueur(SDL_Window *window){
   // Créer la texture de Darick
   skin = textureright;
 
+
+  // Créer la map
+
+
   SDL_Surface * tile_map_surface = IMG_Load("ressources/map/tiles_map.png");
   tile_texture = SDL_CreateTextureFromSurface(renderer, tile_map_surface);
   SDL_FreeSurface(tile_map_surface);
@@ -67,10 +72,11 @@ int joueur(SDL_Window *window){
   // Définir la source et la destination du rendu
   srcRect.x = 0;
   srcRect.y = 0;
-  srcRect.w = destRect.w = DARICK_SIZE;
-  srcRect.h = destRect.h = DARICK_SIZE;
-  destRect.x = 600;
-  destRect.y = 624;
+  srcRect.w = player.w = DARICK_SIZE;
+  srcRect.h = player.h = DARICK_SIZE;
+  player.x = 200;
+  player.y = 200;
+  SDL_Rect camera = { (player.x + SCREEN_WIDTH/2)/SIZE_TILES, (player.y + SCREEN_HEIGHT/2)/SIZE_TILES, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 /*
   int choix;
@@ -103,7 +109,7 @@ int joueur(SDL_Window *window){
 
 
   // Fonction d'initialisation des outils de map
-  INIT_MAP(renderer, tile, select_tile);
+  INIT_MAP(map, select_tile);
 
   // Boucle de récupération des events
 
@@ -160,7 +166,7 @@ int joueur(SDL_Window *window){
         if( event.button.button == SDL_BUTTON_LEFT ){
           //mouse.x = event.button.x; // Position de la souris
           //mouse.y = event.button.y;
-          //fight(renderer, skin, destRect, mouse, dir);
+          //fight(renderer, skin, player, mouse, dir);
         }
         break;
 
@@ -168,30 +174,28 @@ int joueur(SDL_Window *window){
     }
   
 
-  // Appelle de fonction move
-  move(dir, &destRect, map1);
   
   
   // Effacer l'écran
   SDL_SetRenderDrawColor(renderer, 0x3C, 0x1F, 0x1F, 0xFF);
   SDL_RenderClear(renderer);
 
-  // Chargement de la map
-  LOAD_MAP(renderer, tile_texture, select_tile, tile, map1);
+  //Deplacement
+  move(dir, &player, map);
+  
+  //centerCam(player, &viewOffset, dir);
 
+  camera = moveCam(camera, &player);
+  // Chargement de la map
+  LOAD_MAP(renderer, tile_texture, select_tile, map, map1, camera);
 
   // Copier la texture du perso sur le rendu
-  SDL_RenderCopy(renderer, skin, &srcRect, &destRect);
-
-
-
-  if (showInventaire) { // Si l'inventaire doit être affiché
-    SDL_Rect invRect = {0, 0, 640, 480};
-    SDL_RenderCopy(renderer, inventaire, NULL, &invRect); 
-  }
-
+  SDL_RenderCopy(renderer, skin, &srcRect, &player);
   // Afficher le rendu
+
   SDL_RenderPresent(renderer);
+
+
   }
 
 quit:

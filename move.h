@@ -24,7 +24,10 @@ typedef struct coord_s{
 }coord_t;
 
 
-int move(coord_t dir, SDL_Rect * destRect, int map[TILES_X][TILES_Y]) ;
+
+//void centerCam(SDL_Rect player, SDL_Point * viewOffset, coord_t dir);
+SDL_Rect moveCam(SDL_Rect camera, SDL_Rect * player);
+int move(coord_t dir, SDL_Rect * destRect, TILE_MAP map[TILES_X][TILES_Y]) ;
 
 
 #endif

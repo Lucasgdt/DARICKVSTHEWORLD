@@ -12,8 +12,17 @@
 #define NB_TILES 12
 #define SIZE_TILES 48
 
-void INIT_MAP(SDL_Renderer * renderer, SDL_Rect tile[TILES_X][TILES_Y], SDL_Rect select_tile[NB_TILES]);
-void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], SDL_Rect tile[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y]);
+typedef struct TILE_MAP_S{
+    SDL_Rect tile;
+    int mur;
+}TILE_MAP;
+
+
+
+
+
+void INIT_MAP(TILE_MAP map[TILES_X][TILES_Y], SDL_Rect select_tile[NB_TILES]);
+void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], TILE_MAP map[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y], SDL_Rect camera);
 
 
 

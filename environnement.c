@@ -5,18 +5,18 @@
 #include <SDL2/SDL_image.h>
 #include <time.h>
 #include "environnement.h"
+#include "move.h"
 
 
-void INIT_MAP(SDL_Renderer * renderer, SDL_Rect tile[TILES_X][TILES_Y], SDL_Rect select_tile[NB_TILES]){
-
-
+void INIT_MAP(TILE_MAP map[TILES_X][TILES_Y], SDL_Rect select_tile[NB_TILES]){
     
     for(int x = 0; x<TILES_X; x++){
         for(int y = 0; y<TILES_Y; y++){
-            tile[x][y].x = x*SIZE_TILES;
-            tile[x][y].y = y*SIZE_TILES;
-            tile[x][y].w = SIZE_TILES;
-            tile[x][y].h = SIZE_TILES;
+            map[x][y].tile.x = x*SIZE_TILES;
+            map[x][y].tile.y = y*SIZE_TILES;
+            map[x][y].tile.w = SIZE_TILES;
+            map[x][y].tile.h = SIZE_TILES;
+            map[x][y].mur = 0;
         }
     }
 
@@ -97,7 +97,7 @@ void INIT_MAP(SDL_Renderer * renderer, SDL_Rect tile[TILES_X][TILES_Y], SDL_Rect
 
 
 
-void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], SDL_Rect tile[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y]){
+void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], TILE_MAP map[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y], SDL_Rect camera){
     int transpose[TILES_X][TILES_Y];
     // computing the transpose
     for (int i = 0; i < TILES_X; ++i)
@@ -108,44 +108,58 @@ void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect sele
 
     for(int x = 0; x < TILES_X; x++){
             for( int y = 0; y < TILES_Y; y++){
-                switch( tilemap[x][y] )
+
+                switch( tilemap[x + camera.x][y + camera.y] )
                 {
                     case 1:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[0], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[0], &map[x][y].tile);
+                        map[x][y].mur = 0;
                         break;
                     case 2:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[1], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[1], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 3:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[2], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[2], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 4:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[3], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[3], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 5:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[4], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[4], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 6:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[5], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[5], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 7:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[6], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[6], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 8:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[7], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[7], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 9:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[8], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[8], &map[x][y].tile);
+                        map[x][y].mur = 0;
                         break;
                     case 10:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[9], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[9], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 11:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[10], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[10], &map[x][y].tile);
+                        map[x][y].mur = 1;
                         break;
                     case 12:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[11], &tile[x][y]);
+                        SDL_RenderCopy(renderer, tile_texture, &select_tile[11], &map[x][y].tile);
+                        map[x][y].mur = 1;
                 }
+
             }
         }
 
