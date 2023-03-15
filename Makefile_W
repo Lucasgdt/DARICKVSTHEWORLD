@@ -7,7 +7,7 @@ SDLINC_DIR=${SDL_DIR}/include
 
 LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
 INCLUDES=-I${SDLINC_DIR} 
-OBJ=menu.o move.o inventaire.o main.o personnage.o
+OBJ=menu.o move.o inventaire.o main.o personnage.o joueur.o
 
 
 all: jeu

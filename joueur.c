@@ -6,6 +6,7 @@
 #include "move.h"
 #include "inventaire.h"
 #include "personnage.h"
+#include "joueur.h"
 
 int joueur(SDL_Window *window){
 
