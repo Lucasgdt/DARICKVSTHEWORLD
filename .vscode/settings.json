@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "interface.C": "cpp"
+        "interface.C": "cpp",
+        "sdl_image.h": "c"
     }
 }

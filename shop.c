@@ -113,9 +113,9 @@ void boutique(){
   printf("\n%s, %s, %s, %s \n", obj1->nom,obj2->nom,obj3->nom,obj4->nom);
 
   printf("Bienvenue dans la boutique cher Darick ! \nz"); 
-  printf("  Voici les items du jours ! \n")
+  printf("  Voici les items du jours ! \n");
   printf("\n%s, %s, %s, %s \n", obj1->nom,obj2->nom,obj3->nom,obj4->nom);
-  switch()
+
 	free(obj1);
 	free(obj2);
 	free(obj3);

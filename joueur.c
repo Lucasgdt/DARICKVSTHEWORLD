@@ -6,6 +6,9 @@
 #include "move.h"
 #include "inventaire.h"
 #include "personnage.h"
+<<<<<<< HEAD
+#include "joueur.h"
+=======
 #include "environnement.h"
 #include "joueur.h"
 #include "map.h"
@@ -13,6 +16,7 @@
 
 
 
+>>>>>>> 3e483e02d6f349843882e0076c37087c260770e8
 
 int joueur(SDL_Window *window){
 
