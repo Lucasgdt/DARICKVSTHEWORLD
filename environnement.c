@@ -8,159 +8,134 @@
 #include "move.h"
 
 
-void INIT_MAP(TILE_MAP map[TILES_X][TILES_Y], SDL_Rect select_tile[NB_TILES]){
-    
-    for(int x = 0; x<TILES_X; x++){
-        for(int y = 0; y<TILES_Y; y++){
-            map[x][y].tile.x = x*SIZE_TILES;
-            map[x][y].tile.y = y*SIZE_TILES;
-            map[x][y].tile.w = SIZE_TILES;
-            map[x][y].tile.h = SIZE_TILES;
-            map[x][y].mur = 0;
+
+
+SDL_Surface* LoadImage16(const char* img)
+{
+
+    SDL_Surface* image_ram = IMG_Load(img); // Charge l'image
+    return image_ram;
+}
+
+void LoadMap_tileset(Map_t* loaded_map){
+    int numtile, i, j;
+
+    loaded_map->surfacetile = LoadImage16("ressources/map/tiles_map.png");
+    loaded_map->nbtilesX = 4;
+    loaded_map->nbtilesY = 3;
+
+    loaded_map->LARGEUR_TILE = loaded_map->HAUTEUR_TILE = 16;
+
+    loaded_map->tile = malloc(loaded_map->nbtilesX*loaded_map->nbtilesY*sizeof(Tile_t));
+
+    for(j=0,numtile=0; j < loaded_map->nbtilesY; j++ )
+    {
+        for(i = 0; i < loaded_map->nbtilesX; i++, numtile++ )
+        {
+            loaded_map->tile[numtile].R.w = loaded_map->LARGEUR_TILE;
+            loaded_map->tile[numtile].R.h = loaded_map->HAUTEUR_TILE;
+            loaded_map->tile[numtile].R.x = i*loaded_map->LARGEUR_TILE;
+            loaded_map->tile[numtile].R.y = j*loaded_map->HAUTEUR_TILE;
+            loaded_map->tile[numtile].mur = 0;
         }
     }
+}
 
-    // Sol
-    select_tile[0].x = 0;
-    select_tile[0].y = 0;
-    select_tile[0].w = 16;
-    select_tile[0].h = 16;
-
-    //Mur arriere
-    select_tile[1].x = 16;
-    select_tile[1].y = 0;
-    select_tile[1].w = 16;
-    select_tile[1].h = 16;
-
-    //Mur devant
-    select_tile[2].x = 32;
-    select_tile[2].y = 0;
-    select_tile[2].w = 16;
-    select_tile[2].h = 16;
-
-    //Mur gauche
-    select_tile[3].x = 48;
-    select_tile[3].y = 0;
-    select_tile[3].w = 16;
-    select_tile[3].h = 16;
-
-    //Mur droit
-    select_tile[4].x = 0;
-    select_tile[4].y = 16;
-    select_tile[4].w = 16;
-    select_tile[4].h = 16;
-
-    //Coin haut gauche
-    select_tile[5].x = 16;
-    select_tile[5].y = 16;
-    select_tile[5].w = 16;
-    select_tile[5].h = 16;
-
-    //Coin haut droit
-    select_tile[6].x = 32;
-    select_tile[6].y = 16;
-    select_tile[6].w = 16;
-    select_tile[6].h = 16;
-
-    //Mur haut arrete
-    select_tile[7].x = 48;
-    select_tile[7].y = 16;
-    select_tile[7].w = 16;
-    select_tile[7].h = 16;
-
-    //Echelle
-    select_tile[8].x = 0;
-    select_tile[8].y = 32;
-    select_tile[8].w = 16;
-    select_tile[8].h = 16;
-
-    //Coin bas gauche
-    select_tile[9].x = 16;
-    select_tile[9].y = 32;
-    select_tile[9].w = 16;
-    select_tile[9].h = 16;
-
-    //Coin bas droit
-    select_tile[10].x = 32;
-    select_tile[10].y = 32;
-    select_tile[10].w = 16;
-    select_tile[10].h = 16;
-
-
-
-
+void ErrorQuit(const char* ERROR)
+{
+    puts(ERROR);
+    SDL_Quit();
+    system("pause");
+    exit(-1);
 }
 
 
+void LoadMap_level(Index_t map, Map_t * loaded_map)
+{
+    loaded_map->nb_tiles_larg = map.tileX;
+    loaded_map->nb_tiles_long = map.tileY;
+    loaded_map->schema = map.intmap;
+}
 
+Map_t * LoadMap(Index_t map)
+{
+    Map_t * loaded_map;
 
+    loaded_map = malloc(sizeof(Map_t));
 
+    LoadMap_tileset(loaded_map);
+    LoadMap_level(map, loaded_map);
 
+    return(loaded_map);
 
-void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], TILE_MAP map[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y], SDL_Rect camera){
-    int transpose[TILES_X][TILES_Y];
-    // computing the transpose
-    for (int i = 0; i < TILES_X; ++i)
-        for (int j = 0; j < TILES_Y; ++j) {
-            transpose[j][i] = tilemap[i][j];
-    }
-    tilemap = transpose;
+}
 
-    for(int x = 0; x < TILES_X; x++){
-            for( int y = 0; y < TILES_Y; y++){
+int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
+{
+    int i, j;
+    SDL_Rect Rect_dest;
+    SDL_Texture * tile_texture = NULL;
+    tile_texture = SDL_CreateTextureFromSurface(renderer, loaded_map->surfacetile);
 
-                switch( tilemap[x + camera.x][y + camera.y] )
+    for( i = 0 ; i < loaded_map->nb_tiles_larg ; i++ )
+        for( j = 0 ; j < loaded_map->nb_tiles_long ; j++ )
+            {   
+                Rect_dest.x = i * loaded_map->LARGEUR_TILE;
+                Rect_dest.y = j * loaded_map->HAUTEUR_TILE;
+                Rect_dest.w = 16;
+                Rect_dest.h = 16;
+                switch(loaded_map->schema[i][j])
                 {
                     case 1:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[0], &map[x][y].tile);
-                        map[x][y].mur = 0;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[0].R), &Rect_dest);
                         break;
                     case 2:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[1], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[1].R), &Rect_dest);
                         break;
                     case 3:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[2], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[2].R), &Rect_dest);
                         break;
                     case 4:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[3], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[3].R), &Rect_dest);
                         break;
                     case 5:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[4], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[4].R), &Rect_dest);
                         break;
                     case 6:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[5], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[5].R), &Rect_dest);
                         break;
                     case 7:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[6], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[6].R), &Rect_dest);
                         break;
                     case 8:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[7], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[7].R), &Rect_dest);
                         break;
                     case 9:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[8], &map[x][y].tile);
-                        map[x][y].mur = 0;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[8].R), &Rect_dest);
                         break;
                     case 10:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[9], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[9].R), &Rect_dest);
                         break;
                     case 11:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[10], &map[x][y].tile);
-                        map[x][y].mur = 1;
+                        SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[10].R), &Rect_dest);
                         break;
-                    case 12:
-                        SDL_RenderCopy(renderer, tile_texture, &select_tile[11], &map[x][y].tile);
-                        map[x][y].mur = 1;
+
                 }
-
+                
             }
-        }
+    return 0;
+    SDL_DestroyTexture(tile_texture);
 
+}
+
+int FreeMap(Map_t* loaded_map)
+{
+    int i;
+    SDL_FreeSurface(loaded_map->surfacetile);
+    for( i = 0 ; i < loaded_map->nb_tiles_long ; i++)
+        free(loaded_map->schema[i]);
+    //free(loaded_map->schema);
+    free(loaded_map->tile);
+    free(loaded_map);
+    return 0;
 }

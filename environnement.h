@@ -12,21 +12,34 @@
 #define NB_TILES 12
 #define SIZE_TILES 48
 
-typedef struct TILE_MAP_S{
-    SDL_Rect tile;
+typedef struct TILE_S{
+    SDL_Rect R;
     int mur;
-}TILE_MAP;
+}Tile_t;
+
+typedef struct MAP_S{
+    int LARGEUR_TILE, HAUTEUR_TILE;
+    int nbtilesX, nbtilesY;
+    SDL_Surface * surfacetile;
+    Tile_t * tile;
+    int ** schema;
+    int nb_tiles_larg, nb_tiles_long;
+    
+}Map_t;
+
+typedef struct TILE_INDEX{
+    int ** intmap;
+    int tileX, tileY;
+}Index_t;
 
 
-
-
-
-void INIT_MAP(TILE_MAP map[TILES_X][TILES_Y], SDL_Rect select_tile[NB_TILES]);
-void LOAD_MAP(SDL_Renderer * renderer, SDL_Texture * tile_texture, SDL_Rect select_tile[NB_TILES], TILE_MAP map[TILES_X][TILES_Y], int tilemap[TILES_X][TILES_Y], SDL_Rect camera);
-
-
-
-
+SDL_Surface* LoadImage16(const char* img);
+void LoadMap_tileset(Map_t* loaded_map);
+void ErrorQuit(const char* ERROR);
+void LoadMap_level(Index_t map, Map_t * loaded_map);
+Map_t * LoadMap(Index_t map);
+int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer);
+int FreeMap(Map_t* loaded_map);
 
 
 #endif

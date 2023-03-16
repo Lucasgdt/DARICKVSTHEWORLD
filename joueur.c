@@ -22,11 +22,12 @@ int joueur(SDL_Window *window){
   SDL_Texture *textureright = NULL;
   SDL_Texture *textureleft = NULL;
   SDL_Texture *inventaire = NULL;
-  SDL_Texture *tile_texture = NULL;
+
   SDL_Event event;
   SDL_Rect srcRect, player;
-  SDL_Rect select_tile[NB_TILES];
-  TILE_MAP map[TILES_X][TILES_Y];
+  Map_t * loaded_map = NULL;
+
+  //TILE_MAP map[TILES_X][TILES_Y];
   //MOUSE_COORD mouse;
   coord_t dir = {0, 0, 0, 0};
   bool showInventaire = false;
@@ -61,10 +62,14 @@ int joueur(SDL_Window *window){
 
   // Créer la map
 
+  Index_t map;
+  map.intmap = map1;
+  map.tileX = 40;
+  map.tileY = 40;
+  
+  loaded_map = LoadMap(map);
 
-  SDL_Surface * tile_map_surface = IMG_Load("ressources/map/tiles_map.png");
-  tile_texture = SDL_CreateTextureFromSurface(renderer, tile_map_surface);
-  SDL_FreeSurface(tile_map_surface);
+
 
   //menu();
 
@@ -77,8 +82,6 @@ int joueur(SDL_Window *window){
   srcRect.h = player.h = DARICK_SIZE;
   player.x = 200;
   player.y = 200;
-  SDL_Rect camera = { (player.x + SCREEN_WIDTH/2)/SIZE_TILES, (player.y + SCREEN_HEIGHT/2)/SIZE_TILES, SCREEN_WIDTH, SCREEN_HEIGHT };
-
 /*
   int choix;
   int i;
@@ -107,10 +110,6 @@ int joueur(SDL_Window *window){
 
 */
 
-
-
-  // Fonction d'initialisation des outils de map
-  INIT_MAP(map, select_tile);
 
   // Boucle de récupération des events
 
@@ -182,13 +181,10 @@ int joueur(SDL_Window *window){
   SDL_RenderClear(renderer);
 
   //Deplacement
-  move(dir, &player, map);
+  move(dir, &player);
   
-  //centerCam(player, &viewOffset, dir);
-
-  camera = moveCam(camera, &player);
   // Chargement de la map
-  LOAD_MAP(renderer, tile_texture, select_tile, map, map1, camera);
+  ShowMap(loaded_map, renderer);
 
   // Copier la texture du perso sur le rendu
   SDL_RenderCopy(renderer, skin, &srcRect, &player);
@@ -201,9 +197,9 @@ int joueur(SDL_Window *window){
 
 quit:
   //Libéré la texture
+  FreeMap(loaded_map);
   SDL_DestroyTexture(textureright);
   SDL_DestroyTexture(textureleft);
-  SDL_DestroyTexture(tile_texture);
   //Libéré le rendu
   SDL_DestroyRenderer(renderer);
   //Fermer la fenetre
