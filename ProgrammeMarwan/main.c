@@ -28,7 +28,7 @@ int main(){
     goto quit;
   }
   
-  deplacementSerpent();
+  deplacementSerpent(window);
   SDL_Delay(5000);
   quit:
   //Fermer la fenetre
