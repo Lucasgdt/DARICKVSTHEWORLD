@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "sdl_image.h": "c",
+        "stdlib.h": "c",
+        "bossfight.h": "c",
+        "move.h": "c",
+        "inventaire.h": "c"
+    }
+}
