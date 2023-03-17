@@ -8,10 +8,6 @@
 #define MOVE_H
 
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-
-
 #define speed 30
 
 
@@ -25,7 +21,7 @@ typedef struct coord_s{
 
 
 
-int move(coord_t dir, SDL_Rect * destRect) ;
+int move(coord_t dir, SDL_Rect * destRect, Tile_t ** Map_Rect) ;
 
 
 #endif

@@ -10,6 +10,7 @@
 #include "environnement.h"
 #include "joueur.h"
 #include "map.h"
+#include "camera.h"
 //#include "fight.h"
 
 
@@ -26,7 +27,7 @@ int joueur(SDL_Window *window){
   SDL_Event event;
   SDL_Rect srcRect, player;
   Map_t * loaded_map = NULL;
-
+  Tile_t ** Map_Rect = NULL;
   //TILE_MAP map[TILES_X][TILES_Y];
   //MOUSE_COORD mouse;
   coord_t dir = {0, 0, 0, 0};
@@ -61,13 +62,17 @@ int joueur(SDL_Window *window){
 
 
   // Créer la map
-
   Index_t map;
-  map.intmap = map1;
   map.tileX = 40;
   map.tileY = 40;
-  
+  for (int i = 0 ; i < map.tileY ; i++ ){
+    for(int j = 0 ; j < map.tileX ; j++ ){
+      map.intmap[i][j] = map1[i][j];
+    }
+  }
   loaded_map = LoadMap(map);
+  Map_Rect = LoadMapRect(loaded_map);
+
 
 
 
@@ -82,6 +87,10 @@ int joueur(SDL_Window *window){
   srcRect.h = player.h = DARICK_SIZE;
   player.x = 200;
   player.y = 200;
+
+  //Initialisation de la camera
+
+  FocusScrollBox(loaded_map, &player, 200, 150, 400, 300);
 /*
   int choix;
   int i;
@@ -181,10 +190,10 @@ int joueur(SDL_Window *window){
   SDL_RenderClear(renderer);
 
   //Deplacement
-  move(dir, &player);
+  move(dir, &player, Map_Rect);
   
   // Chargement de la map
-  ShowMap(loaded_map, renderer);
+  ShowMap(loaded_map, renderer, Map_Rect);
 
   // Copier la texture du perso sur le rendu
   SDL_RenderCopy(renderer, skin, &srcRect, &player);
@@ -194,10 +203,9 @@ int joueur(SDL_Window *window){
 
 
   }
-
 quit:
   //Libéré la texture
-  FreeMap(loaded_map);
+  FreeMap(loaded_map, Map_Rect);
   SDL_DestroyTexture(textureright);
   SDL_DestroyTexture(textureleft);
   //Libéré le rendu

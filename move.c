@@ -6,34 +6,19 @@
 #include "joueur.h"
 #include "environnement.h"
 
-/*
 
-void centerCam(SDL_Rect player, SDL_Point * viewOffset, coord_t dir){
-  SDL_Point viewFocus;
-  viewFocus.x = player.x;
-  viewFocus.y = player.y;
-  viewOffset->x = viewFocus.x + speed;
-  viewOffset->y = viewFocus.y + speed;
-
-}
-
-*/
-
-int move(coord_t dir, SDL_Rect * destRect)
+int move(coord_t dir, SDL_Rect * destRect, Tile_t ** Map_Rect)
 { 
-
-  
-
-  if (dir.up) {
+  if (dir.up && Map_Rect[destRect->x/ZOOM][(destRect->y-2)/ZOOM].mur == 0) {
     destRect->y -= 1;
   }
-  if (dir.down) {
+  if (dir.down && Map_Rect[destRect->x/ZOOM][(destRect->y+2)/ZOOM].mur == 0) {
     destRect->y += 1;
   }
-  if (dir.left) {
+  if (dir.left && Map_Rect[(destRect->x-2)/ZOOM][destRect->y/ZOOM].mur == 0) {
     destRect->x -= 1;
   }
-  if (dir.right){
+  if (dir.right && Map_Rect[(destRect->x+2)/ZOOM][destRect->y/ZOOM].mur == 0){
     destRect->x += 1;
   }
 
