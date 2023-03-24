@@ -68,14 +68,12 @@ void LoadMap_level(Index_t map, Map_t * loaded_map)
     }
 
 }
-Tile_t ** LoadMapRect(Map_t * loaded_map)
+void LoadMapRect(Map_t * loaded_map)
 {
-    Tile_t ** Map_Rect = NULL;
-    Map_Rect = (Tile_t **) malloc(loaded_map->nb_tiles_larg*sizeof(Tile_t*));
+    loaded_map->props = (Tile_t **) malloc(loaded_map->nb_tiles_larg*sizeof(Tile_t*));
     for(int i = 0 ; i < loaded_map->nb_tiles_larg ; i++ ){
-        Map_Rect[i] = (Tile_t *) malloc(loaded_map->nb_tiles_long*sizeof(Tile_t));
+        loaded_map->props[i] = (Tile_t *) malloc(loaded_map->nb_tiles_long*sizeof(Tile_t));
         }
-    return(Map_Rect);
 }
 
 Map_t * LoadMap(Index_t map)
@@ -92,7 +90,7 @@ Map_t * LoadMap(Index_t map)
 }
 
 
-int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer, Tile_t ** Map_Rect)
+int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
 {
     int i, j;
     int minx = 0,maxx,miny = 0,maxy;
@@ -111,60 +109,60 @@ int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer, Tile_t ** Map_Rect)
         for( j = miny ; j < maxy ; j++ )
             {   
                 
-                Map_Rect[i][j].R.x = i * ZOOM - loaded_map->xscroll;
-                Map_Rect[i][j].R.y = j * ZOOM - loaded_map->yscroll;
-                Map_Rect[i][j].R.w = ZOOM;
-                Map_Rect[i][j].R.h = ZOOM;
-
+                loaded_map->props[i][j].R.x = i * ZOOM - loaded_map->xscroll;
+                loaded_map->props[i][j].R.y = j * ZOOM - loaded_map->yscroll;
+                loaded_map->props[i][j].R.w = ZOOM;
+                loaded_map->props[i][j].R.h = ZOOM;
+                
                 if(i < 0 || i >= loaded_map->nb_tiles_larg || j < 0 || j >= loaded_map->nb_tiles_long)
-                    SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[11]), &(Map_Rect[i][j].R));
+                    SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[11]), &(loaded_map->props[i][j].R));
                 else{
                     
                     switch(loaded_map->schema[i][j])
                     {
                         case 1:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[0]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 0;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[0]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 0;
                             break;
                         case 2:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[1]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[1]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 3:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[2]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[2]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 4:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[3]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[3]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 5:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[4]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[4]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 6:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[5]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[5]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 7:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[6]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[6]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 8:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[7]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[7]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 9:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[8]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 0;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[8]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 0;
                             break;
                         case 10:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[9]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[9]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
                         case 11:
-                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[10]), &(Map_Rect[i][j].R));
-                            Map_Rect[i][j].mur = 1;
+                            SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[10]), &(loaded_map->props[i][j].R));
+                            loaded_map->props[i][j].mur = 1;
                             break;
 
                     }   
@@ -175,7 +173,7 @@ int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer, Tile_t ** Map_Rect)
 
 }
 
-int FreeMap(Map_t * loaded_map, Tile_t ** Map_Rect)
+int FreeMap(Map_t * loaded_map)
 {
     int i;
     SDL_FreeSurface(loaded_map->surfacetile);
@@ -185,8 +183,8 @@ int FreeMap(Map_t * loaded_map, Tile_t ** Map_Rect)
     free(loaded_map->tile);
     free(loaded_map);
     for( i = 0 ; i < loaded_map->nb_tiles_long ; i++)
-        free(Map_Rect[i]);
-    free(Map_Rect);
+        free(loaded_map->props[i]);
+    free(loaded_map->props);
 
     return 0;
 }

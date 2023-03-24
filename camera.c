@@ -7,9 +7,9 @@
 #include "environnement.h"
 
 
-int FocusScrollBox(Map_t * loaded_map, SDL_Rect * player, int x, int y, int w, int h)
+int FocusScrollBox(Map_t * loaded_map, Sprite * sp, int x, int y, int w, int h)
 {
-    loaded_map->player = player;
+    loaded_map->player = sp;
     loaded_map->rectlimitscroll.x = x;
     loaded_map->rectlimitscroll.y = y;
     loaded_map->rectlimitscroll.w = w;
@@ -35,8 +35,8 @@ int UpdateScroll(Map_t * loaded_map)
 {
     int cxperso, cyperso, xlimmin, xlimmax, ylimmin, ylimmax;
     
-    cxperso = loaded_map->player->x + loaded_map->player->w/2;
-    cyperso = loaded_map->player->y + loaded_map->player->h/2;
+    cxperso = loaded_map->player->position.x + loaded_map->player->position.w/2;
+    cyperso = loaded_map->player->position.y + loaded_map->player->position.h/2;
     xlimmin = loaded_map->xscroll + loaded_map->rectlimitscroll.x;
     ylimmin = loaded_map->yscroll + loaded_map->rectlimitscroll.y;
     xlimmax = xlimmin + loaded_map->rectlimitscroll.w;
@@ -53,3 +53,4 @@ int UpdateScroll(Map_t * loaded_map)
     ClampScroll(loaded_map);
     return 0;
 }
+

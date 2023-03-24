@@ -11,6 +11,7 @@
 #include "joueur.h"
 #include "map.h"
 #include "camera.h"
+#include "mapstruct.h"
 //#include "fight.h"
 
 
@@ -25,16 +26,16 @@ int joueur(SDL_Window *window){
   SDL_Texture *inventaire = NULL;
 
   SDL_Event event;
-  SDL_Rect srcRect, player;
   Map_t * loaded_map = NULL;
-  Tile_t ** Map_Rect = NULL;
+  Sprite * joueur = NULL;
   //TILE_MAP map[TILES_X][TILES_Y];
   //MOUSE_COORD mouse;
-  coord_t dir = {0, 0, 0, 0};
+  int vx = 0, vy = 0;
   bool showInventaire = false;
   bool iPressed = false;
   int quit = 0;
   int click;
+  
   //SDL_Point viewOffset;
 
 
@@ -71,26 +72,19 @@ int joueur(SDL_Window *window){
     }
   }
   loaded_map = LoadMap(map);
-  Map_Rect = LoadMapRect(loaded_map);
+  LoadMapRect(loaded_map);
 
+  //Initialiser Darick
+  joueur = InitialiserSprite(640, 360, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
 
   //menu();
 
 
-
-  // Définir la source et la destination du rendu
-  srcRect.x = 0;
-  srcRect.y = 0;
-  srcRect.w = player.w = DARICK_SIZE;
-  srcRect.h = player.h = DARICK_SIZE;
-  player.x = 200;
-  player.y = 200;
-
   //Initialisation de la camera
 
-  FocusScrollBox(loaded_map, &player, 200, 150, 400, 300);
+  FocusScrollBox(loaded_map, joueur, 200, 150, 400, 300);
 /*
   int choix;
   int i;
@@ -131,18 +125,18 @@ int joueur(SDL_Window *window){
       case SDL_KEYDOWN:
         switch (event.key.keysym.sym) {
           case SDLK_z:
-            dir.up = 1;
+            vy = -speed;
             break;
           case SDLK_s:
-            dir.down = 1;
+            vy = speed;
             break;
           case SDLK_q:
             skin = textureleft;
-            dir.left = 1;
+            vx = -speed;
             break;
           case SDLK_d:
             skin = textureright;
-            dir.right = 1;
+            vx = speed;
             break;
           case SDLK_i:
             if (!iPressed) { // Si la touche i n'a pas déjà été pressée
@@ -155,16 +149,16 @@ int joueur(SDL_Window *window){
       case SDL_KEYUP:
         switch (event.key.keysym.sym) {
           case SDLK_z:
-            dir.up = 0;
+            vy = 0;
             break;
           case SDLK_s:
-            dir.down = 0;
+            vy = 0;
             break;
           case SDLK_q:
-            dir.left = 0;
+            vx = 0;
             break;
           case SDLK_d:
-            dir.right = 0;
+            vx = 0;
             break;
           case SDLK_i:
             iPressed = false; // Marquer la touche comme relâchée
@@ -188,15 +182,17 @@ int joueur(SDL_Window *window){
   // Effacer l'écran
   SDL_SetRenderDrawColor(renderer, 0x3C, 0x1F, 0x1F, 0xFF);
   SDL_RenderClear(renderer);
-
-  //Deplacement
-  move(dir, &player, Map_Rect);
   
   // Chargement de la map
-  ShowMap(loaded_map, renderer, Map_Rect);
+  ShowMap(loaded_map, renderer);
+
+  //Deplacement
+  DeplaceSprite(joueur, vx, vy);
+  AfficherSprite(joueur, renderer, skin);
+
 
   // Copier la texture du perso sur le rendu
-  SDL_RenderCopy(renderer, skin, &srcRect, &player);
+  //SDL_RenderCopy(renderer, skin, &srcRect, &loaded_map->player);
   // Afficher le rendu
 
   SDL_RenderPresent(renderer);
@@ -205,7 +201,8 @@ int joueur(SDL_Window *window){
   }
 quit:
   //Libéré la texture
-  FreeMap(loaded_map, Map_Rect);
+  FreeMap(loaded_map);
+  LibereSprite(joueur);
   SDL_DestroyTexture(textureright);
   SDL_DestroyTexture(textureleft);
   //Libéré le rendu
