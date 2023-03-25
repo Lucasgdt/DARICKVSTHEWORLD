@@ -2,8 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "personnage.h"
-#include "inventaire.h"
+#include "name.h"
 
 #define INPUT_TEXT_SIZE 256
 

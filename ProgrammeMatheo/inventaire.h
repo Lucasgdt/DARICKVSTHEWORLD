@@ -3,45 +3,21 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+
 #ifndef INVENTAIRE_H
 #define INVENTAIRE_H
 
+#include "personnage.h"
+#include "outil.h"
+extern objet_t liste_objets[];
+
 #define TAILLE_MAX 256
-#define TAILLE_INV 20
+#define TAILLE_INV 18
 
-
-typedef struct objet_s{
-    int id;
-    char nom[TAILLE_MAX];
-    char texture[TAILLE_MAX];
-    int degats;
-    int armure;
-    int regen;
-    int as;
-    int mana;
-    int pv;
-}objet_t;
-
-// Liste total des objects du jeu
-static objet_t liste_objets[] = {
-    {1, "Epee du Nain", "daricksword.png", 1, 0, 0, 1, 0, 0},
-    {2, "Casque du guerrier", "daricksword.png", 1, 10, 0, 1, 5000, 300},
-    {3, "Baton du vide", "daricksword.png", 1, 0, 0, 1, 0, 0}
-};
-
-
-typedef struct inv_objet_s{
-    int id;
-    // Nombre d'objet dans une case (permet de stack plusieurs items, comme des potions par exemple)
-    int nb;
-}inv_objet_t;
-
-typedef struct inventaire_s{
-    // Taille inventaire = nb;
-    int taille;
-    inv_objet_t ** liste;
-}inventaire_t;
-
+typedef struct texture_s{
+    SDL_Texture *texture;
+    SDL_Rect rect;
+}texture_t;
 
 objet_t * create_objet();
 
@@ -60,5 +36,7 @@ void loot(inventaire_t * joueur, objet_t * obj);
 void afficher_inventaire(inventaire_t * joueur);
 
 void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj);
+
+void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso);
 
 #endif

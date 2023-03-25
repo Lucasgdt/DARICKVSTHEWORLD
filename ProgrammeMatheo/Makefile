@@ -10,8 +10,8 @@ INCLUDES=-I${SDLINC_DIR}
 
 all: jeu
 
-jeu: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o
-	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o -o jeu ${LIBS} ${INCLUDES}
+jeu: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o
+	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o -o jeu -lm ${LIBS} ${INCLUDES}
 
 menu.o: menu.c
 	$(CC) $(CFLAGS) -c menu.c ${LIBS} ${INCLUDES}
@@ -36,6 +36,9 @@ action.o : action.c
 
 name.o : name.c
 	$(CC) $(CFLAGS) -c name.c ${LIBS} ${INCLUDES}
+
+outil.o : outil.c
+	$(CC) $(CFLAGS) -c outil.c ${LIBS} ${INCLUDES}
 
 clean:
 	rm -f *.o jeu
