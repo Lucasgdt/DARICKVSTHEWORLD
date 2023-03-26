@@ -14,10 +14,7 @@ extern objet_t liste_objets[];
 #define TAILLE_MAX 256
 #define TAILLE_INV 18
 
-typedef struct texture_s{
-    SDL_Texture *texture;
-    SDL_Rect rect;
-}texture_t;
+
 
 objet_t * create_objet();
 

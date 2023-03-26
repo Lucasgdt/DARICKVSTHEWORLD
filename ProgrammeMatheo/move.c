@@ -5,22 +5,40 @@
 #include <SDL2/SDL_image.h>
 #include <unistd.h>
 #include <math.h>
+#include <time.h>
 #include "move.h"
 #include "inventaire.h"
 #include "action.h"
+#include "outil.h"
+
+
 
 extern mob_t liste_mobs[];
 #define INPUT_TEXT_SIZE 256
+#define AGGRO_DISTANCE 300 // distance d'aggro en pixels
 
-void anim(SDL_Renderer *renderer, SDL_Rect destRect){
+/* -------------------------------------------------------------------------- */
+/*                   Animation des mouvements du personnage                   */
+/* -------------------------------------------------------------------------- */
+
+void anim(SDL_Renderer *renderer, SDL_Rect destRect, int left, int right){
 // Chargement des 6 images en tant que surfaces
     SDL_Surface* surfaces[6];
-    for (int i = 0; i < 6; i++) {
-        char filename[50];
-        sprintf(filename, "ressources/perso/Anim/darickdsgn%d.png", i+1);
-        surfaces[i] = IMG_Load(filename);
-
+    if (left == 1){
+        for (int i = 0; i < 6; i++) {
+            char filename[50];
+            sprintf(filename, "ressources/perso/Anim/darickg%d.png", i+1);
+            surfaces[i] = IMG_Load(filename);
+        }
     }
+    else{
+        for (int i = 0; i < 6; i++) {
+            char filename[50];
+            sprintf(filename, "ressources/perso/Anim/darickdsgn%d.png", i+1);
+            surfaces[i] = IMG_Load(filename);
+        } 
+    }
+
 
     // Création des textures à partir des surfaces
     SDL_Texture* textures[6];
@@ -47,7 +65,8 @@ void anim(SDL_Renderer *renderer, SDL_Rect destRect){
 
         // Attente de 100 millisecondes
         SDL_Delay(100);
-
+        SDL_RenderClear(renderer);
+        
         // Passage à l'image suivante
         current_image = (current_image + 1) % 6;
         temp++;
@@ -59,7 +78,76 @@ void anim(SDL_Renderer *renderer, SDL_Rect destRect){
     }
 }
 
+void deplacement_mob(texture_t * mob[TAILLE_LISTE_MOB]){
+    srand(time(NULL));
+    int i;
+    int deplacement;
+    for(i = 0; i<TAILLE_LISTE_MOB; i++){
+        deplacement = rand()%5;
+        if (deplacement == 1 && mob[i]->rect.y > 0) {
+            mob[i]->rect.y -= 1;
+        }
+        if (deplacement == 2 && mob[i]->rect.y < (SCREEN_HEIGHT - DARICK_SIZE)) {
+            mob[i]->rect.y += 1;
+        }
+        if (deplacement == 3 && mob[i]->rect.x > 0) {
+            mob[i]->rect.x -= 1;
+        }
+        if (deplacement == 4 && mob[i]->rect.x < (SCREEN_WIDTH - DARICK_SIZE)) {
+            mob[i]->rect.x += 1;
+        }
+    }
+}
+
+void deplacement_mobV2(texture_t * mob[TAILLE_LISTE_MOB], int i){
+    int deplacement;
+    deplacement = rand()%5;
+    if (deplacement == 1 && mob[i]->rect.y > 0) {
+        mob[i]->rect.y -= 1;
+    }
+    if (deplacement == 2 && mob[i]->rect.y < (SCREEN_HEIGHT - DARICK_SIZE)) {
+        mob[i]->rect.y += 1;
+    }
+    if (deplacement == 3 && mob[i]->rect.x > 0) {
+        mob[i]->rect.x -= 1;
+    }
+    if (deplacement == 4 && mob[i]->rect.x < (SCREEN_WIDTH - DARICK_SIZE)) {
+        mob[i]->rect.x += 1;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                 Fonction d'aggro d'un mob envers le joueur                 */
+/* -------------------------------------------------------------------------- */
+
+void mob_aggro(texture_t *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
+    int distance_x = abs(destRect.x - mob[i]->rect.x);
+    int distance_y = abs(destRect.y - mob[i]->rect.y);
+    int distance = sqrt(distance_x * distance_x + distance_y * distance_y);
+
+    if (distance < AGGRO_DISTANCE) {
+        // Si le joueur est à portée, le mob suit le joueur
+        if (destRect.x < mob[i]->rect.x) {
+            mob[i]->rect.x -= 1;
+        }
+        if (destRect.x > mob[i]->rect.x) {
+            mob[i]->rect.x += 1;
+        }
+        if (destRect.y < mob[i]->rect.y) {
+            mob[i]->rect.y -= 1;
+        }
+        if (destRect.y > mob[i]->rect.y) {
+            mob[i]->rect.y += 1;
+        }
+    }
+}
+
 int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
+
+    /* -------------------------------------------------------------------------- */
+    /*                    Initialisation de toute les variables                   */
+    /* -------------------------------------------------------------------------- */
+
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *skin = NULL;
@@ -75,30 +163,46 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
     bool iPressed = false;
     int quit = 0;
     int pause = 0;
-    int calcul = 0;
+    int calcul[TAILLE_LISTE_MOB];
 
     texture_t * mob_sdl[TAILLE_LISTE_MOB];
     mob_liste_t * mob_liste = create_liste_mob();
     SDL_Texture * surface = NULL;
     mob_t * mob = create_mob();
+    mob_t * mob2 = create_mob();
     mob->id = 1;
+    mob2->id = 2;
     ajuste(mob);
+    ajuste(mob2);
     int i;
-    for(i = 0; i<TAILLE_LISTE_MOB; i++){
+    /*for(i = 0; i<TAILLE_LISTE_MOB; i++){
         ajouter_mob(mob_liste, mob);
-    }
+        ajouter_mob(mob_liste, mob2);
+    }*/
+    ajouter_mob(mob_liste, mob);
+    ajouter_mob(mob_liste, mob2);
     int deplacement;
+
+    /* -------------------------------------------------------------------------- */
+    /*                           Creation de la fenetre                           */
+    /* -------------------------------------------------------------------------- */
 
     window = SDL_CreateWindow("DARICK VS THE WORLD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 
-    // Créer le rendu
+    /* -------------------------------------------------------------------------- */
+    /*                            Creation du renderer                            */
+    /* -------------------------------------------------------------------------- */
+
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (!renderer) {
       printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
       goto quit;
     }
 
-    // Charger l'image
+    /* -------------------------------------------------------------------------- */
+    /*                          Affectation des textures                          */
+    /* -------------------------------------------------------------------------- */
+
     textureright = IMG_LoadTexture(renderer, "ressources/perso/darickright.png");
     if (!textureright) {
       printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
@@ -117,19 +221,17 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
       goto quit;
     }
 
-    surface = IMG_LoadTexture(renderer,"ressources/Mobs/Mob.png");
-    if (!surface) {
-      printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
-      goto quit;
-    }
+    /* -------------------------------------------------------------------------- */
+    /*                    Initialisation des mobs et des objets                   */
+    /* -------------------------------------------------------------------------- */
 
     for (i = 0; i<TAILLE_LISTE_MOB; i++){
         mob_sdl[i] = malloc(sizeof(texture_t));
-        mob_sdl[i]->rect.x = 300;
-        mob_sdl[i]->rect.y = 300;
+        mob_sdl[i]->rect.x = 300 + 200 * i;
+        mob_sdl[i]->rect.y = 300 + 200 * i;
         mob_sdl[i]->rect.h = DARICK_SIZE;
         mob_sdl[i]->rect.w = DARICK_SIZE;
-        mob_sdl[i]->texture = surface;
+        mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
     }
 
     objet_t * obj = create_objet();
@@ -166,6 +268,12 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
 
 
     screenSurface = SDL_GetWindowSurface(window);
+
+
+    /* -------------------------------------------------------------------------- */
+    /*                              Lancement du jeu                              */
+    /* -------------------------------------------------------------------------- */
+
     while (!quit) {
         SDL_PollEvent(&event);
         switch (event.type) {
@@ -212,26 +320,26 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
             case SDL_MOUSEBUTTONDOWN:
 
                 if (event.button.button == SDL_BUTTON_LEFT) {
-                    if (mob_liste->liste[0]->pv > 0){
-                        if(calcul <= 300){
-                            afficher_stat_mob(mob_liste->liste[0]);
-                            anim(renderer, destRect);
-                            joueur_attaque(joueur,mob);
-                            mob_attaque(joueur, mob);
-                        }
-                        
-                        else{
-                            anim(renderer, destRect);
-                            printf("Pas à porter \n");
+                    for (i = 0; i<TAILLE_LISTE_MOB; i++){
+                        if(mob_liste->liste[i] != NULL){
+                            if (mob_liste->liste[i]->pv > 0){ 
+                                if(calcul[i] <= 200){
+                                    afficher_stat_mob(mob_liste->liste[i]);
+                                    joueur_attaque(joueur,mob_liste->liste[i]);
+                                    mob_attaque(joueur, mob_liste->liste[i]);
+                                }
+                            }
+                            if (mob_liste->liste[i]->pv <= 0){
+
+                                delete_mob(mob_liste, i, mob_sdl);
+                                free(mob_liste->liste[i]);
+                                mob_liste->liste[i] = NULL;
+                                loot(inventaire_joueur, obj);
+                                afficher_liste_mob(mob_liste);
+                            }
                         }
                     }
-                    else{
-                        delete_mob(mob_liste,mob_liste->liste[0]);
-                        loot(inventaire_joueur, obj);
-                        afficher_liste_mob(mob_liste);
-                        mob_sdl[0]->texture = NULL;
-                    }
-                    printf("Clic gauche\n"); // Ajout de l'action lors du clic gauche
+                    anim(renderer, destRect, left, right);  
                 }
                 break;
 
@@ -253,47 +361,66 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
                 break;
         }
 
+        /* -------------------------------------------------------------------------- */
+        /*                     Condition des mouvements du joueur                     */
+        /* -------------------------------------------------------------------------- */
+
         if (up && destRect.y > 0) {
-            destRect.y -= 1;
+            destRect.y -= 2;
         }
         if (down && destRect.y < (SCREEN_HEIGHT - DARICK_SIZE)) {
-            destRect.y += 1;
+            destRect.y += 2;
         }
         if (left && destRect.x > 0) {
-            destRect.x -= 1;
+            destRect.x -= 2;
         }
         if (right && destRect.x < (SCREEN_WIDTH - DARICK_SIZE)) {
-            destRect.x += 1;
+            destRect.x += 2;
         }
 
-        calcul = sqrt(pow(destRect.x - mob_sdl[0]->rect.x, 2) + pow(destRect.y - mob_sdl[0]->rect.y, 2));
 
-        srand(time(NULL));
-        deplacement = rand()%5;
+        
 
-        if (deplacement == 1 && mob_sdl[0]->rect.y > 0) {
-            mob_sdl[0]->rect.y -= 1;
+
+        /* -------------------------------------------------------------------------- */
+        /*             Calcul de la position entre le joueur et chaque mob            */
+        /* -------------------------------------------------------------------------- */
+
+        for(i = 0; i<TAILLE_LISTE_MOB; i++){
+            if(mob_liste->liste[i] != NULL){
+                calcul[i] = sqrt(pow(destRect.x - mob_sdl[i]->rect.x, 2) + pow(destRect.y - mob_sdl[i]->rect.y, 2));
+            }
         }
-        if (deplacement == 2 && mob_sdl[0]->rect.y < (SCREEN_HEIGHT - DARICK_SIZE)) {
-            mob_sdl[0]->rect.y += 1;
+        srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
+        for(i = 0; i<TAILLE_LISTE_MOB; i++){
+            if(calcul[i] > 300){
+                deplacement_mobV2(mob_sdl, i); // a utilisé uniquement quand le mob n'est pas à porter du joueur
+            }
+            else{
+                mob_aggro(mob_sdl, i, destRect);
+            }
         }
-        if (deplacement == 3 && mob_sdl[0]->rect.x > 0) {
-            mob_sdl[0]->rect.x -= 1;
-        }
-        if (deplacement == 4 && mob_sdl[0]->rect.x < (SCREEN_WIDTH - DARICK_SIZE)) {
-            mob_sdl[0]->rect.x += 1;
-        }
+        
 
         if(joueur->arme_obj != NULL){
             
         }
 
-        // Effacer l'écran
+        /* -------------------------------------------------------------------------- */
+        /*                        Actualisation de chaque image                       */
+        /* -------------------------------------------------------------------------- */
+
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
         // Copier la texture sur le rendu
         SDL_RenderCopy(renderer, skin, &srcRect, &destRect);
-        SDL_RenderCopy(renderer, mob_sdl[0]->texture, NULL, &mob_sdl[0]->rect);
+
+        for(i = 0; i<TAILLE_LISTE_MOB; i++){
+            if(mob_liste->liste[i] != NULL){
+                SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &mob_sdl[i]->rect);
+            }
+        }
+
 
         if (showInventaire) { // Si l'inventaire doit être affiché
             SDL_Rect invRect = {0, 0, 640, 480};
@@ -303,7 +430,7 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
 
         // Afficher le rendu
         SDL_RenderPresent(renderer);
-        SDL_Delay(1000 / (speed * 10));
+        SDL_Delay(2000 / (speed * 10));
     }   
 
 quit:

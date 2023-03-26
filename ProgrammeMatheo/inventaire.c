@@ -152,8 +152,8 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
     int x, y;
     SDL_Event event;
 
-    SDL_Surface *default_texture = IMG_LoadTexture(renderer, "ressources/Inventaire/Inventory_Slot.png");
-    SDL_Surface *default_texture_select = IMG_LoadTexture(renderer, "ressources/Inventaire/Inventory_select.png");
+    SDL_Texture *default_texture = IMG_LoadTexture(renderer, "ressources/Inventaire/Inventory_Slot.png");
+    SDL_Texture *default_texture_select = IMG_LoadTexture(renderer, "ressources/Inventaire/Inventory_select.png");
 
     int hauteur_case = 152;
     int largeur_case = 123; 
@@ -172,6 +172,7 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
         case_inv[i]->rect.x = 520 + 120 * temp_colonne;
         case_inv[i]->rect.y = 152 + 138 * temp_ligne;
         case_inv[i]->texture = NULL;
+        case_inv[i]->surface = NULL;
         temp_colonne++;
     }
 
@@ -201,13 +202,6 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
     case_BAS_select.w = largeur_case;
     case_BAS.w = largeur_case;
 
-
-    SDL_RenderCopy(renderer, case_texture_HAUT, NULL, &case_HAUT);
-    SDL_RenderCopy(renderer, case_texture_HAUT_select, NULL, &case_HAUT_select);
-
-    SDL_RenderCopy(renderer, case_texture_BAS, NULL, &case_BAS);
-    SDL_RenderCopy(renderer, case_texture_BAS_select, NULL, &case_BAS_select);
-
     SDL_UpdateWindowSurface(window);
 
     while (pressed){
@@ -230,7 +224,6 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
                 SDL_GetMouseState(&x, &y);
                 for (int i = 0;i <TAILLE_INV; i++){
                     if (x >= case_inv[i]->rect.x && x <= case_inv[i]->rect.x + case_inv[i]->rect.w && y >= case_inv[i]->rect.y && y <= case_inv[i]->rect.y + case_inv[i]->rect.h) {
-                        printf("JE suis la \n");
                         if(joueur->liste[i]->id!=-1){
                             if(liste_objets[joueur->liste[i]->id-1].categorie == 0){
                                 if(perso->arme_obj == NULL){
@@ -265,9 +258,12 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
         case SDL_MOUSEMOTION:
         
             SDL_GetMouseState(&x, &y);
-            for (int i = 0; i<TAILLE_INV; i++){
+            for (int i = 0; i < TAILLE_INV; i++) {
                 if (x >= case_inv[i]->rect.x && x <= case_inv[i]->rect.x + case_inv[i]->rect.w && y >= case_inv[i]->rect.y && y <= case_inv[i]->rect.y + case_inv[i]->rect.h) {
-                    SDL_RenderCopy(renderer, default_texture_select ,NULL, &case_inv[i]->rect);
+                    case_inv[i]->surface = default_texture_select;
+                }
+                else{
+                    case_inv[i]->surface = NULL;
                 }
             }
             if (x >= case_HAUT.x && x <= case_HAUT.x + case_HAUT.w && y >= case_HAUT.y && y <= case_HAUT.y + case_HAUT.h) {
@@ -287,13 +283,8 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
         default:
             break;
         }
+    SDL_RenderClear(renderer);
 
-    for(int i = 0; i<TAILLE_INV; i++){
-        if(joueur->liste[i]->id != -1){
-            case_inv[i]->texture = IMG_LoadTexture(renderer, liste_objets[joueur->liste[i]->id-1].texture);
-            SDL_RenderCopy(renderer, liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_inv[i]->rect);
-        }
-    }
     if(perso->arme_obj != NULL){
         case_texture_HAUT = IMG_LoadTexture(renderer, liste_objets[perso->arme_obj->id-1].texture);
     }
@@ -301,7 +292,7 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
         case_texture_BAS = IMG_LoadTexture(renderer, liste_objets[perso->armure_obj->id-1].texture);
     }
     
-    SDL_RenderClear(renderer);
+
     
     SDL_SetRenderDrawColor(renderer, 0x4c, 0x30, 0x24, 0xFF);
 
@@ -313,8 +304,20 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
     SDL_RenderCopy(renderer, case_texture_BAS, NULL, &case_BAS);
     SDL_RenderCopy(renderer, case_texture_BAS_select, NULL, &case_BAS_select);
 
-    SDL_RenderPresent(renderer);
 
+
+    for(int i = 0; i<TAILLE_INV; i++){
+        // Il rentre bien dedans aucun soucis
+        if(joueur->liste[i]->id != -1){
+            case_inv[i]->texture = IMG_LoadTexture(renderer, liste_objets[joueur->liste[i]->id-1].texture);
+            SDL_RenderCopy(renderer, case_inv[i]->texture, NULL, &case_inv[i]->rect);
+        }
+    }
+    for(int i = 0; i<TAILLE_INV; i++){
+        SDL_RenderCopy(renderer, case_inv[i]->surface, NULL, &case_inv[i]->rect);
+    }
+
+    SDL_RenderPresent(renderer);
 
     }
 

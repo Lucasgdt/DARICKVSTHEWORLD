@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 
 #ifndef OUTIL_H
@@ -7,6 +9,12 @@
 
 #define TAILLE_MAX 256
 #define TAILLE_INV 18
+
+typedef struct texture_s{
+    SDL_Texture *texture;
+    SDL_Rect rect;
+    SDL_Surface *surface;
+}texture_t;
 
 typedef struct objet_s{
     int id;

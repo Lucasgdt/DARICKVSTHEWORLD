@@ -50,33 +50,23 @@ void equiper(personnage_t * personnage, objet_t * obj, inventaire_t * inv) {
 }
 
 void retirer (personnage_t * personnage, objet_t * obj, inventaire_t * inv){
-    personnage->armure -= liste_objets[obj->id - 1].armure;
-
-    personnage->as -= liste_objets[obj->id - 1].as;
-
-    personnage->degats -= liste_objets[obj->id - 1].degats;
-
-    personnage->regen -= liste_objets[obj->id - 1].regen;
-
-    personnage->pv -= liste_objets[obj->id - 1].pv;
-
-    personnage->mana -= liste_objets[obj->id - 1].mana;
-
-    loot(inv, obj);
-
-
-
-    if (liste_objets[obj->id-1].categorie == 0){
-        printf("Vous avez retirer votre arme ! \n");
-        personnage->arme_obj = NULL;
+    if(personnage->arme_obj != NULL || personnage->armure_obj){
+        personnage->armure -= liste_objets[obj->id - 1].armure;
+        personnage->as -= liste_objets[obj->id - 1].as;
+        personnage->degats -= liste_objets[obj->id - 1].degats;
+        personnage->regen -= liste_objets[obj->id - 1].regen;
+        personnage->pv -= liste_objets[obj->id - 1].pv;
+        personnage->mana -= liste_objets[obj->id - 1].mana;
+        loot(inv, obj);
+        if (liste_objets[obj->id-1].categorie == 0){
+            printf("Vous avez retirer votre arme ! \n");
+            personnage->arme_obj = NULL;
+        }
+        if (obj->categorie == 1){
+            printf("test \n");
+            personnage->armure_obj = NULL;
+        }
     }
-
-    if (obj->categorie == 1){
-        printf("test \n");
-        personnage->armure_obj = NULL;
-    }
-
-
 }
 
 void afficher_stat_joueur(personnage_t * personnage){

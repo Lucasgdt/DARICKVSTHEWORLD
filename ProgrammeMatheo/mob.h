@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "outil.h"
 
 #ifndef MOB_H
 #define MOB_H
 
 #define TAILLE_MAX 256
-#define TAILLE_LISTE_MOB 10
+#define TAILLE_LISTE_MOB 2
 
 typedef struct mob_s{
     int id;
@@ -31,7 +32,8 @@ extern mob_t liste_mobs[];
 
 mob_t * create_mob();
 void afficher_stat_mob(mob_t * mob);
-void delete_mob(mob_liste_t * liste_des_mobs, mob_t * mob);
+//void delete_mob(mob_liste_t * liste_des_mobs, mob_t * mob);
+void delete_mob(mob_liste_t * liste_des_mobs, int i, texture_t * mob[TAILLE_LISTE_MOB]);
 int mob_existe(mob_t * mob);
 mob_liste_t * create_liste_mob();
 mob_liste_t * ajouter_mob(mob_liste_t * liste_des_mobs, mob_t * mob);

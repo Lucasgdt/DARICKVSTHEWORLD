@@ -8,7 +8,7 @@
 
 mob_t liste_mobs[] = {
     {1, "Gobelin", "ressources/Mobs/Mob.png", 1, 0, 0, 1, 20, 0},
-    {2, "Gnome", "daricksword.png", 1, 10, 0, 1, 20, 300},
+    {2, "Gnome", "ressources/Mobs/Mob2.png", 1, 10, 0, 1, 20, 300},
     {3, "Azir", "daricksword.png", 1, 20, 0, 1, 200, 0}
 };
 
@@ -96,7 +96,7 @@ void afficher_stat_mob(mob_t * mob){
     printf("Mana : %d \n",mob->mana);   
 }
 
-void delete_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
+/*void delete_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
     int i;
     int temp = 0;
 
@@ -111,6 +111,14 @@ void delete_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
     }
     printf("%d",temp);
     printf("Mobs tué : %s \n",liste_mobs[temp+1].nom);
+}*/
+
+void delete_mob(mob_liste_t * liste_des_mobs, int i, texture_t * mob[TAILLE_LISTE_MOB]){
+    if(liste_des_mobs->liste[i] != NULL){
+        liste_des_mobs->liste[i] = NULL;
+        mob[i]->texture = NULL;
+    }
+    printf("Mobs tué : %s \n",liste_mobs[i+1].nom);
 }
 
 int mob_existe(mob_t * mob) {
@@ -121,3 +129,4 @@ int mob_existe(mob_t * mob) {
         return 1;
     }
 }
+
