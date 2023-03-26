@@ -241,7 +241,7 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
     objet_t * obj5 = create_objet();
     objet_t * obj6 = create_objet();
 
-    obj->id = 1;
+    obj->id = 13;
     obj2->id = 2;
     obj2->id = 2;
     obj3->id = 2;
