@@ -32,7 +32,7 @@ void loot(inventaire_t * joueur, objet_t * obj);
 
 void afficher_inventaire(inventaire_t * joueur);
 
-void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj);
+void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i);
 
 void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso);
 

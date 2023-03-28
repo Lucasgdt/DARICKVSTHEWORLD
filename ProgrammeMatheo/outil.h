@@ -21,12 +21,9 @@ typedef struct objet_s{
     char nom[TAILLE_MAX];
     char texture[TAILLE_MAX];
     int degats;
-    int armure;
-    int regen;
     int as;
-    int mana;
     int pv;
-    int categorie; // 0 = Arme, 1 = Armure
+    int categorie; // 0 = Arme, 1 = Armure, 2 = Potion
 }objet_t;
 
 // Liste total des objects du jeu
@@ -50,11 +47,9 @@ typedef struct personnage_s{
     char nom[TAILLE_MAX];
     char texture[TAILLE_MAX];
     int degats;
-    int armure;
-    int regen;
     int as;
     int pv;
-    int mana;
+    int pv_max;
     objet_t * armure_obj;
     objet_t * arme_obj;
 }personnage_t;

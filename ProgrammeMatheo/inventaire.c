@@ -28,11 +28,8 @@ extern objet_t liste_objets[];
 objet_t * create_objet(){
     objet_t * objet = malloc(sizeof(objet_t));
     objet->as = 0;
-    objet->armure = 0;
     objet->degats = 0;
-    objet->mana = 0;
     objet->pv = 0;
-    objet->regen = 0;
     objet->categorie = NULL;
     return objet;
 }
@@ -70,6 +67,7 @@ inventaire_t * create_inventaire() {
     for (i = 0; i < TAILLE_INV; i++) {
         inventaire->liste[i] = malloc(sizeof(inv_objet_t));
         inventaire->liste[i]->id = -1;
+        inventaire->liste[i]->nb = 0;
     }
     // Initialisez les autres membres de inventaire_t ici
     return inventaire;
@@ -88,7 +86,11 @@ void loot(inventaire_t * joueur, objet_t * obj){
         }
         else if(joueur->liste[i]->id != -1){
             if(joueur->liste[i]->id == obj->id){
-                joueur->liste[i]->nb += 1;
+                if(liste_objets[joueur->liste[i]->id-1].categorie == 2){
+                    joueur->liste[i]->nb += 1;
+                    temp = i;
+                    break;
+                }
             }
         }
         else if (i == TAILLE_INV - 1){
@@ -114,26 +116,28 @@ void afficher_inventaire(inventaire_t * joueur){
     }
 }
 
-void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj){
-    int i;
+void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i){
     int temp;
-    for (i = 0; i<TAILLE_INV; i++){
-        if (joueur->liste[i]->id != -1){ // Quelque chose à cette emplacement la ?
+    if (joueur->liste[i]->id != -1){ // Quelque chose à cette emplacement la ?
+        if(liste_objets[joueur->liste[i]->id-1].categorie == 2){ // Si obj = potion
             if(joueur->liste[i]->id == obj->id){ // Est ce que l'id de l'objet qui est la à la meme que l'objet que l'on veut supprimer ?
                 if (joueur->liste[i]->nb > 1){ // Si il y a plusieurs objets du meme type
                     joueur->liste[i]->nb -= 1;
+                    printf("Objet supprimer : %s quantité restante : %d \n",liste_objets[obj->id-1].nom, joueur->liste[i]->nb);
                 }
                 else{
                     printf("Objet supprimer : %s \n",liste_objets[obj->id-1].nom);
                     joueur->liste[i]->id = -1;
                     joueur->liste[i]->nb = 0;
-                    
-
                 }
             }
         }
+        else{ // Si obj = epee ou armure
+            printf("Objet supprimer : %s \n",liste_objets[obj->id-1].nom);
+            joueur->liste[i]->id = -1;
+            joueur->liste[i]->nb = 0;
+        }
     }
-
 }
 
 int recherche_emplacement_item(inventaire_t * personnage, objet_t * obj){
@@ -228,14 +232,21 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
                             if(liste_objets[joueur->liste[i]->id-1].categorie == 0){
                                 if(perso->arme_obj == NULL){
                                     SDL_RenderCopy(renderer,liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_texture_HAUT);
-                                    equiper(perso, joueur->liste[i], joueur);
+                                    equiper(perso, joueur->liste[i], joueur, i);
+                                    case_inv[i]->texture = NULL;
                                 }
                             }
                             if(liste_objets[joueur->liste[i]->id-1].categorie == 1){
                                 if(perso->armure_obj == NULL){
-                                    case_texture_BAS = IMG_LoadTexture(renderer, liste_objets[joueur->liste[i]->id-1].texture);
-                                    equiper(perso, joueur->liste[i], joueur);
+                                    SDL_RenderCopy(renderer,liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_texture_BAS);
+                                    equiper(perso, joueur->liste[i], joueur, i);
+                                    case_inv[i]->texture = NULL;
                                 }
+                            }
+                            if(liste_objets[joueur->liste[i]->id-1].categorie == 2){
+                                SDL_RenderCopy(renderer,liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_texture_BAS);
+                                equiper(perso, joueur->liste[i], joueur, i);
+                                case_inv[i]->texture = NULL;
                             }
                         }
                     }

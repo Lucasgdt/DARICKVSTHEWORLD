@@ -21,8 +21,8 @@ extern mob_t liste_mobs[];
 /*                   Animation des mouvements du personnage                   */
 /* -------------------------------------------------------------------------- */
 
-void anim(SDL_Renderer *renderer, SDL_Rect destRect, int left, int right){
-// Chargement des 6 images en tant que surfaces
+void anim(SDL_Renderer *renderer, SDL_Rect destRect, int left, int right) {
+    // Chargement des 6 images en tant que surfaces
     SDL_Surface* surfaces[6];
     if (left == 1){
         for (int i = 0; i < 6; i++) {
@@ -38,7 +38,6 @@ void anim(SDL_Renderer *renderer, SDL_Rect destRect, int left, int right){
             surfaces[i] = IMG_Load(filename);
         } 
     }
-
 
     // Création des textures à partir des surfaces
     SDL_Texture* textures[6];
@@ -65,14 +64,13 @@ void anim(SDL_Renderer *renderer, SDL_Rect destRect, int left, int right){
 
         // Attente de 100 millisecondes
         SDL_Delay(100);
-        SDL_RenderClear(renderer);
-        
+
         // Passage à l'image suivante
         current_image = (current_image + 1) % 6;
         temp++;
-
     }
-    // Libération des textures et du renderer
+
+    // Libération des textures
     for (int i = 0; i < 6; i++) {
         SDL_DestroyTexture(textures[i]);
     }
@@ -237,17 +235,11 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
     objet_t * obj = create_objet();
     objet_t * obj2 = create_objet();
     objet_t * obj3 = create_objet();
-    objet_t * obj4 = create_objet();
-    objet_t * obj5 = create_objet();
-    objet_t * obj6 = create_objet();
 
-    obj->id = 13;
-    obj2->id = 2;
-    obj2->id = 2;
-    obj3->id = 2;
-    obj4->id = 2;
-    obj5->id = 2;
-    obj6->id = 2;
+    obj->id = 2;
+    obj2->id = 1;
+    obj3->id = 6;
+
 
     inv.x = 0;
     inv.y = -100;
@@ -298,12 +290,9 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
                         right = 1;
                         break;
                     case SDLK_m:
-                        loot(inventaire_joueur,obj);
-                        loot(inventaire_joueur,obj2);
                         loot(inventaire_joueur,obj3);
-                        loot(inventaire_joueur,obj4);
-                        loot(inventaire_joueur,obj5);
-                        loot(inventaire_joueur,obj6);
+                        loot(inventaire_joueur,obj3);
+                        loot(inventaire_joueur,obj);
                         break;
                     case SDLK_i:
                         afficher_inv_SDL(renderer,inventaire, inv, inventaire_joueur, screenSurface, window, joueur);
@@ -312,7 +301,7 @@ int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
                         afficher_inventaire(inventaire_joueur);
                         break;
                     case SDLK_x:
-                        retirer(joueur, joueur->arme_obj, inventaire_joueur);
+                        afficher_stat_joueur(joueur);
                         break;
                 }
                 break;

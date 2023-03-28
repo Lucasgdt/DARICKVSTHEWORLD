@@ -23,6 +23,7 @@ int main(int argc, char * argv[]){
     printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
     goto quit;
   }
+
   menu();
   quit:
   //Fermer la fenetre
