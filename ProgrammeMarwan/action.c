@@ -5,6 +5,8 @@
 #include <SDL2/SDL_image.h>
 
 #include "action.h"
+extern objet_t liste_objets[];
+extern mob_t liste_mobs[];
 
 void joueur_attaque(personnage_t * joueur, mob_t * mob){
     printf("Vous avez mis %d de degats à %s \n",joueur->degats,liste_mobs[mob->id - 1].nom);

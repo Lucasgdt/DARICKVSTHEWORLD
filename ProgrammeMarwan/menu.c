@@ -4,7 +4,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "move.h"
+#include "name.h"
+
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 #define BUTTON_WIDTH 100

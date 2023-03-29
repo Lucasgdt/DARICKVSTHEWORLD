@@ -34,8 +34,24 @@ boss_t boss[] = {
     {4,"Ayoub, le nain dechu","",0,0,0,0}
 };
 
-void deplacementSerpent();
-int affichage();
+
+typedef struct partboss_s{
+    SDL_Texture * texture;
+    SDL_Rect *boss_rect;
+}partboss_t;
+
+
+
+
+
+
+
+
+
+
+
+
+extern void deplacementSerpent(SDL_Window *window);
 
 #endif 
 #endif

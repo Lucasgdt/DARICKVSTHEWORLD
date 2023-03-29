@@ -1,12 +1,19 @@
-# sdl2 cmake project-config-version input for ./configure scripts
+# SDL2 CMake version configuration file:
+# This file is meant to be placed in a cmake subfolder of SDL2-devel-2.x.y-mingw
 
-set(PACKAGE_VERSION "2.26.2")
-
-if(PACKAGE_VERSION VERSION_LESS PACKAGE_FIND_VERSION)
-  set(PACKAGE_VERSION_COMPATIBLE FALSE)
+if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(sdl2_config_path "${CMAKE_CURRENT_LIST_DIR}/../i686-w64-mingw32/lib/cmake/SDL2/sdl2-config-version.cmake")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(sdl2_config_path "${CMAKE_CURRENT_LIST_DIR}/../x86_64-w64-mingw32/lib/cmake/SDL2/sdl2-config-version.cmake")
 else()
-  set(PACKAGE_VERSION_COMPATIBLE TRUE)
-  if(PACKAGE_FIND_VERSION STREQUAL PACKAGE_VERSION)
-    set(PACKAGE_VERSION_EXACT TRUE)
-  endif()
+    set(PACKAGE_VERSION_UNSUITABLE TRUE)
+    return()
 endif()
+
+if(NOT EXISTS "${sdl2_config_path}")
+    message(WARNING "${sdl2_config_path} does not exist: MinGW development package is corrupted")
+    set(PACKAGE_VERSION_UNSUITABLE TRUE)
+    return()
+endif()
+
+include("${sdl2_config_path}")

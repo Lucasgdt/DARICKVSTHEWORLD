@@ -1,10 +1,12 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "sdl_image.h": "c",
-        "stdlib.h": "c",
         "bossfight.h": "c",
-        "move.h": "c",
-        "inventaire.h": "c"
-    }
+        "stdbool.h": "c",
+        "time.h": "c",
+        "crtdefs.h": "c",
+        "stdlib.h": "c",
+        "sdl_image.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

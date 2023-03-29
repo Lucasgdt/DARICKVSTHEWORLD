@@ -1,0 +1,5 @@
+make.exe --dry-run --keep-going --print-directory
+make.exe: Entering directory 'c:/Users/Marwan/Desktop/LE VRAI PROJET/DARICKVSTHEWORLD/ProgrammeMatheo'
+gcc -Wall menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o -o jeu.exe -lm -lmingw32 -LC:/SDL2/lib -lSDL2 -lSDL2_ttf -lSDL2_image -IC:/SDL2/include 
+make.exe: Leaving directory 'c:/Users/Marwan/Desktop/LE VRAI PROJET/DARICKVSTHEWORLD/ProgrammeMatheo'
+ 
