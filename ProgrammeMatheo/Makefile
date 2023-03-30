@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall
-SDL_DIR = C:/SDL2
+SDL_DIR = E:\SDL2
 SDLLIB_DIR = $(SDL_DIR)/lib
 SDLINC_DIR = $(SDL_DIR)/include
 
@@ -9,8 +9,8 @@ INCLUDES = -I$(SDLINC_DIR)
 
 all: jeu.exe
 
-jeu.exe: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o 
-	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o -o jeu.exe -lm -lmingw32 $(LIBS) $(INCLUDES) 
+jeu.exe: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o
+	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o -o jeu.exe -lm -lmingw32 $(LIBS) $(INCLUDES) 
 
 menu.o: menu.c
 	$(CC) $(CFLAGS) -c menu.c $(INCLUDES)
@@ -39,5 +39,11 @@ name.o : name.c
 outil.o : outil.c
 	$(CC) $(CFLAGS) -c outil.c $(INCLUDES)
 
+bossFight.o : bossFight.c
+	$(CC) $(CFLAGS) -c bossFight.c $(INCLUDES)
+
+deplacementCyclope.o : deplacementCyclope.c
+	$(CC) $(CFLAGS) -c deplacementCyclope.c $(INCLUDES)
+
 clean:
-	rm -f *.o jeu.exe
+	del -f *.o jeu.exe

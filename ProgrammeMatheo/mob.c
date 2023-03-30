@@ -6,11 +6,22 @@
 
 #include "mob.h"
 
+/**
+ * @brief Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques
+ * 
+ */
+
 mob_t liste_mobs[] = {
     {1, "Gobelin", "ressources/Mobs/Mob.png", 1, 0, 0, 1, 20, 0},
     {2, "Gnome", "ressources/Mobs/Mob2.png", 1, 10, 0, 1, 20, 300},
     {3, "Azir", "daricksword.png", 1, 20, 0, 1, 200, 0}
 };
+
+/**
+ * @brief Permet de créer et initialiser un mob à 0, sans prendre les parametres de la liste
+ * 
+ * @return mob_t* 
+ */
 
 // Créer un mob initialiser à 0 partout (il faut donc ajuste les stats apres avec la fonction ajuste)
 mob_t * create_mob() {
@@ -25,6 +36,13 @@ mob_t * create_mob() {
     return mob;
 }
 
+/**
+ * @brief Fonction afin d'ajuster les statistiques à un mob créer correspondant à la liste des mobs
+ * 
+ * @param mob 
+ * @return mob_t* 
+ */
+
 // Permet de mettre les bonnes statistiques à un mob vierge
 mob_t * ajuste(mob_t * mob){
     strcpy(mob->nom , liste_mobs[mob->id-1].nom);
@@ -37,6 +55,12 @@ mob_t * ajuste(mob_t * mob){
 
     return mob;
 }
+
+/**
+ * @brief Créer une liste de mob et initialise tout à 0;
+ * 
+ * @return mob_liste_t* 
+ */
 
 mob_liste_t * create_liste_mob(){
     int i;
@@ -51,6 +75,14 @@ mob_liste_t * create_liste_mob(){
 
     return liste_des_mobs;
 }
+
+/**
+ * @brief Ajout d'un mob à la liste de mob
+ * 
+ * @param liste_des_mobs 
+ * @param mob 
+ * @return mob_liste_t* 
+ */
 // Ajoute un mob à la liste de mob
 mob_liste_t * ajouter_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
     int i;
@@ -70,7 +102,11 @@ mob_liste_t * ajouter_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
     printf("Mobs ajoute : %s et il est ici %d \n",liste_mobs[liste_des_mobs->liste[temp]->id-1].nom, temp);
     return liste_des_mobs;
 }
-
+/**
+ * @brief Affiche l'intégralité des noms des mobs présents dans la liste
+ * 
+ * @param liste 
+ */
 void afficher_liste_mob(mob_liste_t * liste){
     int i;
     int temp = 0;
@@ -85,6 +121,12 @@ void afficher_liste_mob(mob_liste_t * liste){
         printf("Liste des mobs vides \n");
     }
 }
+
+/**
+ * @brief Fonction permettant d'afficher les statistiques d'un mob
+ * 
+ * @param mob 
+ */
 
 void afficher_stat_mob(mob_t * mob){
     printf("Voici les statistiques de %s : \n", mob->nom);
@@ -113,6 +155,14 @@ void afficher_stat_mob(mob_t * mob){
     printf("Mobs tué : %s \n",liste_mobs[temp+1].nom);
 }*/
 
+/**
+ * @brief Fonction supprimant un mob d'une liste et affichant le nom du mob supprimer
+ * 
+ * @param liste_des_mobs 
+ * @param i 
+ * @param mob 
+ */
+
 void delete_mob(mob_liste_t * liste_des_mobs, int i, texture_t * mob[TAILLE_LISTE_MOB]){
     if(liste_des_mobs->liste[i] != NULL){
         liste_des_mobs->liste[i] = NULL;
@@ -120,6 +170,13 @@ void delete_mob(mob_liste_t * liste_des_mobs, int i, texture_t * mob[TAILLE_LIST
     }
     printf("Mobs tué : %s \n",liste_mobs[i+1].nom);
 }
+
+/**
+ * @brief Fonction afin de savoir si le mob existe
+ * 
+ * @param mob 
+ * @return int 
+ */
 
 int mob_existe(mob_t * mob) {
     if (mob == NULL){

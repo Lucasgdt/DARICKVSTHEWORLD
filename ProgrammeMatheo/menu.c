@@ -11,6 +11,12 @@
 #define BUTTON_WIDTH 100
 #define BUTTON_HEIGHT 50
 
+/**
+ * @brief Fonction menu, qui possède trois boutons, un bouton jouer qui fait appel à la fonction name, un bouton option afin de pouvoir regler la fenetre et le son du jeu, et un bouton quitter, afin de quitter complètement le jeu
+ * 
+ * @return int 
+ */
+
 int menu() {
     SDL_Window *window = NULL;
     SDL_Surface *screenSurface = NULL;
