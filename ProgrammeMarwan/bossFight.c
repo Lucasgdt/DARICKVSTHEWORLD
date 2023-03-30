@@ -9,8 +9,10 @@
 #include "action.h"
 #define NB_DEP 15
 #define NB_PARTIE 5
-int running = 1;
-void serpentAff(SDL_Renderer *renderer, partboss_t **corps) {    
+
+void serpentAff(SDL_Renderer *renderer, texture_t **corps) {   
+     int running = 1;
+    SDL_Event event;
     int centerX[NB_PARTIE];
     int centerY[NB_PARTIE];
     int angle = 0;
@@ -24,13 +26,13 @@ void serpentAff(SDL_Renderer *renderer, partboss_t **corps) {
     /* -------------------------------------------------------------------------- */
 
     for(int i = 0; i < NB_PARTIE; i++){
-        centerX[i] = corps[i]->boss_rect->x + corps[i]->boss_rect->h / 2;
-        centerY[i] = corps[i]->boss_rect->y + corps[i]->boss_rect->w / 2;
+        centerX[i] = corps[i]->rect.x + corps[i]->rect.h / 2;
+        centerY[i] = corps[i]->rect.y + corps[i]->rect.w / 2;
         printf("\n TRANSITION \n\n");
-        printf("boss_rect->x --> %d `\n", corps[i]->boss_rect->x);
-        printf("boss_rect->y --> %d `\n", corps[i]->boss_rect->y);
-        printf("boss_rect->h --> %d `\n", corps[i]->boss_rect->h);
-        printf("boss_rect->w --> %d `\n", corps[i]->boss_rect->w);
+        printf("rect->x --> %d `\n", corps[i]->rect.x);
+        printf("rect->y --> %d `\n", corps[i]->rect.y);
+        printf("rect->h --> %d `\n", corps[i]->rect.h);
+        printf("rect->w --> %d `\n", corps[i]->rect.w);
     }
  
   
@@ -39,7 +41,14 @@ void serpentAff(SDL_Renderer *renderer, partboss_t **corps) {
         /* -------------------------------------------------------------------------- */
         /*                   Parcours en forme de cercle du serpent                   */
         /* -------------------------------------------------------------------------- */
-    while(etat == true){
+    while (running) { // Boucle principale
+        while (SDL_PollEvent(&event)) { // On récupère les évènements
+            switch (event.type) {
+                case SDL_QUIT:
+                    running = 0;
+                    break;
+            }
+        }
         for (int i = 0; i < 360; i++) {
             angle = i;
             if (i >= 180) {
@@ -49,14 +58,9 @@ void serpentAff(SDL_Renderer *renderer, partboss_t **corps) {
                 x = centerX[j] + radiusX * cos(angle * M_PI / 180);
                 y = centerY[j] + radiusY * sin(angle * M_PI / 180);
 
-                corps[j]->boss_rect->x = x - corps[j]->boss_rect->w/2 ;
-                corps[j]->boss_rect->y = y - corps[j]->boss_rect->h/2 ;
-
-            
-                SDL_RenderFillRect(renderer, *(&corps[j]->boss_rect));
-                SDL_RenderCopy(renderer, *(&corps[j]->texture), NULL, *(&corps[j]->boss_rect));
-                
-                
+                corps[j]->rect.x = x - corps[j]->rect.w/2 ;
+                corps[j]->rect.y = y - corps[j]->rect.h/2 ;
+                SDL_RenderCopy(renderer, *(&corps[j]->texture), NULL, (&corps[j]->rect));
             }
             SDL_RenderPresent(renderer);
             SDL_RenderClear(renderer); // Nettoie l'écran avant de continuer
@@ -72,12 +76,12 @@ extern void deplacementSerpent(SDL_Window *window)
 {
 
   
-    SDL_Event event;
+  
     /*SDL_Window *window = NULL;*/
     SDL_Renderer *renderer = NULL;
     int quit = 0;
     int partie = 0; // Init de partie 0, on part de la partie 0 pour la tete puis aller jusqu'à la partie 8 du corps
-    partboss_t *serpent[NB_PARTIE];
+    texture_t *serpent[NB_PARTIE];
     
 
     /* -------------------------------------------------------------------------- */
@@ -86,8 +90,7 @@ extern void deplacementSerpent(SDL_Window *window)
 
     
     for(int i = 0; i<NB_PARTIE; i++){
-        serpent[i] = malloc(sizeof(partboss_t));
-        serpent[i]->boss_rect = malloc(sizeof(SDL_Rect));
+        serpent[i] = malloc(sizeof(texture_t));
     }
     
     // Créer le rendu
@@ -114,14 +117,14 @@ extern void deplacementSerpent(SDL_Window *window)
     /* -------------------------------------------------------------------------- */
     
     for(int i = 0; i < NB_PARTIE; i++){
-        serpent[i]->boss_rect->x = 250 -  (i * 80);
-        serpent[i]->boss_rect->y = 250 -  (i * 80);
-        serpent[i]->boss_rect->w = SCREEN_WIDTH / 4;
-        serpent[i]->boss_rect->h = SCREEN_HEIGHT / 4;
-        printf("boss_rect->x --> %d `\n", serpent[i]->boss_rect->x);
-        printf("boss_rect->y --> %d `\n", serpent[i]->boss_rect->y);
-        printf("boss_rect->h --> %d `\n", serpent[i]->boss_rect->h);
-        printf("boss_rect->w --> %d `\n", serpent[i]->boss_rect->w);
+        serpent[i]->rect.x = 250 -  (i * 80);
+        serpent[i]->rect.y = 250 -  (i * 80);
+        serpent[i]->rect.w = SCREEN_WIDTH / 4;
+        serpent[i]->rect.h = SCREEN_HEIGHT / 4;
+        printf("rect->x --> %d `\n", serpent[i]->rect.x);
+        printf("rect->y --> %d `\n", serpent[i]->rect.y);
+        printf("rect->h --> %d `\n", serpent[i]->rect.h);
+        printf("rect->w --> %d `\n", serpent[i]->rect.w);
     }
 
     // Configurez le rectangle du boss
@@ -134,16 +137,9 @@ extern void deplacementSerpent(SDL_Window *window)
   
    
 
-    while (running) { // Boucle principale
-        while (SDL_PollEvent(&event)) { // On récupère les évènements
-            switch (event.type) {
-                case SDL_QUIT:
-                    running = 0;
-                    break;
-            }
-        }
-        serpentAff(renderer, *&serpent);
-    } 
+   
+    serpentAff(renderer, *&serpent);
+
   
 
     quit:

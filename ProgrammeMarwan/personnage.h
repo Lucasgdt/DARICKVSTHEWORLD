@@ -6,6 +6,7 @@
 
 #include "inventaire.h"
 #include "outil.h"
+
 #define PV_START 5
 extern objet_t liste_objets[];
 

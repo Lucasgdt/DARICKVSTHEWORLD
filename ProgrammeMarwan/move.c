@@ -17,6 +17,8 @@ extern mob_t liste_mobs[];
 #define INPUT_TEXT_SIZE 256
 #define AGGRO_DISTANCE 300 // distance d'aggro en pixels
 
+
+
 /* -------------------------------------------------------------------------- */
 /*                   Animation des mouvements du personnage                   */
 /* -------------------------------------------------------------------------- */
@@ -114,9 +116,6 @@ void deplacement_mobV2(texture_t * mob[TAILLE_LISTE_MOB], int i){
     }
 }
 
-/* -------------------------------------------------------------------------- */
-/*                 Fonction d'aggro d'un mob envers le joueur                 */
-/* -------------------------------------------------------------------------- */
 
 void mob_aggro(texture_t *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
     int distance_x = abs(destRect.x - mob[i]->rect.x);
@@ -139,6 +138,7 @@ void mob_aggro(texture_t *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
         }
     }
 }
+
 
 int move(personnage_t * joueur, inventaire_t * inventaire_joueur) {
 

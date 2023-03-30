@@ -1,5 +1,5 @@
 make.exe --dry-run --always-make --keep-going --print-directory
-make.exe: Entering directory 'c:/Users/Marwan/Desktop/ProgrammeMarwan'
+make.exe: Entering directory 'c:/Users/Marwan/Desktop/LE VRAI PROJET/DARICKVSTHEWORLD/ProgrammeMarwan'
 gcc -Wall -c menu.c -IC:/SDL2/include
 gcc -Wall -c move.c -IC:/SDL2/include
 gcc -Wall -c inventaire.c -IC:/SDL2/include
@@ -11,6 +11,7 @@ gcc -Wall -c name.c -IC:/SDL2/include
 gcc -Wall -c outil.c -IC:/SDL2/include
 gcc -Wall -c bossFight.c -IC:/SDL2/include
 gcc -Wall -c deplacementCyclope.c -IC:/SDL2/include
-gcc -Wall menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o -o jeu.exe -lm -lmingw32 -LC:/SDL2/lib -lSDL2 -lSDL2_ttf -lSDL2_image -IC:/SDL2/include 
-make.exe: Leaving directory 'c:/Users/Marwan/Desktop/ProgrammeMarwan'
+gcc -Wall -c deplacementRantanplan.c -IC:/SDL2/include
+gcc -Wall menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o deplacementRantanplan.o -o jeu.exe -lm -lmingw32 -LC:/SDL2/lib -lSDL2 -lSDL2_ttf -lSDL2_image -IC:/SDL2/include 
+make.exe: Leaving directory 'c:/Users/Marwan/Desktop/LE VRAI PROJET/DARICKVSTHEWORLD/ProgrammeMarwan'
  

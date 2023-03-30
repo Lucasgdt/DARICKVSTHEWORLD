@@ -9,6 +9,8 @@
 #ifndef MOVE_H
 #define MOVE_H
 
+#include "move.h"
+#include "outil.h"
 
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
@@ -35,10 +37,6 @@ boss_t boss[] = {
 };
 
 
-typedef struct partboss_s{
-    SDL_Texture * texture;
-    SDL_Rect *boss_rect;
-}partboss_t;
 
 
 

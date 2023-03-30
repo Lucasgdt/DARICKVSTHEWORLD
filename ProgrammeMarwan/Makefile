@@ -9,8 +9,8 @@ INCLUDES = -I$(SDLINC_DIR)
 
 all: jeu.exe
 
-jeu.exe: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o
-	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o -o jeu.exe -lm -lmingw32 $(LIBS) $(INCLUDES) 
+jeu.exe: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o deplacementRantanplan.o
+	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o deplacementRantanplan.o -o jeu.exe -lm -lmingw32 $(LIBS) $(INCLUDES) 
 
 menu.o: menu.c
 	$(CC) $(CFLAGS) -c menu.c $(INCLUDES)
@@ -44,6 +44,9 @@ bossFight.o : bossFight.c
 
 deplacementCyclope.o : deplacementCyclope.c
 	$(CC) $(CFLAGS) -c deplacementCyclope.c $(INCLUDES)
+
+deplacementRantanplan.o : deplacementRantanplan.c
+	$(CC) $(CFLAGS) -c deplacementRantanplan.c $(INCLUDES)
 
 clean:
 	del -f *.o jeu.exe
