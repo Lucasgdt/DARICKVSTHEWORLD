@@ -12,6 +12,8 @@
 #include "name.h"
 #include "bossFight.h"
 #include "deplacementCyclope.h"
+#include "deplacementRantanplan.h"
+
 
 int main(int argc, char *argv[]){
 
@@ -32,7 +34,7 @@ int main(int argc, char *argv[]){
     //goto quit;
   }
 
-  menu();
+  deplacementRan(window);
   
 
   //Fermer la fenetre

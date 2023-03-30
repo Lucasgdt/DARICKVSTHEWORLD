@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Wed Mar 29 15:58:45 2023
+# Make data base, printed on Thu Mar 30 06:48:14 2023
 
 # Variables
 
@@ -36,14 +36,13 @@ HOMEDRIVE = C:
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # makefile
-CURDIR := c:/Users/Marwan/Desktop/ProgrammeMarwan
+CURDIR := c:/Users/Marwan/Desktop/LE VRAI PROJET/DARICKVSTHEWORLD/ProgrammeMarwan
 # default
 SHELL := sh.exe
 # environment
 WINDIR = C:\Windows
 # environment
-VSCODE_NLS_CONFIG = {"locale":"fr-fr","availableLanguages":{"*":"fr"},"_languagePackId":"253ddc3663b7050a7fa71b28cd271f7b.fr","_translationsConfigFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\tcf.json","_cacheRoot":" 
-C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr","_corruptedFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\corrupted.info","_resolvedLanguagePackCoreLocation":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\ee2b180d582a7f601fa6ecfdad8d9fd269ab1884","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"fr-fr","availableLanguages":{"*":"fr"},"_languagePackId":"253ddc3663b7050a7fa71b28cd271f7b.fr","_translationsConfigFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\tcf.json","_cacheRoot":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr","_corruptedFile":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\corrupted.info","_resolvedLanguagePackCoreLocation":"C:\\Users\\Marwan\\AppData\\Roaming\\Code\\clp\\253ddc3663b7050a7fa71b28cd271f7b.fr\\ee2b180d582a7f601fa6ecfdad8d9fd269ab1884","_languagePackSupport":true}
 # environment
 VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # makefile (from 'Makefile', line 2)
@@ -65,13 +64,11 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_CWD = C:\Users\Marwan\Desktop\ProgrammeMarwan
+VSCODE_CWD = C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code
 # environment
 PATH = C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\TDM-GCC-64\bin;C:\Program Files\Go\bin;C:\Program Files\nodejs\;C;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files (x86)\IncrediBuild;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\Marwan\AppData\Local\Programs\Python\Python37\;C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Marwan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Marwan\AppData\Local\atom\bin;C:\Users\Marwan\go\bin;C:\Users\Marwan\AppData\Roaming\npm;C:\Program Files (x86)\Dr. Memory\bin\;C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Marwan\.dotnet\tools
 # environment
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
-# environment
-LC_ALL = C
 # environment
 PROCESSOR_ARCHITECTURE = x86
 # environment
@@ -91,7 +88,7 @@ SDL = C:\Users\Marwan\Downloads\sdl\SDL2-2.26.2\include
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\LOCAL\crashpad_9564_NNXCBHAHKTIDQMHN
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\LOCAL\crashpad_1736_REUDYLUQVYCDGXHX
 # environment
 COMPUTERNAME = DESKTOP-AK2PHGC
 # makefile (from 'Makefile', line 4)
@@ -108,8 +105,6 @@ USERNAME = Marwan
 PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# environment
-VSCODE_CLI = 1
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\Marwan\AppData\Roaming\Code\CachedData\ee2b180d582a7f601fa6ecfdad8d9fd269ab1884
 # environment
@@ -176,13 +171,14 @@ PT8HOME = C:\Program Files\Cisco Packet Tracer 8.2.0
 SYSTEMROOT = C:\Windows
 # automatic
 +D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = file:///c%3A/Users/Marwan/.vscode/extensions/ms-ceintl.vscode-language-pack-fr-1.76.2023031509/translations/extensions/vscode.json-language-features.i18n.json
 # automatic
 +F = $(notdir $+)
 # environment
 APPDATA = C:\Users\Marwan\AppData\Roaming
 # environment
 TEMP = C:\Users\Marwan\AppData\Local\Temp
- 
 # environment
 COMSPEC = C:\Windows\system32\cmd.exe
 # makefile (from 'Makefile', line 5)
@@ -192,7 +188,7 @@ MAKEFILES :=
 # automatic
 <F = $(notdir $<)
 # environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
+LC_ALL = C
 # makefile (from 'Makefile', line 7)
 LIBS = -L$(SDLLIB_DIR) -lSDL2 -lSDL2_ttf -lSDL2_image
 # automatic
@@ -216,11 +212,11 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 9564
+VSCODE_PID = 1736
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 # variable set hash-table stats:
-# Load=103/1024=10%, Rehash=0, Collisions=14/122=11%
+# Load=102/1024=10%, Rehash=0, Collisions=13/129=10%
 
 # Pattern-specific Variable Values
 
@@ -233,10 +229,10 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 # C:\Users\Marwan\AppData\Local\Programs\Python\Python37\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/, mtime 1641239889): 18 files, no impossibilities.
 # C:\ProgramData\Oracle\Java\javapath (key C:/ProgramData/Oracle/Java/javapath, mtime 1638485154): 5 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\Programs\Python\Python37\Scripts\ (key C:/Users/Marwan/AppData/Local/Programs/Python/Python37/Scripts/, mtime 1678826324): 8 files, no impossibilities.
-# C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts (key C:/Users/Marwan/AppData/Local/JetBrains/Toolbox/scripts, mtime 1680087841): 3 files, no impossibilities.
+# C:\Users\Marwan\AppData\Local\JetBrains\Toolbox\scripts (key C:/Users/Marwan/AppData/Local/JetBrains/Toolbox/scripts, mtime 1680149333): 3 files, no impossibilities.
 # C:\Windows\System32\WindowsPowerShell\v1.0\ (key C:/Windows/System32/WindowsPowerShell/v1.0/, mtime 1664055391): 32 files, no impossibilities.
 # C:\Users\Marwan\.dotnet\tools: could not be stat'd.
-# . (key c:/Users/Marwan/Desktop/ProgrammeMarwan, mtime 1680098030): 58 files, no impossibilities.
+# . (key c:/Users/Marwan/Desktop/LE VRAI PROJET/DARICKVSTHEWORLD/ProgrammeMarwan, mtime 1680151661): 61 files, no impossibilities.
 # C:\Program Files (x86)\Common Files\Oracle\Java\javapath (key C:/Program Files (x86)/Common Files/Oracle/Java/javapath, mtime 1638484964): 5 files, no impossibilities.
 # C: could not be stat'd.
 # C:\Program Files\Microsoft SQL Server\150\Tools\Binn\ (key C:/Program Files/Microsoft SQL Server/150/Tools/Binn/, mtime 1678639248): 4 files, no impossibilities.
@@ -245,8 +241,7 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-AK2PHGC
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1677580233): 8 files, no impossibilities.
 # C:\Windows\System32\OpenSSH\: could not be stat'd.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1679775889): 132 files, no impossibilities.
-# C:\Program Fil 
-es (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common, mtime 1638379250): 10 files, no impossibilities.
+# C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common, mtime 1638379250): 10 files, no impossibilities.
 # C:\Program Files\nodejs\ (key C:/Program Files/nodejs/, mtime 1664044476): 13 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\atom\bin (key C:/Users/Marwan/AppData/Local/atom/bin, mtime 1645471473): 6 files, no impossibilities.
 # C:\Windows (key C:/Windows, mtime 1679735299): 115 files, no impossibilities.
@@ -257,10 +252,10 @@ es (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corp
 # C:\Program Files\Common Files\Oracle\Java\javapath (key C:/Program Files/Common Files/Oracle/Java/javapath, mtime 1648909239): 6 files, no impossibilities.
 # C:\Users\Marwan\AppData\Roaming\npm (key C:/Users/Marwan/AppData/Roaming/npm, mtime 1664044474): 2 files, no impossibilities.
 # C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1678639349): 13 files, no impossibilities.
-# C:\Windows\system32 (key C:/Windows/system32, mtime 1680088053): 3085 files, no impossibilities.
+# C:\Windows\system32 (key C:/Windows/system32, mtime 1680149703): 3085 files, no impossibilities.
 # C:\Users\Marwan\AppData\Local\Microsoft\WindowsApps (key C:/Users/Marwan/AppData/Local/Microsoft/WindowsApps, mtime 1679735052): 30 files, no impossibilities.
 
-# 4071 files, no impossibilities in 30 directories.
+# 4074 files, no impossibilities in 30 directories.
 
 # Implicit Rules
 
@@ -268,34 +263,33 @@ es (x86)\NVIDIA Corporation\PhysX\Common (key C:/Program Files (x86)/NVIDIA Corp
 
 # Files
 
-jeu.exe: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o
+jeu.exe: menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o deplacementRantanplan.o
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:50
+#  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
 #  recipe to execute (from 'Makefile', line 13):
-	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o -o je 
-u.exe -lm -lmingw32 $(LIBS) $(INCLUDES) 
+	$(CC) $(CFLAGS) menu.o move.o inventaire.o main.o personnage.o mob.o action.o name.o outil.o bossFight.o deplacementCyclope.o deplacementRantanplan.o -o jeu.exe -lm -lmingw32 $(LIBS) $(INCLUDES) 
 
 # Not a target:
 name.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 move.c:
 #  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
+#  Last modified 2023-03-30 06:47:47
 #  File has been updated.
 #  Successfully updated.
 
 inventaire.o: inventaire.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:29
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 22):
 	$(CC) $(CFLAGS) -c inventaire.c $(INCLUDES)
 
@@ -304,14 +298,15 @@ all: jeu.exe
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/8=0%
 
 # Not a target:
 main.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 14:21:15
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .SUFFIXES:
@@ -322,7 +317,7 @@ main.c:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2023-03-29 14:57:55
+#  Last modified 2023-03-29 20:01:13
 #  File has been updated.
 #  Successfully updated.
 
@@ -333,59 +328,58 @@ menu.c:
 #  File has been updated.
 #  Successfully updated.
 
+deplacementRantanplan.o: deplacementRantanplan.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 49):
+	$(CC) $(CFLAGS) -c deplacementRantanplan.c $(INCLUDES)
+
 outil.o: outil.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:30
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 40):
 	$(CC) $(CFLAGS) -c outil.c $(INCLUDES)
 
 action.o: action.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:30
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 34):
 	$(CC) $(CFLAGS) -c action.c $(INCLUDES)
 
 # Not a target:
 inventaire.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 personnage.o: personnage.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:29
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c personnage.c $(INCLUDES)
 
 deplacementCyclope.o: deplacementCyclope.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:31
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 46):
 	$(CC) $(CFLAGS) -c deplacementCyclope.c $(INCLUDES)
 
 mob.o: mob.c
-#  Implicit rule search has not be 
-en done.
-#  Last modified 2023-03-29 15:37:30
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 31):
 	$(CC) $(CFLAGS) -c mob.c $(INCLUDES)
 
 bossFight.o: bossFight.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:31
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 43):
 	$(CC) $(CFLAGS) -c bossFight.c $(INCLUDES)
 
@@ -399,100 +393,116 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 49):
+#  recipe to execute (from 'Makefile', line 52):
 	del -f *.o jeu.exe
 
 name.o: name.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:30
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 37):
 	$(CC) $(CFLAGS) -c name.c $(INCLUDES)
 
 move.o: move.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:29
+#  Implicit/static pattern stem: ''
+#  Last modified 2023-03-30 06:47:39
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := move.o
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := move.c
+# automatic
+# | := 
+# automatic
+# < := move.c
+# automatic
+# ^ := move.c
+# automatic
+# ? := move.c
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/16=6%
 #  recipe to execute (from 'Makefile', line 19):
 	$(CC) $(CFLAGS) -c move.c $(INCLUDES)
 
 # Not a target:
+deplacementRantanplan.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 outil.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 action.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 personnage.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 main.o: main.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:50
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 25):
 	$(CC) $(CFLAGS) -c main.c $(INCLUDES)
 
 # Not a target:
 deplacementCyclope.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:18:04
-#  File 
- has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 mob.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 15:26:11
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 bossFight.c:
-#  Implicit rule search has been done.
-#  Last modified 2023-03-29 14:26:14
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 menu.o: menu.c
 #  Implicit rule search has not been done.
-#  Last modified 2023-03-29 15:37:28
+#  Last modified 2023-03-30 06:47:39
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 16):
 	$(CC) $(CFLAGS) -c menu.c $(INCLUDES)
 
 # files hash-table stats:
-# Load=28/1024=3%, Rehash=0, Collisions=1/74=1%
+# Load=30/1024=3%, Rehash=0, Collisions=1/80=1%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 8 (7) / strings = 3969 / storage = 60461 B / avg = 15 B
-# current buf: size = 8174 B / used = 3289 B / count = 186 / avg = 17 B
-# other used: total = 52287 B / count = 3783 / avg = 13 B
-# other free: total = 46 B / max = 10 B / min = 2 B / avg = 6 B
+# strcache buffers: 8 (7) / strings = 3973 / storage = 60537 B / avg = 15 B
+# current buf: size = 8174 B / used = 3364 B / count = 191 / avg = 17 B
+# other used: total = 52363 B / count = 3782 / avg = 13 B
+# other free: total = 45 B / max = 15 B / min = 1 B / avg = 6 B
 
-# strcache performance: lookups = 4158 / hit rate = 4%
+# strcache performance: lookups = 4166 / hit rate = 4%
 # hash-table stats:
-# Load=3969/8192=48%, Rehash=0, Collisions=1628/4158=39%
-# Finished Make data base on Wed Mar 29 15:58:45 2023
+# Load=3973/8192=48%, Rehash=0, Collisions=1631/4166=39%
+# Finished Make data base on Thu Mar 30 06:48:14 2023
 
  
