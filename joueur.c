@@ -13,7 +13,7 @@
 #include "camera.h"
 #include "mapstruct.h"
 //#include "fight.h"
-
+const int FPS = 24;
 
 
 
@@ -24,6 +24,14 @@ int joueur(SDL_Window *window){
   SDL_Texture *textureright = NULL;
   SDL_Texture *textureleft = NULL;
   SDL_Texture *inventaire = NULL;
+
+  // Calcule de période
+  double period = 1.0 / (double)FPS;
+  period = period * 100;
+  int milliPeriod = (int)period;
+  int sleep;
+
+
 
   SDL_Event event;
   Map_t * loaded_map = NULL;
@@ -112,12 +120,15 @@ int joueur(SDL_Window *window){
   free(obj);
 
 */
-
+  //Ticks
+  Uint32 lastTick;
+  Uint32 currentTick;
 
   // Boucle de récupération des events
 
   while (!quit) {
     SDL_PollEvent(&event);
+    lastTick = SDL_GetTicks();
     switch (event.type) {
       case SDL_QUIT:
         quit = 1;
@@ -178,7 +189,6 @@ int joueur(SDL_Window *window){
   
 
   
-  
   // Effacer l'écran
   SDL_SetRenderDrawColor(renderer, 0x3C, 0x1F, 0x1F, 0xFF);
   SDL_RenderClear(renderer);
@@ -195,6 +205,12 @@ int joueur(SDL_Window *window){
   //SDL_RenderCopy(renderer, skin, &srcRect, &loaded_map->player);
   // Afficher le rendu
 
+  currentTick = SDL_GetTicks();
+  sleep = milliPeriod - (currentTick - lastTick);
+  if(sleep < 0)
+    sleep = 0;
+
+  SDL_Delay(sleep);
   SDL_RenderPresent(renderer);
 
 
