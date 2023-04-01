@@ -13,7 +13,7 @@
 #define SCREEN_HEIGHT 720
 
 
-int FocusScrollBox(Map_t * loaded_map, Sprite* sp,int x, int y, int w, int h);
+int FocusScrollBox(Map_t * loaded_map, Sprite* sp);
 void ClampScroll(Map_t * loaded_map);
 int UpdateScroll(Map_t * loaded_map);
 

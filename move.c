@@ -8,6 +8,7 @@
 #define SGN(X) (((X)==0)?(0):(((X)<0)?(-1):(1)))
 #define ABS(X) ((((X)<0)?(-(X)):(X)))
 
+
 Sprite* InitialiserSprite(int x,int y,int w,int h, Map_t* map)
 {
 	Sprite* sp = malloc(sizeof(Sprite));

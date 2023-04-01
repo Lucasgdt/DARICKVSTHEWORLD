@@ -27,7 +27,7 @@ int joueur(SDL_Window *window){
 
   // Calcule de période
   double period = 1.0 / (double)FPS;
-  period = period * 100;
+  period = period * 20;
   int milliPeriod = (int)period;
   int sleep;
 
@@ -92,7 +92,7 @@ int joueur(SDL_Window *window){
 
   //Initialisation de la camera
 
-  FocusScrollBox(loaded_map, joueur, 200, 150, 400, 300);
+  FocusScrollBox(loaded_map, joueur);
 /*
   int choix;
   int i;

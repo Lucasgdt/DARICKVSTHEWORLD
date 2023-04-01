@@ -7,13 +7,9 @@
 #include "environnement.h"
 
 
-int FocusScrollBox(Map_t * loaded_map, Sprite * sp, int x, int y, int w, int h)
+int FocusScrollBox(Map_t * loaded_map, Sprite * sp)
 {
     loaded_map->player = sp;
-    loaded_map->rectlimitscroll.x = x;
-    loaded_map->rectlimitscroll.y = y;
-    loaded_map->rectlimitscroll.w = w;
-    loaded_map->rectlimitscroll.h = h;
     return 0;
 }
 
@@ -33,23 +29,15 @@ void ClampScroll(Map_t * loaded_map)
 
 int UpdateScroll(Map_t * loaded_map)
 {
-    int cxperso, cyperso, xlimmin, xlimmax, ylimmin, ylimmax;
+    int cxperso, cyperso;
     
     cxperso = loaded_map->player->position.x + loaded_map->player->position.w/2;
     cyperso = loaded_map->player->position.y + loaded_map->player->position.h/2;
-    xlimmin = loaded_map->xscroll + loaded_map->rectlimitscroll.x;
-    ylimmin = loaded_map->yscroll + loaded_map->rectlimitscroll.y;
-    xlimmax = xlimmin + loaded_map->rectlimitscroll.w;
-    ylimmax = xlimmin + loaded_map->rectlimitscroll.h;
 
-    if( cxperso < xlimmin )
-        loaded_map->xscroll -= (xlimmin-cxperso);
-    if( cxperso < ylimmin )
-        loaded_map->yscroll -= (ylimmin-cyperso);
-    if( cxperso > xlimmax )
-        loaded_map->xscroll += (cxperso-xlimmax);
-    if(cyperso > ylimmax )
-        loaded_map->yscroll += (cyperso-ylimmax);
+
+    loaded_map->xscroll = cxperso - (loaded_map->largeur_fenetre/2);
+    loaded_map->yscroll = cyperso - (loaded_map->hauteur_fenetre/2);
+
     ClampScroll(loaded_map);
     return 0;
 }
