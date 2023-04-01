@@ -13,6 +13,7 @@ typedef struct MOUSE_COORD_S{
     int y;
 }MOUSE_COORD;
 
+
 int joueur(SDL_Window *window);
 
 #endif

@@ -11,7 +11,7 @@ typedef struct
 {
 	struct MAP_S* m;
 	SDL_Rect position;
-    
+    SDL_Texture * texture;
 } Sprite;
 
 typedef struct coord_s{
@@ -38,6 +38,7 @@ typedef struct MAP_S{
     //scroll
     int xscroll, yscroll;
     Sprite* player;
+    Sprite* mob;
 }Map_t;
 
 typedef struct TILE_INDEX{

@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
+#include <time.h>
 #include "move.h"
 #include "inventaire.h"
 #include "personnage.h"
@@ -17,9 +18,9 @@
 #include "outil.h"
 #include "mob.h"
 //#include "fight.h"
+
+
 const int FPS = 24;
-
-
 
 int joueur(SDL_Window *window){
   SDL_Renderer *renderer = NULL;
@@ -36,6 +37,7 @@ int joueur(SDL_Window *window){
   period = period * 50;
   int milliPeriod = (int)period;
   int sleep;
+  int calcul[TAILLE_LISTE_MOB];
 
 
 
@@ -119,7 +121,6 @@ int joueur(SDL_Window *window){
   joueur = InitialiserSprite(640, 360, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
-
   //menu();
 
 
@@ -131,15 +132,12 @@ int joueur(SDL_Window *window){
   Uint32 lastTick;
   Uint32 currentTick;
 
-  texture_t * mob_sdl[TAILLE_LISTE_MOB];
-  for (int i = 0; i<TAILLE_LISTE_MOB; i++){
-        mob_sdl[i] = malloc(sizeof(texture_t));
-        mob_sdl[i]->rect.x = 300 + 200 * i;
-        mob_sdl[i]->rect.y = 300 + 200 * i;
-        mob_sdl[i]->rect.h = DARICK_SIZE;
-        mob_sdl[i]->rect.w = DARICK_SIZE;
-        mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
-    }
+  Sprite * mob_sdl[TAILLE_LISTE_MOB];
+  //init_mob(loaded_map, renderer, mob_liste, mob_sdl);
+  mob_sdl[0] = InitialiserSprite(650, 380, DARICK_SIZE, DARICK_SIZE, loaded_map);
+  mob_sdl[0]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[0]->id-1].texture);
+  mob_sdl[1] = InitialiserSprite(650, 380, DARICK_SIZE, DARICK_SIZE, loaded_map);
+  mob_sdl[1]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[1]->id-1].texture);
 
   // Boucle de récupération des events
   screenSurface = SDL_GetWindowSurface(window);
@@ -198,7 +196,11 @@ int joueur(SDL_Window *window){
 
     }
   
-
+    srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
+    for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+      deplacement_mobV2(mob_sdl, i);
+      SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &mob_sdl[i]->position);
+    }
   
   // Effacer l'écran
   SDL_SetRenderDrawColor(renderer, 0x3C, 0x1F, 0x1F, 0xFF);
@@ -211,10 +213,13 @@ int joueur(SDL_Window *window){
   DeplaceSprite(joueur, vx, vy);
   AfficherSprite(joueur, renderer, skin);
 
-  for(int i = 0; i<TAILLE_LISTE_MOB; i++){
-      if(mob_liste->liste[i] != NULL){
-        SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &mob_sdl[i]->rect);
-      }
+  SDL_Rect dest_rect;
+  for (int i = 0; i < TAILLE_LISTE_MOB; i++) {
+    dest_rect.x = mob_sdl[i]->position.x - loaded_map->xscroll;
+    dest_rect.y = mob_sdl[i]->position.y - loaded_map->yscroll;
+    dest_rect.w = DARICK_SIZE;
+    dest_rect.h = DARICK_SIZE;
+    SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &dest_rect);
   }
   // Copier la texture du perso sur le rendu
   //SDL_RenderCopy(renderer, skin, &srcRect, &loaded_map->player);

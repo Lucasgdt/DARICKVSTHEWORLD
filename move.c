@@ -2,12 +2,16 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <time.h>
 #include "joueur.h"
 #include "mapstruct.h"
 #include "environnement.h"
+#include "mob.h"
+#include <math.h>
+
 #define SGN(X) (((X)==0)?(0):(((X)<0)?(-1):(1)))
 #define ABS(X) ((((X)<0)?(-(X)):(X)))
-
+#define AGGRO_DISTANCE 300 // distance d'aggro en pixels
 
 Sprite* InitialiserSprite(int x,int y,int w,int h, Map_t* map)
 {
@@ -99,4 +103,80 @@ int DeplaceSprite(Sprite* perso,int vx, int vy)
 		return 1;
 	Affine(perso,vx,vy);
 	return 2;
+}
+
+void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_LISTE_MOB]){
+	int i;
+	for (i = 0; i<TAILLE_LISTE_MOB; i++){
+        mob_sdl[i] = malloc(sizeof(Sprite));
+        mob_sdl[i]->position.x = 640 + 100 * i;
+        mob_sdl[i]->position.y = 360 + 100 * i;
+        mob_sdl[i]->position.h = DARICK_SIZE;
+        mob_sdl[i]->position.w = DARICK_SIZE;
+        mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
+		mob_sdl[i]->m = map;
+    }
+}
+
+void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]){
+	for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+		free(mob_sdl[i]);
+		mob_sdl[i] = NULL;
+	}
+}
+
+void deplacement_mobV2(Sprite * mob[TAILLE_LISTE_MOB], int i){
+    int deplacement;
+    deplacement = rand()%5;
+
+    if (deplacement == 1) {
+		DeplaceSprite(mob[i], 0, -1);
+    }
+    if (deplacement == 2) {
+        DeplaceSprite(mob[i], 0, +1);
+    }
+    if (deplacement == 3) {
+        DeplaceSprite(mob[i], -1, 0);
+    }
+    if (deplacement == 4) {
+        DeplaceSprite(mob[i], 1, 0);
+    }
+}
+
+
+void mob_aggro(Sprite *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
+    int distance_x = abs(destRect.x - mob[i]->position.x);
+    int distance_y = abs(destRect.y - mob[i]->position.y);
+    int distance = sqrt(distance_x * distance_x + distance_y * distance_y);
+
+    if (distance < AGGRO_DISTANCE) {
+        // Si le joueur est à portée, le mob suit le joueur
+        if (destRect.x < mob[i]->position.x) {
+            mob[i]->position.x -= 1;
+        }
+        if (destRect.x > mob[i]->position.x) {
+            mob[i]->position.x += 1;
+        }
+        if (destRect.y < mob[i]->position.y) {
+            mob[i]->position.y -= 1;
+        }
+        if (destRect.y > mob[i]->position.y) {
+            mob[i]->position.y += 1;
+        }
+    }
+}
+
+int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_liste_t * mob_liste, int i){
+    int calcul;
+    if(mob_liste->liste[i] != NULL){
+        calcul = sqrt(pow(destRect.x - mob_sdl[i]->position.x, 2) + pow(destRect.y - mob_sdl[i]->position.y, 2));
+    }
+    
+    if(calcul > 300){
+        deplacement_mobV2(mob_sdl, i); // a utilisé uniquement quand le mob n'est pas à porter du joueur
+    }
+    else{
+        mob_aggro(mob_sdl, i, destRect);
+    }
+    return calcul;
 }
