@@ -8,7 +8,7 @@ SDLINC_DIR=${SDL_DIR}/include
 LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
 INCLUDES=-I${SDLINC_DIR} 
 
-OBJ=menu.o move.o main.o joueur.o environnement.o camera.o mob.o outil.o inventaire.o personnage.o
+OBJ=menu.o move.o main.o joueur.o environnement.o camera.o mob.o outil.o inventaire.o personnage.o action.o
 
 jeu.exe: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o jeu.exe ${LIBS} ${INCLUDES}
@@ -43,6 +43,10 @@ inventaire.o : inventaire.c
 
 personnage.o : personnage.c
 	$(CC) $(CFLAGS) -c personnage.c $(INCLUDES)
+
+action.o : action.c
+	$(CC) $(CFLAGS) -c action.c $(INCLUDES)
+
 clean:
 	del -f *.o jeu.exe
 	del menu inventaire test tqt

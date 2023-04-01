@@ -8,7 +8,7 @@
 #define MOVE_H
 
 #define AGGRO_DISTANCE 300 // distance d'aggro en pixels
-#define speed 1
+#define speed 2
 
 
 

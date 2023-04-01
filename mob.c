@@ -5,7 +5,7 @@
 #include <SDL2/SDL_image.h>
 
 #include "mob.h"
-
+#include "mapstruct.h"
 /**
  * @brief Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques
  * 
@@ -163,7 +163,7 @@ void afficher_stat_mob(mob_t * mob){
  * @param mob 
  */
 
-void delete_mob(mob_liste_t * liste_des_mobs, int i, texture_t * mob[TAILLE_LISTE_MOB]){
+void delete_mob(mob_liste_t * liste_des_mobs, int i, Sprite * mob[TAILLE_LISTE_MOB]){
     if(liste_des_mobs->liste[i] != NULL){
         liste_des_mobs->liste[i] = NULL;
         mob[i]->texture = NULL;

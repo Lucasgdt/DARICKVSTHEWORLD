@@ -17,6 +17,8 @@
 #include "personnage.h"
 #include "outil.h"
 #include "mob.h"
+#include "action.h"
+
 //#include "fight.h"
 
 
@@ -133,11 +135,7 @@ int joueur(SDL_Window *window){
   Uint32 currentTick;
 
   Sprite * mob_sdl[TAILLE_LISTE_MOB];
-  //init_mob(loaded_map, renderer, mob_liste, mob_sdl);
-  mob_sdl[0] = InitialiserSprite(650, 380, DARICK_SIZE, DARICK_SIZE, loaded_map);
-  mob_sdl[0]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[0]->id-1].texture);
-  mob_sdl[1] = InitialiserSprite(650, 380, DARICK_SIZE, DARICK_SIZE, loaded_map);
-  mob_sdl[1]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[1]->id-1].texture);
+  init_mob(loaded_map, renderer, mob_liste, mob_sdl);
 
   // Boucle de récupération des events
   screenSurface = SDL_GetWindowSurface(window);
@@ -186,19 +184,31 @@ int joueur(SDL_Window *window){
         }
         break;
       case SDL_MOUSEBUTTONDOWN:
-        if( event.button.button == SDL_BUTTON_LEFT ){
-          //mouse.x = event.button.x; // Position de la souris
-          //mouse.y = event.button.y;
-          //fight(renderer, skin, player, mouse, dir);
+        if (event.button.button == SDL_BUTTON_LEFT) {
+            for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+                if(mob_liste->liste[i] != NULL){
+                    if (mob_liste->liste[i]->pv > 0){ 
+                        if(calcul[i] <= liste_objets[joueur_stat->arme_obj->id-1].distance){
+                            joueur_attaque(joueur_stat,mob_liste->liste[i]);
+                            mob_attaque(joueur_stat, mob_liste->liste[i]);
+                        }
+                    }
+                    if (mob_liste->liste[i]->pv <= 0){
+                        delete_mob(mob_liste, i, mob_sdl);
+                        free(mob_liste->liste[i]);
+                        mob_liste->liste[i] = NULL;
+                        loot(inventaire_joueur, obj);
+                    }
+                }
+            }
         }
         break;
 
 
     }
-  
     srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
-      deplacement_mobV2(mob_sdl, i);
+      calcul[i] = fonction_calcul(joueur->position, mob_sdl, mob_liste, i);
       SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &mob_sdl[i]->position);
     }
   
