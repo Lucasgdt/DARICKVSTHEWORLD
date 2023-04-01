@@ -12,22 +12,28 @@
 #include "map.h"
 #include "camera.h"
 #include "mapstruct.h"
+#include "inventaire.h"
+#include "personnage.h"
+#include "outil.h"
+#include "mob.h"
 //#include "fight.h"
 const int FPS = 24;
 
 
 
 int joueur(SDL_Window *window){
-
   SDL_Renderer *renderer = NULL;
+  SDL_Surface *screenSurface = NULL;
   SDL_Texture *skin = NULL;
   SDL_Texture *textureright = NULL;
   SDL_Texture *textureleft = NULL;
-  SDL_Texture *inventaire = NULL;
+  SDL_Rect inv;
+  SDL_Texture * inventaire = NULL;
+
 
   // Calcule de période
   double period = 1.0 / (double)FPS;
-  period = period * 20;
+  period = period * 50;
   int milliPeriod = (int)period;
   int sleep;
 
@@ -39,11 +45,26 @@ int joueur(SDL_Window *window){
   //TILE_MAP map[TILES_X][TILES_Y];
   //MOUSE_COORD mouse;
   int vx = 0, vy = 0;
-  bool showInventaire = false;
-  bool iPressed = false;
   int quit = 0;
   int click;
-  
+
+
+
+  inventaire_t * inventaire_joueur = create_inventaire();
+  objet_t * obj = create_objet();
+  obj->id = 1;
+  loot(inventaire_joueur, obj);
+  personnage_t * joueur_stat = create_personnage();
+
+  mob_liste_t * mob_liste = create_liste_mob();
+  mob_t * mob = create_mob();
+  mob->id = 1;
+  ajuste(mob);
+  ajouter_mob(mob_liste, mob);
+  ajouter_mob(mob_liste, mob);
+
+
+
   //SDL_Point viewOffset;
 
 
@@ -66,8 +87,20 @@ int joueur(SDL_Window *window){
     printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
     goto quit;
   }
+
+  inventaire = IMG_LoadTexture(renderer, "ressources/Inventaire/Inventaire.png");
+    if (!inventaire) {
+      printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
+      goto quit;
+    }
   // Créer la texture de Darick
   skin = textureright;
+
+  inv.x = 0;
+  inv.y = -100;
+  inv.w = 1280;
+  inv.h = 720;
+
 
 
   // Créer la map
@@ -93,39 +126,23 @@ int joueur(SDL_Window *window){
   //Initialisation de la camera
 
   FocusScrollBox(loaded_map, joueur);
-/*
-  int choix;
-  int i;
-  personnage_t * personnage = create_personnage();
-  inventaire_t * joueur = create_inventaire();
-  objet_t * obj = malloc(sizeof(objet_t));
-  printf("Chiffre entre 1 et 3 : ");
-  scanf("%d",&choix);
-  obj->id = choix; 
-  loot(joueur, obj);
 
-  printf("Chiffre entre 1 et 3 : ");
-  scanf("%d",&choix);
-  obj->id = choix; 
-  loot(joueur, obj);
-  printf("Vous avez dans votre inventaire : \n");
-  for(i = 0; i<TAILLE_INV; i++){
-      if (joueur->liste[i]->id != -1){
-          printf("- %s \n",liste_objets[joueur->liste[i]->id-1].nom);
-      }
-  }
-  afficher_stat(personnage);
-  equiper(personnage,obj);
-  afficher_stat(personnage);
-  free(obj);
-
-*/
   //Ticks
   Uint32 lastTick;
   Uint32 currentTick;
 
-  // Boucle de récupération des events
+  texture_t * mob_sdl[TAILLE_LISTE_MOB];
+  for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+        mob_sdl[i] = malloc(sizeof(texture_t));
+        mob_sdl[i]->rect.x = 300 + 200 * i;
+        mob_sdl[i]->rect.y = 300 + 200 * i;
+        mob_sdl[i]->rect.h = DARICK_SIZE;
+        mob_sdl[i]->rect.w = DARICK_SIZE;
+        mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
+    }
 
+  // Boucle de récupération des events
+  screenSurface = SDL_GetWindowSurface(window);
   while (!quit) {
     SDL_PollEvent(&event);
     lastTick = SDL_GetTicks();
@@ -150,10 +167,7 @@ int joueur(SDL_Window *window){
             vx = speed;
             break;
           case SDLK_i:
-            if (!iPressed) { // Si la touche i n'a pas déjà été pressée
-              iPressed = true; // Marquer la touche comme pressée
-              showInventaire = !showInventaire; // Inverser l'état d'affichage de l'inventaire
-            }
+            afficher_inv_SDL(renderer,inventaire,inv , inventaire_joueur, screenSurface, window, joueur_stat);
             break;
         }
         break;
@@ -170,9 +184,6 @@ int joueur(SDL_Window *window){
             break;
           case SDLK_d:
             vx = 0;
-            break;
-          case SDLK_i:
-            iPressed = false; // Marquer la touche comme relâchée
             break;
         }
         break;
@@ -200,7 +211,11 @@ int joueur(SDL_Window *window){
   DeplaceSprite(joueur, vx, vy);
   AfficherSprite(joueur, renderer, skin);
 
-
+  for(int i = 0; i<TAILLE_LISTE_MOB; i++){
+      if(mob_liste->liste[i] != NULL){
+        SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &mob_sdl[i]->rect);
+      }
+  }
   // Copier la texture du perso sur le rendu
   //SDL_RenderCopy(renderer, skin, &srcRect, &loaded_map->player);
   // Afficher le rendu

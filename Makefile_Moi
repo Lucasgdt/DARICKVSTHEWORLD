@@ -1,0 +1,48 @@
+CC=gcc
+CFLAGS=-Wall
+SDL_DIR=$(PWD)SDL2
+SDLLIB_DIR=${SDL_DIR}/lib
+SDLINC_DIR=${SDL_DIR}/include
+
+
+LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
+INCLUDES=-I${SDLINC_DIR} 
+
+OBJ=menu.o move.o main.o joueur.o environnement.o camera.o mob.o outil.o inventaire.o personnage.o
+
+jeu.exe: $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o jeu.exe ${LIBS} ${INCLUDES}
+
+menu.o: menu.c
+	$(CC) $(CFLAGS) -c menu.c $(INCLUDES)
+
+move.o: move.c
+	$(CC) $(CFLAGS) -c move.c $(INCLUDES)
+
+
+main.o: main.c
+	$(CC) $(CFLAGS) -c main.c $(INCLUDES)
+
+joueur.o: joueur.c
+	$(CC) $(CFLAGS) -c joueur.c $(INCLUDES)
+
+environnement.o: environnement.c
+	$(CC) $(CFLAGS) -c environnement.c $(INCLUDES)
+
+camera.o: camera.c
+	$(CC) $(CFLAGS)  -c camera.c $(INCLUDES)
+
+mob.o : mob.c
+	$(CC) $(CFLAGS)  -c mob.c $(INCLUDES)
+
+outil.o : outil.c
+	$(CC) $(CFLAGS) -c outil.c $(INCLUDES)
+
+inventaire.o : inventaire.c
+	$(CC) $(CFLAGS) -c inventaire.c $(INCLUDES)
+
+personnage.o : personnage.c
+	$(CC) $(CFLAGS) -c personnage.c $(INCLUDES)
+clean:
+	del -f *.o jeu.exe
+	del menu inventaire test tqt
