@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define SDL_MAIN_HANDLED
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
@@ -13,7 +15,7 @@
 
 
 
-int main(){
+int main(int argc, char *argv[]){
     SDL_Window *window = NULL;
     int status;
 

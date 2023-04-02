@@ -29,14 +29,20 @@ void ClampScroll(Map_t * loaded_map)
 
 int UpdateScroll(Map_t * loaded_map)
 {
-    int cxperso, cyperso;
+    // Ajout de cxmob et cymob afin d'avoir la meme vitesse que le joueur
+    int cxperso, cyperso, cxmob, cymob;
     
     cxperso = loaded_map->player->position.x + loaded_map->player->position.w/2;
     cyperso = loaded_map->player->position.y + loaded_map->player->position.h/2;
 
+    cxmob = loaded_map->player->position.x + loaded_map->player->position.w/2;
+    cymob = loaded_map->player->position.y + loaded_map->player->position.h/2;
 
     loaded_map->xscroll = cxperso - (loaded_map->largeur_fenetre/2);
     loaded_map->yscroll = cyperso - (loaded_map->hauteur_fenetre/2);
+
+    loaded_map->xscroll = cxmob - (loaded_map->largeur_fenetre/2);
+    loaded_map->yscroll = cymob - (loaded_map->hauteur_fenetre/2);
 
     ClampScroll(loaded_map);
     return 0;
