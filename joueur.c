@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <stdbool.h>
+#include <time.h>
 #include "move.h"
 #include "inventaire.h"
 #include "personnage.h"
@@ -69,21 +70,14 @@ int joueur(SDL_Window *window){
   // Créer la texture de Darick
   skin = textureright;
 
-
+  srand( time(NULL) );
   // Créer la map
-  Index_t map;
-  map.tileX = 40;
-  map.tileY = 40;
-  for (int i = 0 ; i < map.tileY ; i++ ){
-    for(int j = 0 ; j < map.tileX ; j++ ){
-      map.intmap[i][j] = map1[i][j];
-    }
-  }
+  Index_t map = CreateMap();
   loaded_map = LoadMap(map);
   LoadMapRect(loaded_map);
 
   //Initialiser Darick
-  joueur = InitialiserSprite(640, 360, DARICK_SIZE, DARICK_SIZE, loaded_map);
+  joueur = InitialiserSprite(320, 320, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
 

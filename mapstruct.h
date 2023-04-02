@@ -41,9 +41,17 @@ typedef struct MAP_S{
 }Map_t;
 
 typedef struct TILE_INDEX{
-    int intmap[40][40];
+    int ** intmap;
     int tileX, tileY;
+    int num_room;
 }Index_t;
+
+typedef struct ROOM_S{
+    int x;
+    int y;
+    int room_width;
+    int room_height;
+}room;
 
 
 #endif
