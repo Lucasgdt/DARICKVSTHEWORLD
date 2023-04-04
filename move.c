@@ -7,6 +7,7 @@
 #include "mapstruct.h"
 #include "environnement.h"
 #include "mob.h"
+#include "camera.h"
 #include <math.h>
 
 #define SGN(X) (((X)==0)?(0):(((X)<0)?(-1):(1)))
@@ -179,4 +180,78 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
         mob_aggro(mob_sdl, i, destRect);
     }
     return calcul;
+}
+
+void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map, int vx, int vy) {
+    // Chargement des 6 images en tant que surfaces
+	
+    SDL_Surface* surfaces[6];
+    if(liste_objets[joueur->arme_obj->id-1].type == 0){
+        for (int i = 0; i < 6; i++) {
+            char filename[50];
+            sprintf(filename, "ressources/perso/Anim/darickg%d.png", i+1);
+            surfaces[i] = IMG_Load(filename);
+        }
+    }
+
+    else if(liste_objets[joueur->arme_obj->id-1].type == 1){
+        for (int i = 0; i < 6; i++) {
+            char filename[50];
+            sprintf(filename, "ressources/perso/Anim/darickdague%d.png", i+1);
+            surfaces[i] = IMG_Load(filename);
+        }
+    } 
+
+    else if(liste_objets[joueur->arme_obj->id-1].type == 4){
+        for (int i = 0; i < 6; i++) {
+            char filename[50];
+            sprintf(filename, "ressources/perso/Anim/darickbaton%d.png", i+1);
+            surfaces[i] = IMG_Load(filename);
+        }
+    }
+
+    // Création des textures à partir des surfaces
+    SDL_Texture* textures[6];
+    for (int i = 0; i < 6; i++) {
+        textures[i] = SDL_CreateTextureFromSurface(renderer, surfaces[i]);
+    }
+
+    // Libération des surfaces
+    for (int i = 0; i < 6; i++) {
+        SDL_FreeSurface(surfaces[i]);
+    }
+
+    // Boucle principale
+    int running = 1;
+    int current_image = 0;
+    int temp = 0;
+    SDL_Event event;
+    while (temp < 6) {
+        SDL_RenderClear(renderer);
+		ShowMap(map, renderer);
+        UpdateScroll(map);
+        // Affichage de l'image courante
+        skin->texture = textures[current_image];
+        AfficherSprite(skin, renderer, skin->texture);
+
+        for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+            AfficherSprite(mob_sdl[i], renderer, &mob_sdl[i]->texture);
+        }
+
+
+        // Mise à jour de l'affichage
+        SDL_RenderPresent(renderer);
+
+        // Attente de 100 millisecondes
+        SDL_Delay(100);
+
+        // Passage à l'image suivante
+        current_image = (current_image + 1) % 6;
+        temp++;
+    }
+
+    // Libération des textures
+    for (int i = 0; i < 6; i++) {
+        SDL_DestroyTexture(textures[i]);
+    }
 }

@@ -56,16 +56,28 @@ int joueur(SDL_Window *window){
 
   inventaire_t * inventaire_joueur = create_inventaire();
   objet_t * obj = create_objet();
-  obj->id = 1;
+  objet_t * obj2 = create_objet();
+  obj->id = 15;
+  obj2->id = 13;
   loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj2);
   personnage_t * joueur_stat = create_personnage();
 
   mob_liste_t * mob_liste = create_liste_mob();
-  mob_t * mob = create_mob();
+  for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+    mob_t * mob = create_mob();
+    mob->id = i+1;
+    ajuste(mob);
+    ajouter_mob(mob_liste, mob);
+  }
+
+  /*mob_t * mob2 = create_mob();
   mob->id = 1;
+  mob2->id = 2;
   ajuste(mob);
+  ajuste(mob2);
   ajouter_mob(mob_liste, mob);
-  ajouter_mob(mob_liste, mob);
+  ajouter_mob(mob_liste, mob2);*/
 
 
 
@@ -100,20 +112,27 @@ int joueur(SDL_Window *window){
   // Créer la texture de Darick
   skin = textureright;
 
-  srand( time(NULL) );
   inv.x = 0;
   inv.y = -100;
   inv.w = 1280;
   inv.h = 720;
- 
+
+
 
   // Créer la map
-  Index_t map = CreateMap();
+  Index_t map;
+  map.tileX = 40;
+  map.tileY = 40;
+  for (int i = 0 ; i < map.tileY ; i++ ){
+    for(int j = 0 ; j < map.tileX ; j++ ){
+      map.intmap[i][j] = map1[i][j];
+    }
+  }
   loaded_map = LoadMap(map);
   LoadMapRect(loaded_map);
 
   //Initialiser Darick
-  joueur = InitialiserSprite(320, 320, DARICK_SIZE, DARICK_SIZE, loaded_map);
+  joueur = InitialiserSprite(640, 360, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
   //menu();
@@ -182,6 +201,7 @@ int joueur(SDL_Window *window){
                 if(mob_liste->liste[i] != NULL){
                     if (mob_liste->liste[i]->pv > 0){ 
                         if(calcul[i] <= liste_objets[joueur_stat->arme_obj->id-1].distance){
+                            printf("Calcul : %d \n", calcul[i]);
                             joueur_attaque(joueur_stat,mob_liste->liste[i]);
                             mob_attaque(joueur_stat, mob_liste->liste[i]);
                         }
@@ -194,6 +214,7 @@ int joueur(SDL_Window *window){
                     }
                 }
             }
+            anim(renderer, joueur, joueur_stat, mob_sdl, loaded_map, vx, vy);
         }
         break;
 
@@ -201,8 +222,9 @@ int joueur(SDL_Window *window){
     }
     srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
-      calcul[i] = fonction_calcul(joueur->position, mob_sdl, mob_liste, i);
-      SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &mob_sdl[i]->position);
+      if(mob_liste->liste[i] != NULL){
+        calcul[i] = fonction_calcul(joueur->position, mob_sdl, mob_liste, i);
+      }
     }
   
   // Effacer l'écran
@@ -222,7 +244,8 @@ int joueur(SDL_Window *window){
     dest_rect.y = mob_sdl[i]->position.y - loaded_map->yscroll;
     dest_rect.w = DARICK_SIZE;
     dest_rect.h = DARICK_SIZE;
-    SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &dest_rect);
+    //SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &dest_rect);
+    AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
   }
   // Copier la texture du perso sur le rendu
   //SDL_RenderCopy(renderer, skin, &srcRect, &loaded_map->player);
@@ -232,7 +255,6 @@ int joueur(SDL_Window *window){
   sleep = milliPeriod - (currentTick - lastTick);
   if(sleep < 0)
     sleep = 0;
-
   SDL_Delay(sleep);
   SDL_RenderPresent(renderer);
 

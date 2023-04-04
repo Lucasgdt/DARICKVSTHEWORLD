@@ -8,8 +8,8 @@
 #define ENV_H
 
 
-#define TILES_X 50
-#define TILES_Y 50
+#define TILES_X 40
+#define TILES_Y 40
 #define NB_TILES 12
 #define ZOOM 64
 
@@ -24,13 +24,5 @@ Map_t * LoadMap(Index_t map);
 int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer);
 int FreeMap(Map_t* loaded_map);
 
-
-/* Généation de map aléatoire */
-int min(int a, int b);
-Index_t initialize_map();
-void add_rooms(Index_t map);
-void add_wall(Index_t map);
-void add_end( Index_t map );
-Index_t CreateMap();
 
 #endif
