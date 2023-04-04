@@ -1,6 +1,6 @@
 {
+    "cmake.configureOnOpen": false,
     "files.associations": {
-        "interface.C": "cpp",
-        "sdl_image.h": "c"
+        "camera.h": "c"
     }
 }

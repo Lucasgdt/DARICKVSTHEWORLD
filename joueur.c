@@ -174,6 +174,9 @@ int joueur(SDL_Window *window){
             skin = textureright;
             vx = speed;
             break;
+          case SDLK_x:
+            loot(inventaire_joueur, obj);
+            break;
           case SDLK_i:
             afficher_inv_SDL(renderer,inventaire,inv , inventaire_joueur, screenSurface, window, joueur_stat);
             break;
@@ -197,13 +200,21 @@ int joueur(SDL_Window *window){
         break;
       case SDL_MOUSEBUTTONDOWN:
         if (event.button.button == SDL_BUTTON_LEFT) {
+          
             for (int i = 0; i<TAILLE_LISTE_MOB; i++){
                 if(mob_liste->liste[i] != NULL){
                     if (mob_liste->liste[i]->pv > 0){ 
-                        if(calcul[i] <= liste_objets[joueur_stat->arme_obj->id-1].distance){
-                            printf("Calcul : %d \n", calcul[i]);
-                            joueur_attaque(joueur_stat,mob_liste->liste[i]);
-                            mob_attaque(joueur_stat, mob_liste->liste[i]);
+                        if(joueur_stat->arme_obj != NULL){
+                            if(calcul[i] <= liste_objets[joueur_stat->arme_obj->id-1].distance){
+                              joueur_attaque(joueur_stat,mob_liste->liste[i]);
+                              mob_attaque(joueur_stat, mob_liste->liste[i]);
+                            }
+                        }
+                        else{
+                            if(calcul[i] <= joueur_stat->distance){
+                              joueur_attaque(joueur_stat,mob_liste->liste[i]);
+                              mob_attaque(joueur_stat, mob_liste->liste[i]);
+                            }
                         }
                     }
                     if (mob_liste->liste[i]->pv <= 0){
@@ -214,7 +225,7 @@ int joueur(SDL_Window *window){
                     }
                 }
             }
-            anim(renderer, joueur, joueur_stat, mob_sdl, loaded_map, vx, vy);
+            anim(renderer, joueur, joueur_stat, mob_sdl, loaded_map);
         }
         break;
 
@@ -238,17 +249,10 @@ int joueur(SDL_Window *window){
   DeplaceSprite(joueur, vx, vy);
   AfficherSprite(joueur, renderer, skin);
 
-  SDL_Rect dest_rect;
   for (int i = 0; i < TAILLE_LISTE_MOB; i++) {
-    dest_rect.x = mob_sdl[i]->position.x - loaded_map->xscroll;
-    dest_rect.y = mob_sdl[i]->position.y - loaded_map->yscroll;
-    dest_rect.w = DARICK_SIZE;
-    dest_rect.h = DARICK_SIZE;
-    //SDL_RenderCopy(renderer, mob_sdl[i]->texture, NULL, &dest_rect);
     AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
   }
-  // Copier la texture du perso sur le rendu
-  //SDL_RenderCopy(renderer, skin, &srcRect, &loaded_map->player);
+
   // Afficher le rendu
 
   currentTick = SDL_GetTicks();

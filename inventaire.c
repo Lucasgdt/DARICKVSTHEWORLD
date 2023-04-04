@@ -143,18 +143,22 @@ void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i){
     }
 }
 
-int recherche_emplacement_item(inventaire_t * personnage, objet_t * obj){
-    int i;
+int inv_full(inventaire_t * personnage){
+    int i, temp = 0;
     for (i = 0; i<TAILLE_INV; i++){
-        if(personnage->liste[i] != -1){
-            if(personnage->liste[i]->id == obj->id){
-                return i;
-            }
+        if(personnage->liste[i]->id == -1){
+            temp++;
         }
+    }
+    if (temp == 0){
+        return 1;
+    }
+    else{
+        return 0;
     }
 }
 
-void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){
+int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){
     int pressed = 1;
     int x, y;
     SDL_Event event;
@@ -221,13 +225,13 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
             case SDLK_i:
                 pressed = 0;
                 break;
-            
+
             default:
                 break;
             }
             break;
         case SDL_MOUSEBUTTONUP:
-            case SDL_BUTTON_RIGHT:
+            if (event.button.button == SDL_BUTTON_RIGHT){
                 SDL_GetMouseState(&x, &y);
                 for (int i = 0;i <TAILLE_INV; i++){
                     if (x >= case_inv[i]->rect.x && x <= case_inv[i]->rect.x + case_inv[i]->rect.w && y >= case_inv[i]->rect.y && y <= case_inv[i]->rect.y + case_inv[i]->rect.h) {
@@ -256,6 +260,10 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
                 }
                 if (x >= case_HAUT.x && x <= case_HAUT.x + case_HAUT.w && y >= case_HAUT.y && y <= case_HAUT.y + case_HAUT.h) {
                     if(perso->arme_obj != NULL){
+                        if(inv_full(joueur)==1){
+                            printf("Inventaire plein, veillez supprimer un objet de votre inventaire cliquant gauche sur l'objet \n");
+                            return 0;
+                        }
                         case_texture_HAUT = default_texture;
                         retirer(perso, perso->arme_obj, joueur);
                         afficher_inventaire(joueur);
@@ -268,6 +276,17 @@ void afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rec
                         afficher_inventaire(joueur);
                     }
                 }
+            }
+        else if (event.button.button == SDL_BUTTON_LEFT){
+                SDL_GetMouseState(&x, &y);
+                for (int i = 0;i <TAILLE_INV; i++){
+                    if (x >= case_inv[i]->rect.x && x <= case_inv[i]->rect.x + case_inv[i]->rect.w && y >= case_inv[i]->rect.y && y <= case_inv[i]->rect.y + case_inv[i]->rect.h) {
+                        if(joueur->liste[i]->id!=-1){
+                            supprimer_objet_inv(joueur, joueur->liste[i], i);
+                        }
+                    }
+                }
+        }
 
         case SDL_MOUSEMOTION:
         

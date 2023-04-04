@@ -182,10 +182,13 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
     return calcul;
 }
 
-void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map, int vx, int vy) {
+void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map) {
     // Chargement des 6 images en tant que surfaces
 	
     SDL_Surface* surfaces[6];
+    if(joueur->arme_obj == NULL){
+        return;
+    }
     if(liste_objets[joueur->arme_obj->id-1].type == 0){
         for (int i = 0; i < 6; i++) {
             char filename[50];
@@ -229,15 +232,13 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
     while (temp < 6) {
         SDL_RenderClear(renderer);
 		ShowMap(map, renderer);
-        UpdateScroll(map);
         // Affichage de l'image courante
         skin->texture = textures[current_image];
         AfficherSprite(skin, renderer, skin->texture);
 
         for (int i = 0; i<TAILLE_LISTE_MOB; i++){
-            AfficherSprite(mob_sdl[i], renderer, &mob_sdl[i]->texture);
+            AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
         }
-
 
         // Mise à jour de l'affichage
         SDL_RenderPresent(renderer);

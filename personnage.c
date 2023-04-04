@@ -17,6 +17,7 @@ personnage_t * create_personnage() {
     personnage->as = 1;
     personnage->arme_obj = NULL;
     personnage->armure_obj = NULL;
+    personnage->distance = 50;
     return personnage;
 }
 

@@ -24,6 +24,6 @@ void deplacement_mobV2(Sprite * mob[TAILLE_LISTE_MOB], int i);
 void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]);
 int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_liste_t * mob_liste, int i);
 void mob_aggro(Sprite *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect);
-void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map, int vx, int vy);
+void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map);
 
 #endif
