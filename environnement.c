@@ -154,7 +154,7 @@ int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
                             break;
                         case 9:
                             SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[8]), &(loaded_map->props[i][j].R));
-                            loaded_map->props[i][j].mur = 0;
+                            loaded_map->props[i][j].mur = -1;
                             break;
                         case 10:
                             SDL_RenderCopy(renderer, tile_texture, &(loaded_map->tile[9]), &(loaded_map->props[i][j].R));
@@ -296,6 +296,13 @@ void add_end( Index_t map ){
     map.intmap[x][y] = 9;
 }
 void UpdateMap(Index_t map){
+    int i, j;
+    for(i = 0; i < map.tileX; i++){
+        for(j = 0; j < map.tileY; j++){
+            map.intmap[i][j] = 0;
+        }
+    }
+
     add_rooms(map);
     add_wall(map);
     add_end(map);

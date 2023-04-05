@@ -42,7 +42,7 @@ void AfficherSprite(Sprite* perso,SDL_Renderer* renderer, SDL_Texture * skin)
 
 int CollisionDecor(Sprite* perso, SDL_Rect test)
 {
-	int xmin,xmax,ymin,ymax,i,j,indicetile;
+	int xmin,xmax,ymin,ymax,i,j;
 	Map_t* m = perso->m;
 	if (perso->position.x<0 || (perso->position.x + perso->position.w -1)>=m->nb_tiles_larg*ZOOM
 	 || perso->position.y<0 || (perso->position.y + perso->position.h -1)>=m->nb_tiles_long*ZOOM)
@@ -55,8 +55,10 @@ int CollisionDecor(Sprite* perso, SDL_Rect test)
 	{
 		for(j=ymin;j<=ymax;j++)
 		{
-			if (m->props[i][j].mur)
+			if (m->props[i][j].mur == 1)
 				return 1;
+            else if(m->props[i][j].mur == -1)
+                return(-1);
 		}
 	}
 	return 0;
@@ -73,6 +75,10 @@ int EssaiDeplacement(Sprite* perso,int vx,int vy)
 		perso->position = test;
 		return 1;
 	}
+    if ( CollisionDecor(perso, test) == -1 ){
+        perso->position = test;
+        return -1;
+    }
 	return 0;
 }
 
@@ -102,6 +108,9 @@ int DeplaceSprite(Sprite* perso,int vx, int vy)
 	}
 	if (EssaiDeplacement(perso,vx,vy)==1)
 		return 1;
+    
+    if (EssaiDeplacement(perso,vx,vy)==-1)
+        return(-1);
 	Affine(perso,vx,vy);
 	return 2;
 }

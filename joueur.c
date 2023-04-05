@@ -45,7 +45,7 @@ int joueur(SDL_Window *window){
 
   SDL_Event event;
   Map_t * loaded_map = NULL;
-  Sprite * joueur = NULL;
+  Sprite * player = NULL;
   //TILE_MAP map[TILES_X][TILES_Y];
   //MOUSE_COORD mouse;
   int vx = 0, vy = 0;
@@ -127,7 +127,7 @@ int joueur(SDL_Window *window){
   LoadMapRect(loaded_map);
 
   //Initialiser Darick
-  joueur = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
+  player = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
   //menu();
@@ -135,7 +135,7 @@ int joueur(SDL_Window *window){
 
   //Initialisation de la camera
 
-  FocusScrollBox(loaded_map, joueur);
+  FocusScrollBox(loaded_map, player);
 
   //Ticks
   Uint32 lastTick;
@@ -220,7 +220,7 @@ int joueur(SDL_Window *window){
                     }
                 }
             }
-            anim(renderer, joueur, joueur_stat, mob_sdl, loaded_map);
+            anim(renderer, player, joueur_stat, mob_sdl, loaded_map);
         }
         break;
 
@@ -229,7 +229,7 @@ int joueur(SDL_Window *window){
     srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
       if(mob_liste->liste[i] != NULL){
-        calcul[i] = fonction_calcul(joueur->position, mob_sdl, mob_liste, i);
+        calcul[i] = fonction_calcul(player->position, mob_sdl, mob_liste, i);
       }
     }
   
@@ -241,8 +241,11 @@ int joueur(SDL_Window *window){
   ShowMap(loaded_map, renderer);
 
   //Deplacement
-  DeplaceSprite(joueur, vx, vy);
-  AfficherSprite(joueur, renderer, skin);
+  if(DeplaceSprite(player, vx, vy) == -1){
+    printf("MDR !\n");
+  }
+
+  AfficherSprite(player, renderer, skin);
 
   for (int i = 0; i < TAILLE_LISTE_MOB; i++) {
     AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
@@ -262,11 +265,13 @@ int joueur(SDL_Window *window){
 quit:
   //Libéré la texture
   FreeMap(loaded_map);
-  LibereSprite(joueur);
+  LibereSprite(player);
   SDL_DestroyTexture(textureright);
   SDL_DestroyTexture(textureleft);
   //Libéré le rendu
   SDL_DestroyRenderer(renderer);
   //Fermer la fenetre
   return 0;
+
+
 }
