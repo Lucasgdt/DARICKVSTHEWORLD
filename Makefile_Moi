@@ -1,11 +1,11 @@
 CC=gcc
 CFLAGS=-Wall
-SDL_DIR=$(PWD)SDL2
+SDL_DIR=E:/SDL2
 SDLLIB_DIR=${SDL_DIR}/lib
 SDLINC_DIR=${SDL_DIR}/include
 
 
-LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image
+LIBS=-L${SDLLIB_DIR} -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lm
 INCLUDES=-I${SDLINC_DIR} 
 
 OBJ=menu.o move.o main.o joueur.o environnement.o camera.o mob.o outil.o inventaire.o personnage.o action.o

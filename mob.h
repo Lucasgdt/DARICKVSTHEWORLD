@@ -8,7 +8,7 @@
 #define MOB_H
 
 #define TAILLE_MAX 256
-#define TAILLE_LISTE_MOB 2
+#define TAILLE_LISTE_MOB 10
 
 typedef struct mob_s{
     int id;

@@ -64,6 +64,8 @@ int CollisionDecor(Sprite* perso, SDL_Rect test)
 	return 0;
 }
 
+
+
 int EssaiDeplacement(Sprite* perso,int vx,int vy)
 {
 	SDL_Rect test;
@@ -115,18 +117,36 @@ int DeplaceSprite(Sprite* perso,int vx, int vy)
 	return 2;
 }
 
+SDL_Point placement(Sprite * mob){
+    int i, j;
+    SDL_Point temp;
+
+    do{
+        temp.x = rand() % mob->m->nb_tiles_larg;
+        temp.y = rand() % mob->m->nb_tiles_long;
+    }while(mob->m->schema[temp.x][temp.y] != 1);
+    return temp;
+}
+
 void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_LISTE_MOB]){
-	int i;
+	int i, j;
+    int indice;
+    int mobx, moby;
+    SDL_Point MobPose;
 	for (i = 0; i<TAILLE_LISTE_MOB; i++){
         mob_sdl[i] = malloc(sizeof(Sprite));
-        mob_sdl[i]->position.x = 640 + 100 * i;
-        mob_sdl[i]->position.y = 360 + 100 * i;
         mob_sdl[i]->position.h = DARICK_SIZE;
         mob_sdl[i]->position.w = DARICK_SIZE;
         mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
 		mob_sdl[i]->m = map;
+        MobPose = placement(mob_sdl[i]);
+        mobx = MobPose.x;
+        moby = MobPose.y;
+        mob_sdl[i]->position.x = mobx * ZOOM;
+        mob_sdl[i]->position.y = moby * ZOOM;
     }
 }
+
 
 void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]){
 	for (int i = 0; i<TAILLE_LISTE_MOB; i++){
@@ -181,7 +201,7 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
     if(mob_liste->liste[i] != NULL){
         calcul = sqrt(pow(destRect.x - mob_sdl[i]->position.x, 2) + pow(destRect.y - mob_sdl[i]->position.y, 2));
     }
-    
+
     if(calcul > 300){
         deplacement_mobV2(mob_sdl, i); // a utilisé uniquement quand le mob n'est pas à porter du joueur
     }
@@ -189,48 +209,44 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
         mob_aggro(mob_sdl, i, destRect);
     }
     return calcul;
-}
+    }
+
 
 void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map) {
-    // Chargement des 6 images en tant que surfaces
-	
-    SDL_Surface* surfaces[6];
-    if(joueur->arme_obj == NULL){
-        return;
-    }
-    if(liste_objets[joueur->arme_obj->id-1].type == 0){
-        for (int i = 0; i < 6; i++) {
-            char filename[50];
-            sprintf(filename, "ressources/perso/Anim/darickg%d.png", i+1);
-            surfaces[i] = IMG_Load(filename);
+    int NB_TYPES_ARMES = 6;
+    int MAX_IMAGES_ARMES = 11;
+    int epee_baton = 6;
+    int arc = 11;
+    int dague = 7;
+    int shuriken = 9;
+    int poings = 8;
+    int max_images = 0;
+    // Tableau de textures pour chaque type d'arme
+    SDL_Texture* animations[NB_TYPES_ARMES][MAX_IMAGES_ARMES];
+    // Chargement des textures pour chaque type d'arme
+    for (int i = 0; i < NB_TYPES_ARMES; i++) {
+        if(joueur->arme_obj != NULL) {
+            if(joueur->arme_obj->categorie == 0) max_images = epee_baton;
+            if(joueur->arme_obj->categorie == 1) max_images = dague;
+            if(joueur->arme_obj->categorie == 2) max_images = shuriken;
+            if(joueur->arme_obj->categorie == 3) max_images = arc;
+            if(joueur->arme_obj->categorie == 4) max_images = epee_baton;
+        } else {
+            if (i == 5) {
+                max_images = poings;
+            }
         }
-    }
-
-    else if(liste_objets[joueur->arme_obj->id-1].type == 1){
-        for (int i = 0; i < 6; i++) {
-            char filename[50];
-            sprintf(filename, "ressources/perso/Anim/darickdague%d.png", i+1);
-            surfaces[i] = IMG_Load(filename);
+        for (int j = 0; j < MAX_IMAGES_ARMES; j++) {
+            if (j < max_images) {
+                char filename[50];
+                sprintf(filename, "ressources/perso/Anim/arme%d (%d).png", i, j+1);
+                SDL_Surface* surface = IMG_Load(filename);
+                animations[i][j] = SDL_CreateTextureFromSurface(renderer, surface);
+                SDL_FreeSurface(surface);
+            } else {
+                animations[i][j] = NULL;
+            }
         }
-    } 
-
-    else if(liste_objets[joueur->arme_obj->id-1].type == 4){
-        for (int i = 0; i < 6; i++) {
-            char filename[50];
-            sprintf(filename, "ressources/perso/Anim/darickbaton%d.png", i+1);
-            surfaces[i] = IMG_Load(filename);
-        }
-    }
-
-    // Création des textures à partir des surfaces
-    SDL_Texture* textures[6];
-    for (int i = 0; i < 6; i++) {
-        textures[i] = SDL_CreateTextureFromSurface(renderer, surfaces[i]);
-    }
-
-    // Libération des surfaces
-    for (int i = 0; i < 6; i++) {
-        SDL_FreeSurface(surfaces[i]);
     }
 
     // Boucle principale
@@ -238,11 +254,20 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
     int current_image = 0;
     int temp = 0;
     SDL_Event event;
+    SDL_Texture* texture;
     while (temp < 6) {
+        
         SDL_RenderClear(renderer);
 		ShowMap(map, renderer);
         // Affichage de l'image courante
-        skin->texture = textures[current_image];
+        if(joueur->arme_obj == NULL){
+            texture = animations[5][current_image];
+        }
+        else{
+            texture = animations[liste_objets[joueur->arme_obj->id-1].type][current_image];
+        }
+
+        skin->texture = texture;
         AfficherSprite(skin, renderer, skin->texture);
 
         for (int i = 0; i<TAILLE_LISTE_MOB; i++){
@@ -261,7 +286,5 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
     }
 
     // Libération des textures
-    for (int i = 0; i < 6; i++) {
-        SDL_DestroyTexture(textures[i]);
-    }
+    SDL_DestroyTexture(texture);
 }

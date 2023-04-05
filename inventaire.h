@@ -9,6 +9,7 @@
 
 #include "personnage.h"
 #include "outil.h"
+#include "mob.h"
 extern objet_t liste_objets[];
 
 #define TAILLE_MAX 256
@@ -35,6 +36,8 @@ void afficher_inventaire(inventaire_t * joueur);
 void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i);
 
 int inv_full(inventaire_t * personnage);
+
+void loot_mob(inventaire_t * inventaire);
 
 int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso);
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <stdbool.h>
 #include <time.h>
 #include "move.h"
@@ -58,7 +59,7 @@ int joueur(SDL_Window *window){
   objet_t * obj = create_objet();
   objet_t * obj2 = create_objet();
   obj->id = 15;
-  obj2->id = 13;
+  obj2->id = 14;
   loot(inventaire_joueur, obj);
   loot(inventaire_joueur, obj2);
   personnage_t * joueur_stat = create_personnage();
@@ -66,7 +67,7 @@ int joueur(SDL_Window *window){
   mob_liste_t * mob_liste = create_liste_mob();
   for (int i = 0; i<TAILLE_LISTE_MOB; i++){
     mob_t * mob = create_mob();
-    mob->id = i+1;
+    mob->id = 1;
     ajuste(mob);
     ajouter_mob(mob_liste, mob);
   }
@@ -82,6 +83,20 @@ int joueur(SDL_Window *window){
 
 
   //SDL_Point viewOffset;
+
+
+  // Music 
+  Mix_Init(MIX_INIT_MP3);
+  Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 6, 1024);
+  Mix_Music * music = Mix_LoadMUS("./ressources/Sound/Music/test.mp3");
+  if(!music){
+    printf("Erreur lors du chargement de la musique: %s\n", Mix_GetError());
+  }
+
+  else{
+    printf("ok \n");
+  }
+  //Mix_PlayMusic(music, -1);
 
 
   // Créer le rendu
@@ -208,29 +223,34 @@ int joueur(SDL_Window *window){
                         else{
                             if(calcul[i] <= joueur_stat->distance){
                               joueur_attaque(joueur_stat,mob_liste->liste[i]);
-                              mob_attaque(joueur_stat, mob_liste->liste[i]);
                             }
                         }
                     }
                     if (mob_liste->liste[i]->pv <= 0){
+                        loot_mob(inventaire_joueur);
                         delete_mob(mob_liste, i, mob_sdl);
                         free(mob_liste->liste[i]);
                         mob_liste->liste[i] = NULL;
-                        loot(inventaire_joueur, obj);
                     }
                 }
             }
             anim(renderer, player, joueur_stat, mob_sdl, loaded_map);
         }
         break;
-
-
     }
+
     srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
       if(mob_liste->liste[i] != NULL){
         calcul[i] = fonction_calcul(player->position, mob_sdl, mob_liste, i);
+        if(calcul[i] <= 100){
+          //mob_attaque(joueur_stat, mob_liste->liste[i]);
+        }
       }
+    }
+    if(joueur_stat->pv <= 0){
+      printf("Vous êtes mort ! \n");
+      goto quit;
     }
   
   // Effacer l'écran
@@ -242,7 +262,24 @@ int joueur(SDL_Window *window){
 
   //Deplacement
   if(DeplaceSprite(player, vx, vy) == -1){
-    printf("MDR !\n");
+    for(int i = 0; i < map.tileX; i++){
+        for(int j = 0; j < map.tileY; j++){
+            map.intmap[i][j] = 0;
+        }
+    }
+    vider_liste_mob(mob_liste, mob_sdl);
+    for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+      mob_t * mob = create_mob();
+      mob->id = 1;
+      ajuste(mob);
+      ajouter_mob(mob_liste, mob);
+    }
+    UpdateMap(map);
+    loaded_map = LoadMap(map);
+    LoadMapRect(loaded_map);
+    player = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
+    init_mob(loaded_map, renderer, mob_liste, mob_sdl);
+    FocusScrollBox(loaded_map, player);
   }
 
   AfficherSprite(player, renderer, skin);

@@ -138,22 +138,7 @@ void afficher_stat_mob(mob_t * mob){
     printf("Mana : %d \n",mob->mana);   
 }
 
-/*void delete_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
-    int i;
-    int temp = 0;
 
-    for (i = 0; i < TAILLE_LISTE_MOB; i++){
-        if (liste_des_mobs->liste[i] != NULL ){
-            if (liste_des_mobs->liste[i] == mob){
-                liste_des_mobs->liste[i] = NULL;
-                temp = i;
-                break;
-            }
-        }
-    }
-    printf("%d",temp);
-    printf("Mobs tué : %s \n",liste_mobs[temp+1].nom);
-}*/
 
 /**
  * @brief Fonction supprimant un mob d'une liste et affichant le nom du mob supprimer
@@ -187,4 +172,11 @@ int mob_existe(mob_t * mob) {
     }
 }
 
-
+mob_liste_t * vider_liste_mob(mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_LISTE_MOB]){
+    int i;
+    for (i = 0; i<TAILLE_LISTE_MOB; i++){
+        mob_liste->liste[i] = NULL;
+        mob_sdl[i] = NULL;
+    }
+    return mob_liste;
+}

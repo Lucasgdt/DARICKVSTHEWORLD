@@ -6,6 +6,8 @@
 
 #include "inventaire.h"
 #include "outil.h"
+#include "mob.h"
+
 extern objet_t liste_objets[];
 
 /*
@@ -34,6 +36,7 @@ objet_t * create_objet(){
     objet->categorie = NULL;
     objet->type = NULL;
     objet->distance = NULL;
+    objet->taux = NULL;
     return objet;
 }
 
@@ -156,6 +159,33 @@ int inv_full(inventaire_t * personnage){
     else{
         return 0;
     }
+}
+
+void loot_mob(inventaire_t * inventaire){
+    int choix;
+    objet_t * obj = create_objet();
+    int somme_taux = 0;
+    // Calcule la somme des taux de chaque objet dans la liste
+    for (int i = 1; i < 15; i++) {
+        printf("%d : test 1 ", i);
+        somme_taux += liste_objets[i].taux;
+        printf("test 1.5 \n");
+    }
+    printf("test 2\n");
+    // Génère un nombre aléatoire entre 1 et la somme des taux
+    choix = rand()%somme_taux + 1;
+
+    // Parcourt la liste des objets jusqu'à atteindre le taux correspondant au nombre aléatoire
+    for (int i = 1; i < 16; i++) {
+
+        choix -= liste_objets[i].taux;
+        if (choix <= 0) {
+            obj->id = liste_objets[i].id;
+            break;
+        }
+    }
+
+    loot(inventaire, obj);
 }
 
 int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){

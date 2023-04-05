@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <SDL2/SDL.h>
@@ -26,6 +27,7 @@ typedef struct objet_s{
     int categorie; // 0 = Arme, 1 = Armure, 2 = Potion
     int type; // 0 = epee, 1 = dague, 2 = shuriken, 3 = arc, 4 = baguette, 5 = autre
     int distance; // Distance auquel le joueur peut toucher un ennemie
+    int taux;
 }objet_t;
 
 // Liste total des objects du jeu
