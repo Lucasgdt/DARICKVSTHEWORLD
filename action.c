@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+
 #include "action.h"
 extern objet_t liste_objets[];
 extern mob_t liste_mobs[];
@@ -16,7 +17,7 @@ void joueur_attaque(personnage_t * joueur, mob_t * mob){
 void mob_attaque(personnage_t * joueur, mob_t * mob){
     int choix;
     choix = rand()%3;
-    if(choix == 1){
+    if(choix >=2){
         printf("%s a mis %d de degats \n",mob->nom, mob->degats);
         joueur->pv-=mob->degats;
     }

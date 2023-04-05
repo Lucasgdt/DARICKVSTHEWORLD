@@ -185,7 +185,7 @@ int joueur(SDL_Window *window){
             vx = speed;
             break;
           case SDLK_x:
-            loot(inventaire_joueur, obj);
+            afficher_stat_joueur(joueur_stat);
             break;
           case SDLK_i:
             afficher_inv_SDL(renderer,inventaire,inv , inventaire_joueur, screenSurface, window, joueur_stat);
@@ -243,8 +243,8 @@ int joueur(SDL_Window *window){
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
       if(mob_liste->liste[i] != NULL){
         calcul[i] = fonction_calcul(player->position, mob_sdl, mob_liste, i);
-        if(calcul[i] <= 100){
-          //mob_attaque(joueur_stat, mob_liste->liste[i]);
+        if(calcul[i] <= 10){
+          mob_attaque(joueur_stat, mob_liste->liste[i]);
         }
       }
     }
