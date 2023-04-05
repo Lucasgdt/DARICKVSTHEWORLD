@@ -121,18 +121,13 @@ int joueur(SDL_Window *window){
 
   // Créer la map
   Index_t map;
-  map.tileX = 40;
-  map.tileY = 40;
-  for (int i = 0 ; i < map.tileY ; i++ ){
-    for(int j = 0 ; j < map.tileX ; j++ ){
-      map.intmap[i][j] = map1[i][j];
-    }
-  }
+  map = initialize_map();
+  UpdateMap(map);
   loaded_map = LoadMap(map);
   LoadMapRect(loaded_map);
 
   //Initialiser Darick
-  joueur = InitialiserSprite(640, 360, DARICK_SIZE, DARICK_SIZE, loaded_map);
+  joueur = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
   //menu();

@@ -63,7 +63,7 @@ void LoadMap_level(Index_t map, Map_t * loaded_map)
     
     for ( i = 0 ; i < loaded_map->nb_tiles_larg ; i++ ){
         for( j = 0 ; j < loaded_map->nb_tiles_long ; j++ ){
-            loaded_map->schema[j][i] = map.intmap[i][j];
+            loaded_map->schema[i][j] = map.intmap[i][j];
         }
     }
 
@@ -173,6 +173,134 @@ int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
 
 }
 
+
+/*  Initialisation du map remplis de vide  */
+Index_t initialize_map() {
+    Index_t map;
+    int i, j;
+
+    map.tileX = (rand() % 40 ) + 50 ;
+    map.tileY = map.tileX ;
+
+    map.num_room = map.tileX / 15;
+
+
+    map.intmap = (int **) malloc(map.tileX*sizeof(int*));
+    for(int i = 0 ; i < map.tileX ; i++ ){
+        map.intmap[i] = (int *) malloc(map.tileY*sizeof(int));
+    }
+
+    for(i = 0; i < map.tileX; i++){
+        for(j = 0; j < map.tileY; j++){
+            map.intmap[i][j] = 0;
+        }
+    }
+
+    return map;
+}
+
+/*  Créations de "pièces" de taille et position aléatoire */
+void add_rooms(Index_t map) {
+
+    room * salles = malloc(sizeof(room) * map.num_room);
+
+    salles[0].room_width = (rand() % 10 ) + 5;
+    salles[0].room_height = (rand() % 10 ) + 5;
+    salles[0].x = 3;
+    salles[0].y = 3;
+    for (int j = salles[0].x; j < salles[0].x + salles[0].room_width; j++) {
+        for (int k = salles[0].y; k < salles[0].y + salles[0].room_height; k++) {
+            map.intmap[j][k] = 1;
+        }
+    }
+
+    for (int i = 1; i < map.num_room; i++) {
+        salles[i].room_width = (rand() % 5 ) + 10;
+        salles[i].room_height = (rand() % 5 ) + 10;
+
+
+        salles[i].x = salles[i-1].x + rand() % salles[i-1].room_width ;
+        salles[i].y = salles[i-1].y + rand() % salles[i-1].room_height  ;
+
+        for (int j = salles[i].x; j < salles[i].x + salles[i].room_width; j++) {
+            for (int k = salles[i].y; k < salles[i].y + salles[i].room_height; k++) {
+                map.intmap[j][k] = 1;
+            }
+        }
+    }
+
+
+    free(salles);
+}
+
+
+
+/* Création des murs */
+void add_wall(Index_t map){
+
+        for(int i = 1 ; i < map.tileX - 1 ; i++){
+            for(int j = 1 ; j < map.tileY - 1 ; j++){
+            
+                if(map.intmap[i][j] == 0){
+                    if( ( map.intmap[i][j+1] == 1 ) && ( map.intmap[i][j-1] != 1 ) )
+                        map.intmap[i][j] = 2;
+                    else if( map.intmap[i][j-1] == 1 )
+                        map.intmap[i][j] = 3;
+                    
+                    else if( ( ( map.intmap[i-1][j] == 1 ) || ( map.intmap[i-1][j] == 2 ) ) && ( ( map.intmap[i][j-1] == 0 ) || ( map.intmap[i][j-1] == 5 ) || ( map.intmap[i][j-1] == 3 ) ) ){
+                        if(map.intmap[i+1][j] != 1)
+                            map.intmap[i][j] = 5;
+                        else
+                            map.intmap[i][j] = 2;
+                    }
+                    else if( ( ( map.intmap[i+1][j] == 1 ) || ( map.intmap[i+1][j] == 2 ) ) && ( ( map.intmap[i][j-1] == 0 ) || ( map.intmap[i][j-1] == 4 ) || ( map.intmap[i][j-1] == 3 ) ) ){
+                        if(map.intmap[i-1][j] != 1)
+                            map.intmap[i][j] = 4;
+                        else
+                            map.intmap[i][j] = 2;
+                    }
+                }
+            }
+        }
+
+        for(int i = 1 ; i < map.tileX - 1 ; i++){
+            for(int j = 1 ; j < map.tileY - 1 ; j++){
+                if( map.intmap[i][j] == 0 ){
+
+                    if( ( map.intmap[i+1][j+1] == 1 ) && ( map.intmap[i+1][j] == 8 ) && ( map.intmap[i][j+1] == 4 ) )
+                            map.intmap[i][j] = 6;
+                    else if( ( map.intmap[i-1][j+1] == 1 ) && ( map.intmap[i-1][j] == 8 ) && ( map.intmap[i][j+1] == 5 ) )
+                        map.intmap[i][j] = 7;
+                    else if( map.intmap[i][j+1] == 2 )
+                        map.intmap[i][j] = 8;
+                    else if( ( map.intmap[i-1][j-1] == 1 ) && ( map.intmap[i-1][j] == 3 ) && ( map.intmap[i][j-1] == 4 ) )
+                        map.intmap[i][j] = 10;
+                    else if( ( map.intmap[i+1][j-1] == 1 ) && ( map.intmap[i+1][j] == 3 ) && ( map.intmap[i][j-1] == 5 ) )
+                        map.intmap[i][j] = 11;
+                }
+            }
+        }
+}
+
+/* Création de la case de fin */
+void add_end( Index_t map ){
+    int x = map.tileX - 1; 
+    int y = map.tileY - 1;
+    int i;
+
+    for(i = map.tileY; map.intmap[x][y] != 1; i--){
+        x = rand() % (map.tileX - 2) + 2;
+        y = i - rand() % 3 ;
+    }
+    
+    map.intmap[x][y] = 9;
+}
+void UpdateMap(Index_t map){
+    add_rooms(map);
+    add_wall(map);
+    add_end(map);
+}
+
 int FreeMap(Map_t * loaded_map)
 {
     int i;
@@ -188,4 +316,3 @@ int FreeMap(Map_t * loaded_map)
 
     return 0;
 }
-

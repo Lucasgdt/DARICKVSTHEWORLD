@@ -23,6 +23,11 @@ void LoadMapRect(Map_t * loaded_map);
 Map_t * LoadMap(Index_t map);
 int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer);
 int FreeMap(Map_t* loaded_map);
+Index_t initialize_map();
+void add_rooms(Index_t map);
+void add_wall(Index_t map);
+void add_end( Index_t map );
+void UpdateMap(Index_t map);
 
 
 #endif

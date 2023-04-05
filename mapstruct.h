@@ -14,6 +14,19 @@ typedef struct
     SDL_Texture * texture;
 } Sprite;
 
+typedef struct TILE_INDEX{
+    int ** intmap;
+    int tileX, tileY;
+    int num_room;
+}Index_t;
+
+typedef struct ROOM_S{
+    int x;
+    int y;
+    int room_width;
+    int room_height;
+}room;
+
 typedef struct coord_s{
     int up;
     int down;
@@ -41,10 +54,7 @@ typedef struct MAP_S{
     Sprite* mob;
 }Map_t;
 
-typedef struct TILE_INDEX{
-    int intmap[40][40];
-    int tileX, tileY;
-}Index_t;
+
 
 
 #endif
