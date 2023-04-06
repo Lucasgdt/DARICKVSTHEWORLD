@@ -79,29 +79,46 @@ inventaire_t * create_inventaire() {
     return inventaire;
 }
 
+int inv_full(inventaire_t * personnage){
+    int i, temp = 0;
+    for (i = 0; i<TAILLE_INV; i++){
+        if(personnage->liste[i]->id != -1){
+            temp++;
+        }
+    }
+    if (temp == TAILLE_INV){
+        return 0;
+    }
+    else{
+        return 1;
+    }
+}
+
 void loot(inventaire_t * joueur, objet_t * obj){
     int i;
     int temp;
 
-    for (i = 0; i < TAILLE_INV; i++){
-        if (joueur->liste[i]->id == -1){
-            joueur->liste[i]->id = obj->id;
-            joueur->liste[i]->nb = 1;
-            temp = i;
-            break;
-        }
-        else if(joueur->liste[i]->id != -1){
-            if(joueur->liste[i]->id == obj->id){
-                if(liste_objets[joueur->liste[i]->id-1].categorie == 2){
-                    joueur->liste[i]->nb += 1;
-                    temp = i;
-                    break;
+    for (i = 0; i < TAILLE_INV+1; i++){
+        if(inv_full(joueur)==1){
+            if (joueur->liste[i]->id == -1){
+                joueur->liste[i]->id = obj->id;
+                joueur->liste[i]->nb = 1;
+                temp = i;
+                break;
+            }
+            else if(joueur->liste[i]->id != -1){
+                if(joueur->liste[i]->id == obj->id){
+                    if(liste_objets[joueur->liste[i]->id-1].categorie == 2){
+                        joueur->liste[i]->nb += 1;
+                        temp = i;
+                        break;
+                    }
                 }
             }
         }
-        else if (i == TAILLE_INV - 1){
-            printf("Inventaire pleins \n");
-            exit(0);
+        else{
+            printf("Inventaire plein ! \n");
+            return;
         }
     }
     printf("Vous avez ramassez l'item suivant : %s à la case suivante : %d \n",liste_objets[joueur->liste[temp]->id-1].nom, temp);
@@ -122,44 +139,43 @@ void afficher_inventaire(inventaire_t * joueur){
     }
 }
 
-void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i){
-    int temp;
-    if (joueur->liste[i]->id != -1){ // Quelque chose à cette emplacement la ?
-        if(liste_objets[joueur->liste[i]->id-1].categorie == 2){ // Si obj = potion
-            if(joueur->liste[i]->id == obj->id){ // Est ce que l'id de l'objet qui est la à la meme que l'objet que l'on veut supprimer ?
-                if (joueur->liste[i]->nb > 1){ // Si il y a plusieurs objets du meme type
-                    joueur->liste[i]->nb -= 1;
-                    printf("Objet supprimer : %s quantité restante : %d \n",liste_objets[obj->id-1].nom, joueur->liste[i]->nb);
-                }
-                else{
-                    printf("Objet supprimer : %s \n",liste_objets[obj->id-1].nom);
-                    joueur->liste[i]->id = -1;
-                    joueur->liste[i]->nb = 0;
-                }
-            }
-        }
-        else{ // Si obj = epee ou armure
-            printf("Objet supprimer : %s \n",liste_objets[obj->id-1].nom);
-            joueur->liste[i]->id = -1;
-            joueur->liste[i]->nb = 0;
-        }
-    }
+void free_objet(objet_t * obj, texture_t * obj_sdl){
+    //free(obj);
+    //obj = NULL;
+    SDL_DestroyTexture(obj_sdl);
+    obj_sdl = NULL;
+
 }
 
-int inv_full(inventaire_t * personnage){
-    int i, temp = 0;
-    for (i = 0; i<TAILLE_INV; i++){
-        if(personnage->liste[i]->id == -1){
-            temp++;
+
+
+void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i, texture_t * obj_sdl){
+    int temp;
+        if (joueur->liste[i]->id != -1){ // Quelque chose à cette emplacement la ?
+            if(liste_objets[joueur->liste[i]->id-1].categorie == 2){ // Si obj = potion
+                if(joueur->liste[i]->id == obj->id){ // Est ce que l'id de l'objet qui est la à la meme que l'objet que l'on veut supprimer ?
+                    if (joueur->liste[i]->nb > 1){ // Si il y a plusieurs objets du meme type
+                        joueur->liste[i]->nb -= 1;
+                        printf("Objet supprimer : %s quantité restante : %d \n",liste_objets[obj->id-1].nom, joueur->liste[i]->nb);
+                    }
+                    else{
+                        printf("Objet supprimer : %s \n",liste_objets[obj->id-1].nom);
+                        joueur->liste[i]->id = -1;
+                        joueur->liste[i]->nb = 0;
+                        free_objet(obj, obj_sdl);
+                    }
+                }
+            }
+            else{ // Si obj = epee ou armure
+                printf("Objet supprimer : %s \n",liste_objets[obj->id-1].nom);
+                joueur->liste[i]->id = -1;
+                joueur->liste[i]->nb = 0;
+                free_objet(obj, obj_sdl);
+            }
         }
-    }
-    if (temp == 0){
-        return 1;
-    }
-    else{
-        return 0;
-    }
 }
+
+
 
 void loot_mob(inventaire_t * inventaire){
     int choix;
@@ -290,7 +306,7 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
                 }
                 if (x >= case_HAUT.x && x <= case_HAUT.x + case_HAUT.w && y >= case_HAUT.y && y <= case_HAUT.y + case_HAUT.h) {
                     if(perso->arme_obj != NULL){
-                        if(inv_full(joueur)==1){
+                        if(inv_full(joueur)==0){
                             printf("Inventaire plein, veillez supprimer un objet de votre inventaire cliquant gauche sur l'objet \n");
                             return 0;
                         }
@@ -301,6 +317,10 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
                 }
                 if (x >= case_BAS.x && x <= case_BAS.x + case_BAS.w && y >= case_BAS.y && y <= case_BAS.y + case_BAS.h) {
                     if(perso->armure_obj != NULL){
+                        if(inv_full(joueur)==0){
+                            printf("Inventaire plein, veillez supprimer un objet de votre inventaire cliquant gauche sur l'objet \n");
+                            return 0;
+                        }
                         case_texture_BAS = default_texture;
                         retirer(perso, perso->armure_obj, joueur);
                         afficher_inventaire(joueur);
@@ -312,7 +332,7 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
                 for (int i = 0;i <TAILLE_INV; i++){
                     if (x >= case_inv[i]->rect.x && x <= case_inv[i]->rect.x + case_inv[i]->rect.w && y >= case_inv[i]->rect.y && y <= case_inv[i]->rect.y + case_inv[i]->rect.h) {
                         if(joueur->liste[i]->id!=-1){
-                            supprimer_objet_inv(joueur, joueur->liste[i], i);
+                            supprimer_objet_inv(joueur, joueur->liste[i], i, case_inv[i]->texture);
                         }
                     }
                 }
@@ -346,45 +366,51 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
         default:
             break;
         }
-    SDL_RenderClear(renderer);
+        SDL_RenderClear(renderer);
 
-    if(perso->arme_obj != NULL){
-        case_texture_HAUT = IMG_LoadTexture(renderer, liste_objets[perso->arme_obj->id-1].texture);
-    }
-    if(perso->armure_obj != NULL){
-        case_texture_BAS = IMG_LoadTexture(renderer, liste_objets[perso->armure_obj->id-1].texture);
-    }
-    
-
-    
-    SDL_SetRenderDrawColor(renderer, 0x4c, 0x30, 0x24, 0xFF);
-
-    SDL_RenderCopy(renderer,inventaire, NULL, &inv);
-
-    SDL_RenderCopy(renderer, case_texture_HAUT, NULL, &case_HAUT);
-    SDL_RenderCopy(renderer, case_texture_HAUT_select, NULL, &case_HAUT_select);
-
-    SDL_RenderCopy(renderer, case_texture_BAS, NULL, &case_BAS);
-    SDL_RenderCopy(renderer, case_texture_BAS_select, NULL, &case_BAS_select);
-
-
-
-    for(int i = 0; i<TAILLE_INV; i++){
-        // Il rentre bien dedans aucun soucis
-        if(joueur->liste[i]->id != -1){
-            case_inv[i]->texture = IMG_LoadTexture(renderer, liste_objets[joueur->liste[i]->id-1].texture);
-            SDL_RenderCopy(renderer, case_inv[i]->texture, NULL, &case_inv[i]->rect);
+        if(perso->arme_obj != NULL){
+            case_texture_HAUT = IMG_LoadTexture(renderer, liste_objets[perso->arme_obj->id-1].texture);
         }
-    }
-    for(int i = 0; i<TAILLE_INV; i++){
-        SDL_RenderCopy(renderer, case_inv[i]->surface, NULL, &case_inv[i]->rect);
-    }
+        if(perso->armure_obj != NULL){
+            case_texture_BAS = IMG_LoadTexture(renderer, liste_objets[perso->armure_obj->id-1].texture);
+        }
 
-    SDL_RenderPresent(renderer);
+
+
+        SDL_SetRenderDrawColor(renderer, 0x4c, 0x30, 0x24, 0xFF);
+
+        SDL_RenderCopy(renderer,inventaire, NULL, &inv);
+
+        SDL_RenderCopy(renderer, case_texture_HAUT, NULL, &case_HAUT);
+        SDL_RenderCopy(renderer, case_texture_HAUT_select, NULL, &case_HAUT_select);
+
+        SDL_RenderCopy(renderer, case_texture_BAS, NULL, &case_BAS);
+        SDL_RenderCopy(renderer, case_texture_BAS_select, NULL, &case_BAS_select);
+
+
+
+        for(int i = 0; i<TAILLE_INV; i++){
+            // Il rentre bien dedans aucun soucis
+            if(joueur->liste[i]->id != -1){
+                case_inv[i]->texture = IMG_LoadTexture(renderer, liste_objets[joueur->liste[i]->id-1].texture);
+                SDL_RenderCopy(renderer, case_inv[i]->texture, NULL, &case_inv[i]->rect);
+            }
+        }
+        for(int i = 0; i<TAILLE_INV; i++){
+            SDL_RenderCopy(renderer, case_inv[i]->surface, NULL, &case_inv[i]->rect);
+        }
+
+        SDL_RenderPresent(renderer);
 
     }
 
     for (int i = 0; i<TAILLE_INV; i++){
+        SDL_DestroyTexture(case_inv[i]->texture);
         free(case_inv[i]);
+        case_inv[i] = NULL;
     }
+    SDL_DestroyTexture(case_texture_HAUT);
+    case_texture_HAUT = NULL;
+    SDL_DestroyTexture(case_texture_BAS);
+    case_texture_BAS = NULL;
 }

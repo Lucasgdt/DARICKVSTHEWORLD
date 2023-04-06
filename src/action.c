@@ -26,7 +26,6 @@ int mob_attaque(personnage_t * joueur, mob_t * mob, int compteur){
         printf("%s, à loupé son coup \n",mob->nom);
     }
     else{
-        printf("%d",compteur);
         compteur -= 1;
     }
     return compteur;

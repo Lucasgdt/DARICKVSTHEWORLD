@@ -33,7 +33,9 @@ void loot(inventaire_t * joueur, objet_t * obj);
 
 void afficher_inventaire(inventaire_t * joueur);
 
-void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i);
+void free_objet(objet_t * obj, texture_t * obj_sdl);
+
+void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i, texture_t * obj_sdl);
 
 int inv_full(inventaire_t * personnage);
 

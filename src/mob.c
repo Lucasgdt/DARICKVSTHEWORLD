@@ -151,6 +151,7 @@ void afficher_stat_mob(mob_t * mob){
 void delete_mob(mob_liste_t * liste_des_mobs, int i, Sprite * mob[TAILLE_LISTE_MOB]){
     if(liste_des_mobs->liste[i] != NULL){
         liste_des_mobs->liste[i] = NULL;
+        SDL_DestroyTexture(mob[i]->texture);
         mob[i]->texture = NULL;
     }
     printf("Mobs tué : %s \n",liste_mobs[i+1].nom);

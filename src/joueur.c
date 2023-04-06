@@ -62,6 +62,21 @@ int joueur(SDL_Window *window){
   obj2->id = 14;
   loot(inventaire_joueur, obj);
   loot(inventaire_joueur, obj2);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
+  loot(inventaire_joueur, obj);
   personnage_t * joueur_stat = create_personnage();
 
   mob_liste_t * mob_liste = create_liste_mob();
