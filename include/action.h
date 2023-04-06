@@ -9,6 +9,6 @@
 #include "mob.h"
 
 void joueur_attaque(personnage_t * joueur, mob_t * mob);
-void mob_attaque(personnage_t * joueur, mob_t * mob);
+int mob_attaque(personnage_t * joueur, mob_t * mob, int compteur);
 
 #endif

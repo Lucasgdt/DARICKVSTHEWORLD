@@ -10,7 +10,7 @@
 #define JOUEUR_H
 
 #define DARICK_SIZE 96
-
+#define FPS 24
 typedef struct MOUSE_COORD_S{
     int x;
     int y;

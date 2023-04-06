@@ -23,7 +23,7 @@
 //#include "fight.h"
 
 
-const int FPS = 24;
+
 
 int joueur(SDL_Window *window){
   SDL_Renderer *renderer = NULL;
@@ -52,7 +52,7 @@ int joueur(SDL_Window *window){
   int vx = 0, vy = 0;
   int quit = 0;
   int click;
-
+  int compteur = 24;
 
 
   inventaire_t * inventaire_joueur = create_inventaire();
@@ -217,7 +217,6 @@ int joueur(SDL_Window *window){
                         if(joueur_stat->arme_obj != NULL){
                             if(calcul[i] <= liste_objets[joueur_stat->arme_obj->id-1].distance){
                               joueur_attaque(joueur_stat,mob_liste->liste[i]);
-                              mob_attaque(joueur_stat, mob_liste->liste[i]);
                             }
                         }
                         else{
@@ -244,7 +243,7 @@ int joueur(SDL_Window *window){
       if(mob_liste->liste[i] != NULL){
         calcul[i] = fonction_calcul(player->position, mob_sdl, mob_liste, i);
         if(calcul[i] <= 10){
-          mob_attaque(joueur_stat, mob_liste->liste[i]);
+          compteur = mob_attaque(joueur_stat, mob_liste->liste[i], compteur);
         }
       }
     }

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
+#include "joueur.h"
 
 #include "action.h"
 extern objet_t liste_objets[];
@@ -14,15 +14,21 @@ void joueur_attaque(personnage_t * joueur, mob_t * mob){
     mob->pv-=joueur->degats;
 }
 
-void mob_attaque(personnage_t * joueur, mob_t * mob){
+int mob_attaque(personnage_t * joueur, mob_t * mob, int compteur){
     int choix;
     choix = rand()%3;
-    if(choix >=2){
+    if(choix >=2 && compteur == 0){
         printf("%s a mis %d de degats \n",mob->nom, mob->degats);
         joueur->pv-=mob->degats;
+        compteur = FPS * 2;
     }
-    else{
+    else if (compteur == 0){
         printf("%s, à loupé son coup \n",mob->nom);
     }
+    else{
+        printf("%d",compteur);
+        compteur -= 1;
+    }
+    return compteur;
 
 }
