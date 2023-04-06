@@ -25,7 +25,7 @@ INCLUDE_DIR = include
 SDL_CHEMIN_DIR=E:/SDL2
 SDL_LIB_DIR=${SDL_CHEMIN_DIR}/lib
 SDL_INC_DIR=${SDL_CHEMIN_DIR}/include
-SDL_FLAGS = -lSDL2main -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
+SDL_FLAGS = -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 
 INCS = -I${SDL_INC_DIR} 
 
