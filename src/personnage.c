@@ -21,15 +21,15 @@ personnage_t * create_personnage() {
     return personnage;
 }
 
-void equiper(personnage_t * personnage, objet_t * obj, inventaire_t * inv, int indice) {
+void equiper(personnage_t * personnage, objet_t * obj, inventaire_t * inv, int indice, texture_t * obj_sdl) {
     if(liste_objets[obj->id-1].categorie == 2){
         if(personnage->pv >=personnage->pv_max - personnage->pv){
             personnage->pv += personnage->pv_max - personnage->pv;
-            supprimer_objet_inv(inv, obj, indice);
+            supprimer_objet_inv(inv, obj, indice, obj_sdl);
         }
         else{
             personnage->pv += liste_objets[obj->id - 1].pv;
-            supprimer_objet_inv(inv, obj, indice);
+            supprimer_objet_inv(inv, obj, indice, obj_sdl);
         }
     }
     else{
@@ -52,7 +52,7 @@ void equiper(personnage_t * personnage, objet_t * obj, inventaire_t * inv, int i
             personnage->armure_obj->id = obj->id;
         }
         // Suprimer item inv
-        supprimer_objet_inv(inv, obj, indice);
+        supprimer_objet_inv(inv, obj, indice, obj_sdl);
         }
 }
 

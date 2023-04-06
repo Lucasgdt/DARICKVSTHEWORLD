@@ -285,20 +285,20 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
                             if(liste_objets[joueur->liste[i]->id-1].categorie == 0){
                                 if(perso->arme_obj == NULL){
                                     SDL_RenderCopy(renderer,liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_texture_HAUT);
-                                    equiper(perso, joueur->liste[i], joueur, i);
+                                    equiper(perso, joueur->liste[i], joueur, i, case_inv[i]->texture);
                                     case_inv[i]->texture = NULL;
                                 }
                             }
                             if(liste_objets[joueur->liste[i]->id-1].categorie == 1){
                                 if(perso->armure_obj == NULL){
                                     SDL_RenderCopy(renderer,liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_texture_BAS);
-                                    equiper(perso, joueur->liste[i], joueur, i);
+                                    equiper(perso, joueur->liste[i], joueur, i, case_inv[i]->texture);
                                     case_inv[i]->texture = NULL;
                                 }
                             }
                             if(liste_objets[joueur->liste[i]->id-1].categorie == 2){
                                 SDL_RenderCopy(renderer,liste_objets[joueur->liste[i]->id-1].texture, NULL, &case_texture_BAS);
-                                equiper(perso, joueur->liste[i], joueur, i);
+                                equiper(perso, joueur->liste[i], joueur, i, case_inv[i]->texture);
                                 case_inv[i]->texture = NULL;
                             }
                         }
