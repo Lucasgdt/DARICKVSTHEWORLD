@@ -135,8 +135,8 @@ void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Spr
     SDL_Point MobPose;
 	for (i = 0; i<TAILLE_LISTE_MOB; i++){
         mob_sdl[i] = malloc(sizeof(Sprite));
-        mob_sdl[i]->position.h = ZOOM;
-        mob_sdl[i]->position.w = ZOOM;
+        mob_sdl[i]->position.h = DARICK_SIZE;
+        mob_sdl[i]->position.w = DARICK_SIZE;
         mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
 		mob_sdl[i]->m = map;
         MobPose = placement(mob_sdl[i]);

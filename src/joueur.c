@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <SDL2/SDL_mixer.h>
 #include <stdbool.h>
 #include <time.h>
 #include "move.h"
@@ -53,30 +52,11 @@ int joueur(SDL_Window *window){
   int quit = 0;
   int click;
   int compteur = 24;
+  int kill = 0;
+  int nbsalle = 1;
 
 
   inventaire_t * inventaire_joueur = create_inventaire();
-  objet_t * obj = create_objet();
-  objet_t * obj2 = create_objet();
-  obj->id = 15;
-  obj2->id = 14;
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj2);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
-  loot(inventaire_joueur, obj);
   personnage_t * joueur_stat = create_personnage();
 
   mob_liste_t * mob_liste = create_liste_mob();
@@ -87,31 +67,7 @@ int joueur(SDL_Window *window){
     ajouter_mob(mob_liste, mob);
   }
 
-  /*mob_t * mob2 = create_mob();
-  mob->id = 1;
-  mob2->id = 2;
-  ajuste(mob);
-  ajuste(mob2);
-  ajouter_mob(mob_liste, mob);
-  ajouter_mob(mob_liste, mob2);*/
 
-
-
-  //SDL_Point viewOffset;
-
-
-  // Music 
-  Mix_Init(MIX_INIT_MP3);
-  Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 6, 1024);
-  Mix_Music * music = Mix_LoadMUS("./ressources/Sound/Music/test.mp3");
-  if(!music){
-    printf("Erreur lors du chargement de la musique: %s\n", Mix_GetError());
-  }
-
-  else{
-    printf("ok \n");
-  }
-  //Mix_PlayMusic(music, -1);
 
 
   // Créer le rendu
@@ -160,7 +116,6 @@ int joueur(SDL_Window *window){
   player = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
-  //menu();
 
 
   //Initialisation de la camera
@@ -241,6 +196,7 @@ int joueur(SDL_Window *window){
                         }
                     }
                     if (mob_liste->liste[i]->pv <= 0){
+                        kill++;
                         loot_mob(inventaire_joueur);
                         delete_mob(mob_liste, i, mob_sdl);
                         free(mob_liste->liste[i]);
@@ -264,6 +220,8 @@ int joueur(SDL_Window *window){
     }
     if(joueur_stat->pv <= 0){
       printf("Vous êtes mort ! \n");
+      printf("Vous avez tuer : %d monstres ! \n",kill);
+      printf("Vous êtes arriver à la salle : %d \n",nbsalle);
       goto quit;
     }
   
@@ -281,11 +239,13 @@ int joueur(SDL_Window *window){
             map.intmap[i][j] = 0;
         }
     }
+    nbsalle++;
     vider_liste_mob(mob_liste, mob_sdl);
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
       mob_t * mob = create_mob();
       mob->id = 1;
       ajuste(mob);
+      mob->pv = mob->pv*nbsalle;
       ajouter_mob(mob_liste, mob);
     }
     UpdateMap(map);
