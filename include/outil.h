@@ -55,6 +55,7 @@ typedef struct personnage_s{
     int pv;
     int pv_max;
     int distance;
+    int argent;
     objet_t * armure_obj;
     objet_t * arme_obj;
 }personnage_t;

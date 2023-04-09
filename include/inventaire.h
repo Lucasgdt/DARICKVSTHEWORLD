@@ -39,7 +39,7 @@ void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i, texture_t 
 
 int inv_full(inventaire_t * personnage);
 
-void loot_mob(inventaire_t * inventaire);
+void loot_mob(inventaire_t * inventaire, personnage_t * personnage);
 
 int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso);
 

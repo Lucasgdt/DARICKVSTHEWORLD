@@ -13,7 +13,13 @@
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 
-
+/**
+ * @brief Fonction main, permettant de démarré le menu principal afin de pouvoir jouer ou non
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 
 int main(int argc, char *argv[]){
     SDL_Window *window = NULL;

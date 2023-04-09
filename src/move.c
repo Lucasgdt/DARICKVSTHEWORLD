@@ -117,6 +117,13 @@ int DeplaceSprite(Sprite* perso,int vx, int vy)
 	return 2;
 }
 
+/**
+ * @brief Fonction permettant de placer les mobs sur la carte, plus particulièrement dans la zone de jeu
+ * 
+ * @param mob 
+ * @return SDL_Point 
+ */
+
 SDL_Point placement(Sprite * mob){
     int i, j;
     SDL_Point temp;
@@ -127,6 +134,15 @@ SDL_Point placement(Sprite * mob){
     }while(mob->m->schema[temp.x][temp.y] != 1);
     return temp;
 }
+
+/**
+ * @brief Fonction permettant d'initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures.
+ * 
+ * @param map 
+ * @param renderer 
+ * @param mob_liste 
+ * @param mob_sdl 
+ */
 
 void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_LISTE_MOB]){
 	int i, j;
@@ -147,6 +163,11 @@ void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Spr
     }
 }
 
+/**
+ * @brief Fonction permettant de supprimer complètement un mob dans une liste de Sprite
+ * 
+ * @param mob_sdl 
+ */
 
 void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]){
 	for (int i = 0; i<TAILLE_LISTE_MOB; i++){
@@ -154,6 +175,13 @@ void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]){
 		mob_sdl[i] = NULL;
 	}
 }
+
+/**
+ * @brief Fonction permettant de faire déplacer un mob aléatoirement
+ * 
+ * @param mob 
+ * @param i 
+ */
 
 void deplacement_mobV2(Sprite * mob[TAILLE_LISTE_MOB], int i){
     int deplacement;
@@ -173,6 +201,14 @@ void deplacement_mobV2(Sprite * mob[TAILLE_LISTE_MOB], int i){
     }
 }
 
+
+/**
+ * @brief Fonction permettant de faire suivre un mob vers un joueur si le mob est assez proche du joueur
+ * 
+ * @param mob 
+ * @param i 
+ * @param destRect 
+ */
 
 void mob_aggro(Sprite *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
     int distance_x = abs(destRect.x - mob[i]->position.x);
@@ -196,6 +232,16 @@ void mob_aggro(Sprite *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
     }
 }
 
+/**
+ * @brief Fonction permettant de gérer la réaction d'un mob en vers en joueur à l'aide d'un calcul qui défini la distance entre un mob et un joueur. Soit le mob à un déplacement aléatoire, soit il suit le joueur
+ * 
+ * @param destRect 
+ * @param mob_sdl 
+ * @param mob_liste 
+ * @param i 
+ * @return int 
+ */
+
 int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_liste_t * mob_liste, int i){
     int calcul;
     if(mob_liste->liste[i] != NULL){
@@ -210,6 +256,17 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
     }
     return calcul;
     }
+
+
+/**
+ * @brief Fonction permettant de faire l'animation du joueur lors ce qu'il attaque
+ * 
+ * @param renderer 
+ * @param skin 
+ * @param joueur 
+ * @param mob_sdl 
+ * @param map 
+ */
 
 
 void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map) {

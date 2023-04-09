@@ -27,6 +27,12 @@ extern objet_t liste_objets[];
     */
 
 
+/**
+ * @brief Fonction permettant d'initialiser la création d'un objet n'ayant aucune statistique
+ * 
+ * @return objet_t* 
+ */
+
 objet_t * create_objet(){
     objet_t * objet = malloc(sizeof(objet_t));
     objet->id = NULL;
@@ -42,6 +48,13 @@ objet_t * create_objet(){
 
 /* Nombre d'elements */
 
+/**
+ * @brief Fonction uniquement pour aider, sert uniquement à lire la taille d'un inventaire
+ * 
+ * @param inventaire 
+ * @return int 
+ */
+
 extern 
 int inventaire_nb_lire( inventaire_t * const inventaire )
 {
@@ -49,6 +62,14 @@ int inventaire_nb_lire( inventaire_t * const inventaire )
 } 
 
 /* -- Acces individuel a un element */
+
+/**
+ * @brief Fonction permettant de lire la case d'un inventaire, sert uniquement pour aider également
+ * 
+ * @param inventaire 
+ * @param ind 
+ * @return void* 
+ */
 
 extern 
 void * inventaire_elem_lire( inventaire_t * const inventaire  , const int ind )
@@ -62,6 +83,12 @@ void * inventaire_elem_lire( inventaire_t * const inventaire  , const int ind )
 
   return( inventaire->liste[ind] ) ;
 }
+
+/**
+ * @brief Fonction permettant de créer un inventaire, d'initialiser un inventaire
+ * 
+ * @return inventaire_t* 
+ */
 
 inventaire_t * create_inventaire() {
     int i;
@@ -79,6 +106,13 @@ inventaire_t * create_inventaire() {
     return inventaire;
 }
 
+/**
+ * @brief Fonction permettant de vérifier si un inventaire est rempli 
+ * 
+ * @param personnage 
+ * @return int 
+ */
+
 int inv_full(inventaire_t * personnage){
     int i, temp = 0;
     for (i = 0; i<TAILLE_INV; i++){
@@ -93,6 +127,13 @@ int inv_full(inventaire_t * personnage){
         return 1;
     }
 }
+
+/**
+ * @brief Fonction permettant de donner un objet à un joueur en le placant dans son inventaire
+ * 
+ * @param joueur 
+ * @param obj 
+ */
 
 void loot(inventaire_t * joueur, objet_t * obj){
     int i;
@@ -124,6 +165,12 @@ void loot(inventaire_t * joueur, objet_t * obj){
     printf("Vous avez ramassez l'item suivant : %s à la case suivante : %d \n",liste_objets[joueur->liste[temp]->id-1].nom, temp);
 }
 
+/**
+ * @brief Fonction permettant d'afficher la liste complète du contenu de l'inventaire, uniquement dans la console
+ * 
+ * @param joueur 
+ */
+
 void afficher_inventaire(inventaire_t * joueur){
     int i;
     int temp = 0;
@@ -139,6 +186,13 @@ void afficher_inventaire(inventaire_t * joueur){
     }
 }
 
+/**
+ * @brief Fonction permettant de supprimer un objet en mémoire
+ * 
+ * @param obj 
+ * @param obj_sdl 
+ */
+
 void free_objet(objet_t * obj, texture_t * obj_sdl){
     //free(obj);
     //obj = NULL;
@@ -147,7 +201,14 @@ void free_objet(objet_t * obj, texture_t * obj_sdl){
 
 }
 
-
+/**
+ * @brief Fonction permettant de supprimer un objet de l'inventaire du joueur à une case précise grâce à l'indice i
+ * 
+ * @param joueur 
+ * @param obj 
+ * @param i 
+ * @param obj_sdl 
+ */
 
 void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i, texture_t * obj_sdl){
     int temp;
@@ -175,25 +236,27 @@ void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i, texture_t 
         }
 }
 
+/**
+ * @brief Fonction permettant de donnée aléatoirement un objet provenant de la liste des objets de la base de donnée ayant en plus, le calcul en prenant compte le pourcentage de chance d'obtenir un objet
+ * 
+ * @param inventaire 
+ */
 
-
-void loot_mob(inventaire_t * inventaire){
+void loot_mob(inventaire_t * inventaire, personnage_t * personnage){
     int choix;
+    int argent;
     objet_t * obj = create_objet();
     int somme_taux = 0;
     // Calcule la somme des taux de chaque objet dans la liste
     for (int i = 1; i < 15; i++) {
-        printf("%d : test 1 ", i);
         somme_taux += liste_objets[i].taux;
-        printf("test 1.5 \n");
     }
-    printf("test 2\n");
     // Génère un nombre aléatoire entre 1 et la somme des taux
     choix = rand()%somme_taux + 1;
+    argent = rand()%4;
 
     // Parcourt la liste des objets jusqu'à atteindre le taux correspondant au nombre aléatoire
     for (int i = 1; i < 16; i++) {
-
         choix -= liste_objets[i].taux;
         if (choix <= 0) {
             obj->id = liste_objets[i].id;
@@ -201,8 +264,36 @@ void loot_mob(inventaire_t * inventaire){
         }
     }
 
+    if(argent == 1){
+        printf("Pas d'argent \n");
+    }
+    if(argent == 2){
+        printf("1 piece d'argent obtenu ! \n");
+        personnage->argent += 1;
+    }
+    if(argent == 3){
+        printf("2 piece d'argent obtenu ! \n");
+        personnage->argent += 2;
+    }
+    if(argent == 4){
+        printf("3 piece d'argent obtenu ! \n");
+        personnage->argent += 3;
+    }
     loot(inventaire, obj);
 }
+
+/**
+ * @brief Fonction permettant d'afficher tout l'inventaire et d'agir avec tout en SDL, donc en liant visuel, et statistique.
+ * 
+ * @param renderer 
+ * @param inventaire 
+ * @param inv 
+ * @param joueur 
+ * @param screenSurface 
+ * @param window 
+ * @param perso 
+ * @return int 
+ */
 
 int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){
     int pressed = 1;

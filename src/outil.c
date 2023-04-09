@@ -1,5 +1,10 @@
 #include "outil.h"
 
+/**
+ * @brief Liste des objets présent dans le jeu. C'est une base de donnée des objets
+ * 
+ */
+
 objet_t liste_objets[] = {
     {1, "Epee du Nain", "ressources/Objets/Epee.png", 15, 0, 0, 0, 0, 100, 25},
     {2, "Armure du guerrier", "ressources/Objets/Armure.png", 0, 0, 1, 1, 5, NULL, 45},

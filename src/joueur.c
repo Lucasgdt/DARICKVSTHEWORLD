@@ -19,9 +19,14 @@
 #include "mob.h"
 #include "action.h"
 
-//#include "fight.h"
 
 
+/**
+ * @brief Fonction permettant de gérer tout le jeu, c'est à dire, initialisation du joueur + mob + changement de salle etc ...
+ * 
+ * @param window 
+ * @return int 
+ */
 
 
 int joueur(SDL_Window *window){
@@ -197,7 +202,7 @@ int joueur(SDL_Window *window){
                     }
                     if (mob_liste->liste[i]->pv <= 0){
                         kill++;
-                        loot_mob(inventaire_joueur);
+                        loot_mob(inventaire_joueur, joueur_stat);
                         delete_mob(mob_liste, i, mob_sdl);
                         free(mob_liste->liste[i]);
                         mob_liste->liste[i] = NULL;

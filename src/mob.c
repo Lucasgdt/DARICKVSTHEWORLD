@@ -177,6 +177,7 @@ mob_liste_t * vider_liste_mob(mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_L
     int i;
     for (i = 0; i<TAILLE_LISTE_MOB; i++){
         mob_liste->liste[i] = NULL;
+        SDL_DestroyTexture(mob_sdl[i]);
         mob_sdl[i] = NULL;
     }
     return mob_liste;
