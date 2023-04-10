@@ -3,7 +3,7 @@
 #include <string.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-
+#include <SDL2/SDL_ttf.h>
 #include "inventaire.h"
 #include "outil.h"
 #include "mob.h"
@@ -296,6 +296,17 @@ void loot_mob(inventaire_t * inventaire, personnage_t * personnage){
  */
 
 int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){
+    // Initialisation de SDL_ttf
+    TTF_Init();
+    TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
+    SDL_Color color = {255, 255, 255, 255}; // Définir la couleur du texte
+    char str[32];
+    sprintf(str,"Piece : %d",perso->argent);
+    SDL_Surface* surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface); // Créer une texture à partir de la surface
+
+
+
     int pressed = 1;
     int x, y;
     SDL_Event event;
@@ -333,6 +344,11 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
     SDL_Rect case_BAS;
     SDL_Rect case_HAUT_select;
     SDL_Rect case_BAS_select;
+
+
+
+
+
 
     case_HAUT_select.x = 36, case_HAUT_select.y = 150;
     case_HAUT.x = case_HAUT_select.x, case_HAUT.y = case_HAUT_select.y;
@@ -478,7 +494,7 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
         SDL_RenderCopy(renderer, case_texture_BAS, NULL, &case_BAS);
         SDL_RenderCopy(renderer, case_texture_BAS_select, NULL, &case_BAS_select);
 
-
+        SDL_RenderCopy(renderer, texture, NULL, &(SDL_Rect){250, 500, surface->w, surface->h}); // Afficher la texture sur le rendu
 
         for(int i = 0; i<TAILLE_INV; i++){
             // Il rentre bien dedans aucun soucis
@@ -500,8 +516,12 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
         free(case_inv[i]);
         case_inv[i] = NULL;
     }
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
     SDL_DestroyTexture(case_texture_HAUT);
     case_texture_HAUT = NULL;
     SDL_DestroyTexture(case_texture_BAS);
     case_texture_BAS = NULL;
+    TTF_CloseFont(font);
+    TTF_Quit();
 }
