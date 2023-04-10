@@ -9,6 +9,7 @@
 #include "mob.h"
 #include "camera.h"
 #include <math.h>
+#include "move.h"
 
 #define SGN(X) (((X)==0)?(0):(((X)<0)?(-1):(1)))
 #define ABS(X) ((((X)<0)?(-(X)):(X)))

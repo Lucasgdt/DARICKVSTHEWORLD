@@ -12,7 +12,7 @@
 
 
 
-Sprite* InitialiserSprite(Sint16 x,Sint16 y,Sint16 w,Sint16 h, Map_t* map);
+Sprite* InitialiserSprite(int x,int y,int w,int h, Map_t* map);
 void LibereSprite(Sprite* sp);
 void AfficherSprite(Sprite* perso,SDL_Renderer* renderer, SDL_Texture * skin);
 int CollisionDecor(Sprite* perso, SDL_Rect test);
