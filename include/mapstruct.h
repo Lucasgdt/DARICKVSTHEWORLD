@@ -51,7 +51,6 @@ typedef struct MAP_S{
     //scroll
     int xscroll, yscroll;
     Sprite* player;
-    Sprite* mob;
 }Map_t;
 
 
