@@ -7,7 +7,12 @@
 #include "move.h"
 #include "camera.h"
 
-
+/**
+ * @brief Fonction qui charge une image en SDL_Surface
+ * 
+ * @param img 
+ * @return SDL_Surface* 
+ */
 
 SDL_Surface* LoadImage16(const char* img)
 {
@@ -15,6 +20,12 @@ SDL_Surface* LoadImage16(const char* img)
     SDL_Surface* image_ram = IMG_Load(img); // Charge l'image
     return image_ram;
 }
+
+/**
+ * @brief Fonction qui initialise la place nécessaire à la création de la map
+ * 
+ * @param loaded_map 
+ */
 
 void LoadMap_tileset(Map_t* loaded_map){
     int numtile, i, j;
@@ -43,14 +54,12 @@ void LoadMap_tileset(Map_t* loaded_map){
     }
 }
 
-void ErrorQuit(const char* ERROR)
-{
-    puts(ERROR);
-    SDL_Quit();
-    system("pause");
-    exit(-1);
-}
-
+/**
+ * @brief Fonction qui charge la map d'entier dans notre map
+ * 
+ * @param map 
+ * @param loaded_map 
+ */
 
 void LoadMap_level(Index_t map, Map_t * loaded_map)
 {
@@ -68,6 +77,12 @@ void LoadMap_level(Index_t map, Map_t * loaded_map)
     }
 
 }
+/**
+ * @brief Fonction qui initialise la place nécessaire à la map de tiles
+ * 
+ * @param loaded_map 
+ */
+
 void LoadMapRect(Map_t * loaded_map)
 {
     loaded_map->props = (Tile_t **) malloc(loaded_map->nb_tiles_larg*sizeof(Tile_t*));
@@ -75,6 +90,13 @@ void LoadMapRect(Map_t * loaded_map)
         loaded_map->props[i] = (Tile_t *) malloc(loaded_map->nb_tiles_long*sizeof(Tile_t));
         }
 }
+
+/**
+ * @brief Fonction qui appelle LoadMap_tileset et LoadMap_level pour chargé entièrement la map
+ * 
+ * @param map 
+ * @return Map_t* 
+ */
 
 Map_t * LoadMap(Index_t map)
 {
@@ -88,6 +110,14 @@ Map_t * LoadMap(Index_t map)
     return(loaded_map);
 
 }
+
+/**
+ * @brief Fonction qui affiche la map sur le rendu, et determine les éléments mur
+ * 
+ * @param loaded_map 
+ * @param renderer 
+ * @return int 
+ */
 
 
 int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
@@ -173,6 +203,10 @@ int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
 
 }
 
+/**
+ * @brief Fonction qui initialise la map Index_t
+ * 
+ */
 
 /*  Initialisation du map remplis de vide  */
 Index_t initialize_map() {
@@ -199,7 +233,13 @@ Index_t initialize_map() {
     return map;
 }
 
-/*  Créations de "pièces" de taille et position aléatoire */
+
+/**
+ * @brief Créer des "salles" de taille aléatoire et dont la position dépend de la précedente
+ * 
+ * @param map 
+ */
+
 void add_rooms(Index_t map) {
 
     room * salles = malloc(sizeof(room) * map.num_room);
@@ -219,8 +259,8 @@ void add_rooms(Index_t map) {
         salles[i].room_height = (rand() % 5 ) + 10;
 
 
-        salles[i].x = salles[i-1].x + rand() % salles[i-1].room_width ;
-        salles[i].y = salles[i-1].y + rand() % salles[i-1].room_height  ;
+        salles[i].x = (salles[i-1].x + rand() % salles[i-1].room_width) + 1 ;
+        salles[i].y = (salles[i-1].y + rand() % salles[i-1].room_height) + 1 ;
 
         for (int j = salles[i].x; j < salles[i].x + salles[i].room_width; j++) {
             for (int k = salles[i].y; k < salles[i].y + salles[i].room_height; k++) {
@@ -234,8 +274,12 @@ void add_rooms(Index_t map) {
 }
 
 
+/**
+ * @brief Positionne les murs autour des salles de sol
+ * 
+ * @param map 
+ */
 
-/* Création des murs */
 void add_wall(Index_t map){
 
         for(int i = 1 ; i < map.tileX - 1 ; i++){
@@ -282,7 +326,13 @@ void add_wall(Index_t map){
         }
 }
 
-/* Création de la case de fin */
+
+/**
+ * @brief ajoute l'escalier de fin de map
+ * 
+ * @param map 
+ */
+
 void add_end( Index_t map ){
     int x = map.tileX - 1; 
     int y = map.tileY - 1;
@@ -295,6 +345,13 @@ void add_end( Index_t map ){
     
     map.intmap[x][y] = 9;
 }
+
+/**
+ * @brief Créer la map
+ * 
+ * @param map 
+ */
+
 void UpdateMap(Index_t map){
     int i, j;
     for(i = 0; i < map.tileX; i++){
@@ -307,6 +364,13 @@ void UpdateMap(Index_t map){
     add_wall(map);
     add_end(map);
 }
+
+/**
+ * @brief Libère l'espace alloué pour la map
+ * 
+ * @param loaded_map 
+ * @return int 
+ */
 
 int FreeMap(Map_t * loaded_map)
 {

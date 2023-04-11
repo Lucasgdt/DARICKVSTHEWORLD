@@ -15,6 +15,17 @@
 #define ABS(X) ((((X)<0)?(-(X)):(X)))
 #define AGGRO_DISTANCE 300 // distance d'aggro en pixels
 
+/**
+ * @brief Initialise un Sprite dans la map à une position donné
+ * 
+ * @param x 
+ * @param y 
+ * @param w 
+ * @param h 
+ * @param map 
+ * @return Sprite* 
+ */
+
 Sprite* InitialiserSprite(int x,int y,int w,int h, Map_t* map)
 {
 	Sprite* sp = malloc(sizeof(Sprite));
@@ -26,10 +37,24 @@ Sprite* InitialiserSprite(int x,int y,int w,int h, Map_t* map)
 	return sp;
 }
 
+/**
+ * @brief Libère l'espace du Sprite
+ * 
+ * @param sp 
+ */
+
 void LibereSprite(Sprite* sp)
 {
 	free(sp);
 }
+
+/**
+ * @brief Affiche le sprite en fonction du Scrolling de la caméra
+ * 
+ * @param perso 
+ * @param renderer 
+ * @param skin 
+ */
 
 void AfficherSprite(Sprite* perso,SDL_Renderer* renderer, SDL_Texture * skin)
 {
@@ -40,6 +65,14 @@ void AfficherSprite(Sprite* perso,SDL_Renderer* renderer, SDL_Texture * skin)
 	R.h = perso->position.h;
 	SDL_RenderCopy(renderer, skin, NULL, &R);
 }
+
+/**
+ * @brief Vérifie toute les cases à proximité du joueur pour localiser les murs ou la porte de sortie
+ * 
+ * @param perso 
+ * @param test 
+ * @return int 
+ */
 
 int CollisionDecor(Sprite* perso, SDL_Rect test)
 {
@@ -65,7 +98,14 @@ int CollisionDecor(Sprite* perso, SDL_Rect test)
 	return 0;
 }
 
-
+/**
+ * @brief Essaie de se déplacer vers le point d'arriver, si il y a un mur alors on affine le déplacement
+ * 
+ * @param perso 
+ * @param vx 
+ * @param vy 
+ * @return int 
+ */
 
 int EssaiDeplacement(Sprite* perso,int vx,int vy)
 {
@@ -85,6 +125,14 @@ int EssaiDeplacement(Sprite* perso,int vx,int vy)
 	return 0;
 }
 
+/**
+ * @brief Affine le déplacement pour se rapprocher au plus proche du mur
+ * 
+ * @param perso 
+ * @param vx 
+ * @param vy 
+ */
+
 void Affine(Sprite* perso,int vx,int vy)
 {
 	int i;	
@@ -99,6 +147,15 @@ void Affine(Sprite* perso,int vx,int vy)
 			break;			
 	}
 }
+
+/**
+ * @brief Déplace le Sprite en suivant le vecteur donné
+ * 
+ * @param perso 
+ * @param vx 
+ * @param vy 
+ * @return int 
+ */
 
 int DeplaceSprite(Sprite* perso,int vx, int vy)
 {
