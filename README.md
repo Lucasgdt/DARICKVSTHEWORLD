@@ -1,6 +1,6 @@
 # DARICKVSTHEWORLD
 
-Bonjour ! Bievenue sur notre jeu nommé : DARICK vs THE WORLD !
+Bonjour ! Bienvenue sur notre jeu nommé : DARICK vs THE WORLD !
 
 # Introduction 
 
@@ -22,5 +22,5 @@ Dès que la compilation sera terminé, le jeu se lancera automatiquement !
 
 Le jeu possède une génération et une apparition des mobs aléàtoirement.
 Le joueur peut attaquer les mobs qui s'y trouvent sur son passage afin d'obtenir des nouveaux objets qui sont plus ou moins rare, ainsi qu'une chance d'obtenir de l'argent.
-Vous possèdez un inventaire utilisable à n'importe quel moment de la partie
+Vous possèdez un inventaire utilisable à n'importe quel moment de la partie 
 Si vous mourrez, vous perdez tout, donc faites attention !
