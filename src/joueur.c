@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdbool.h>
 #include <time.h>
 #include "move.h"
@@ -15,6 +16,7 @@
 #include "outil.h"
 #include "mob.h"
 #include "action.h"
+#include "menu.h"
 
 
 
@@ -26,7 +28,7 @@
  */
 
 
-int joueur(SDL_Window *window){
+int joueur(SDL_Window *window, int * nbsalle, int * kill){
   SDL_Renderer *renderer = NULL;
   SDL_Surface *screenSurface = NULL;
   SDL_Texture *skin = NULL;
@@ -54,8 +56,8 @@ int joueur(SDL_Window *window){
   int quit = 0;
   int click;
   int compteur = 24;
-  int kill = 0;
-  int nbsalle = 1;
+  *kill = 0;
+  *nbsalle = 1;
 
 
   inventaire_t * inventaire_joueur = create_inventaire();
@@ -198,7 +200,7 @@ int joueur(SDL_Window *window){
                         }
                     }
                     if (mob_liste->liste[i]->pv <= 0){
-                        kill++;
+                        (*kill)++;
                         loot_mob(inventaire_joueur, joueur_stat);
                         delete_mob(mob_liste, i, mob_sdl);
                         free(mob_liste->liste[i]);
@@ -222,8 +224,8 @@ int joueur(SDL_Window *window){
     }
     if(joueur_stat->pv <= 0){
       printf("Vous êtes mort ! \n");
-      printf("Vous avez tuer : %d monstres ! \n",kill);
-      printf("Vous êtes arriver à la salle : %d \n",nbsalle);
+      printf("Vous avez tuer : %d monstres ! \n",*kill);
+      printf("Vous êtes arriver à la salle : %d \n",*nbsalle);
       goto quit;
     }
   
@@ -241,13 +243,13 @@ int joueur(SDL_Window *window){
             map.intmap[i][j] = 0;
         }
     }
-    nbsalle++;
+    (*nbsalle)++;
     vider_liste_mob(mob_liste, mob_sdl);
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
       mob_t * mob = create_mob();
       mob->id = 1;
       ajuste(mob);
-      mob->pv = mob->pv*nbsalle;
+      mob->pv = mob->pv*(*nbsalle);
       ajouter_mob(mob_liste, mob);
     }
     UpdateMap(map);
@@ -283,8 +285,137 @@ quit:
   SDL_DestroyTexture(textureleft);
   //Libéré le rendu
   SDL_DestroyRenderer(renderer);
-  //Fermer la fenetre
   return 0;
+}
 
+int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
+  // Initialisation de SDL_ttf
+  TTF_Init();
 
+  SDL_Renderer * renderer = NULL;
+  SDL_Texture *screenSurface = NULL;
+  SDL_Texture *quitButtonTexture = NULL;
+	SDL_Texture *playButtonTexture = NULL;
+  SDL_Rect quitButton = {WINDOW_WIDTH - BUTTON_WIDTH - 10, 10, BUTTON_WIDTH, BUTTON_HEIGHT};
+	SDL_Rect playButton = {WINDOW_WIDTH - BUTTON_WIDTH - 10, 10, BUTTON_WIDTH, BUTTON_HEIGHT};
+  SDL_Texture * background = NULL;
+  SDL_Rect back;
+  SDL_Event event;
+  int quit = 0;
+  int w, h;
+
+  back.x = 0;
+  back.y = 0;
+  back.w = 1280;
+  back.h = 720;
+
+  // Créer le rendu
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+  if (!renderer) {
+    printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+    goto quit;
+  }
+  screenSurface = SDL_GetWindowSurface(window);
+
+  background = IMG_LoadTexture(renderer,"ressources/Menu/Menu_Fin/backgroundfin.png");
+    if (background == NULL) {
+        printf("Unable to load image %s! SDL Error: %s\n", "ressources/Menu/Menu_Fin/backgroundfin.png", SDL_GetError());
+        goto quit;
+    }
+
+	// Bouton quitter
+  quitButtonTexture = IMG_LoadTexture(renderer,"ressources/Menu/Menu_Fin/QuitterFin.png");
+	// Taille
+	quitButton.w = 150;
+	quitButton.h = 75;
+	// Position
+	quitButton.x -= 600;
+	quitButton.y += 550;
+  if (quitButtonTexture == NULL) {
+        printf("Unable to load image %s! SDL Error: %s\n", "ressources/Menu/Menu_Fin/QuitterFin.png", SDL_GetError());
+        goto quit;
+  }
+
+	// Bouton jouer
+
+  playButtonTexture = IMG_LoadTexture(renderer,"ressources/Menu/Menu_Fin/JouerFin.png");
+	// Taille
+	playButton.w = 150;
+	playButton.h = 75;
+	// Position
+	playButton.x -= 600;
+	playButton.y += 350;
+  if (playButtonTexture == NULL) {
+        printf("Unable to load image %s! SDL Error: %s\n", "ressources/Menu/Menu_principal/Bouton/Jouer.png", SDL_GetError());
+        goto quit;
+  }
+
+  SDL_GetWindowSize(window, &w, &h);
+  SDL_Rect dest = {0, 0, w, h};
+  SDL_BlitScaled(background, NULL, screenSurface, &dest);
+  SDL_BlitScaled(quitButtonTexture, NULL, screenSurface, &quitButton);
+	SDL_BlitScaled(playButtonTexture, NULL, screenSurface, &playButton);
+  SDL_UpdateWindowSurface(window);
+
+  TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
+  SDL_Color color = {255, 255, 255, 255}; // Définir la couleur du texte
+  char str[256];
+  sprintf(str,"Vous etes mort a la salle %d et vous avez tuer %d monstres",*nbsalle, *kill);
+  SDL_Surface* surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte
+  SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface); // Créer une texture à partir de la surface
+
+  while (!quit) {
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT) {
+          goto quit;
+      }
+      else if (event.type == SDL_MOUSEBUTTONUP) {
+          int x, y;
+          SDL_GetMouseState(&x, &y);
+          if (x >= quitButton.x && x  && y >= quitButton.y && y <= quitButton.y + quitButton.h) {
+    	        goto quit;
+          }
+    	    if (x >= playButton.x && x  && y >= playButton.y && y <= playButton.y + playButton.h){
+    	      goto play;
+    	    }
+      }
+    }
+    // Effacer l'écran
+    SDL_SetRenderDrawColor(renderer, 0x3C, 0x1F, 0x1F, 0xFF);
+    SDL_RenderClear(renderer);
+
+    SDL_RenderCopy(renderer, background, NULL, &back);
+    SDL_RenderCopy(renderer, playButtonTexture, NULL, &playButton);
+    SDL_RenderCopy(renderer, quitButtonTexture, NULL, &quitButton);
+    SDL_RenderCopy(renderer, texture, NULL, &(SDL_Rect){250, 500, surface->w, surface->h}); // Afficher la texture sur le rendu
+    SDL_RenderPresent(renderer);
+  }
+
+quit:
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+    SDL_DestroyTexture(background);
+    SDL_DestroyTexture(quitButtonTexture);
+    SDL_DestroyTexture(screenSurface);
+    SDL_DestroyTexture(playButtonTexture);
+    TTF_CloseFont(font);
+    TTF_Quit();
+    SDL_DestroyWindow(window);
+
+	  return 0;
+
+play:
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+    SDL_DestroyTexture(background);
+    SDL_DestroyTexture(quitButtonTexture);
+    SDL_DestroyTexture(screenSurface);
+    SDL_DestroyTexture(playButtonTexture);
+    //Libéré le rendu
+    TTF_CloseFont(font);
+    TTF_Quit();
+
+    SDL_DestroyRenderer(renderer);
+
+    return 1;
 }

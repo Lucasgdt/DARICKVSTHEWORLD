@@ -92,7 +92,7 @@ doc:
 # --------------------------------- Nettoyage -------------------------------- #
 
 clean:
-ifdef OS
+ifeq ($(OS),Windows_NT)
 	del /Q $(OBJDIR)\*.o
 else
 	rm -rf $(OBJDIR)/*.o

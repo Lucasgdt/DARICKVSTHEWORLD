@@ -24,26 +24,35 @@
 int main(int argc, char *argv[]){
     SDL_Window *window = NULL;
     int status;
-
+    int fin = 0;
+    int kill = 0;
+    int nbsalle = 1;
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         goto quit;
     }
 
-
     status = menu();
-
+    
     if(status == 1){
         window = SDL_CreateWindow("DARICK VS THE WORLD", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
-            if (window == NULL) {
+        if (window == NULL) {
                 printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+            goto quit;
+        }
+        joueur(window, &nbsalle, &kill);
+        fin = ecran_fin(window, &nbsalle, &kill);
+        printf("je sors \n");
+    }
+    else{
         goto quit;
     }
-        joueur(window);
-        goto quit;
+
+    while(fin == 1){
+        printf("dans while \n");
+        joueur(window, &nbsalle, &kill);
+        fin = ecran_fin(window, &nbsalle, &kill);
     }
-    else
-        goto quit;
 
     
 
