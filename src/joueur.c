@@ -29,6 +29,14 @@
 
 
 int joueur(SDL_Window *window, int * nbsalle, int * kill){
+  // Initialisation de SDL_ttf
+  TTF_Init();
+  TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
+  SDL_Color color = {255, 255, 255, 255}; // Définir la couleur du texte
+
+  SDL_Surface* surface = NULL;
+  SDL_Texture* texture = NULL;
+  char str[256];
   SDL_Renderer *renderer = NULL;
   SDL_Surface *screenSurface = NULL;
   SDL_Texture *skin = NULL;
@@ -36,6 +44,8 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   SDL_Texture *textureleft = NULL;
   SDL_Rect inv;
   SDL_Texture * inventaire = NULL;
+  SDL_Texture * pdvtexture = NULL;
+  SDL_Rect pdv;
 
 
   // Calcule de période
@@ -130,8 +140,29 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   Uint32 lastTick;
   Uint32 currentTick;
 
+/* -------------------------------------------------------------------------- */
+/*                   Initialisation de l'image point de vie                   */
+/* -------------------------------------------------------------------------- */
+
+  pdvtexture = IMG_LoadTexture(renderer, "ressources/perso/coeur.png");
+
+  if (!pdvtexture) {
+      printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
+      goto quit;
+  }
+
+  pdv.h = 50;
+  pdv.w = 50;
+  pdv.x = 10;
+  pdv.y = 650;
+
+  /* -------------------------------------------------------------------------- */
+  /*                           Initialisation des mobs                          */
+  /* -------------------------------------------------------------------------- */
+
   Sprite * mob_sdl[TAILLE_LISTE_MOB];
   init_mob(loaded_map, renderer, mob_liste, mob_sdl);
+
 
   // Boucle de récupération des events
   screenSurface = SDL_GetWindowSurface(window);
@@ -208,7 +239,7 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
                     }
                 }
             }
-            anim(renderer, player, joueur_stat, mob_sdl, loaded_map);
+            anim(renderer, player, joueur_stat, mob_sdl, loaded_map, pdvtexture, pdv);
         }
         break;
     }
@@ -266,6 +297,14 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
     AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
   }
 
+  sprintf(str,"PV : %d/%d",joueur_stat->pv, joueur_stat->pv_max);
+  surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte
+  texture = SDL_CreateTextureFromSurface(renderer, surface); // Créer une texture à partir de la surface
+  SDL_RenderCopy(renderer, texture, NULL, &(SDL_Rect){80, 660, surface->w, surface->h}); // Afficher la texture sur le rendu
+
+  SDL_RenderCopy(renderer, pdvtexture, NULL, &pdv);
+
+
   // Afficher le rendu
 
   currentTick = SDL_GetTicks();
@@ -274,10 +313,13 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
     sleep = 0;
   SDL_Delay(sleep);
   SDL_RenderPresent(renderer);
-
-
   }
+
+  
 quit:
+  SDL_FreeSurface(surface);
+  SDL_DestroyTexture(texture);
+  SDL_DestroyTexture(pdvtexture);
   //Libéré la texture
   FreeMap(loaded_map);
   LibereSprite(player);
@@ -285,13 +327,14 @@ quit:
   SDL_DestroyTexture(textureleft);
   //Libéré le rendu
   SDL_DestroyRenderer(renderer);
+  TTF_CloseFont(font);
+  TTF_Quit();
   return 0;
 }
 
 int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
   // Initialisation de SDL_ttf
   TTF_Init();
-  printf("Tout en haut de ecran fin \n");
   SDL_Renderer * renderer = NULL;
   SDL_Texture *screenSurface = NULL;
   SDL_Texture *quitButtonTexture = NULL;

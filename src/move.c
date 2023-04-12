@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <time.h>
 #include "joueur.h"
 #include "mapstruct.h"
@@ -327,7 +328,7 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
  */
 
 
-void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map) {
+void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map, SDL_Texture * pdvtexture, SDL_Rect pdv) {
     int NB_TYPES_ARMES = 6;
     int MAX_IMAGES_ARMES = 11;
     int epee_baton = 6;
@@ -336,6 +337,12 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
     int shuriken = 9;
     int poings = 8;
     int max_images = 0;
+    TTF_Init();
+    TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
+    SDL_Color color = {255, 255, 255, 255}; // Définir la couleur du texte
+    SDL_Surface* surface = NULL;
+    SDL_Texture* texturetexte = NULL;
+    char str[256];
     // Tableau de textures pour chaque type d'arme
     SDL_Texture* animations[NB_TYPES_ARMES][MAX_IMAGES_ARMES];
     // Chargement des textures pour chaque type d'arme
@@ -388,7 +395,11 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
         for (int i = 0; i<TAILLE_LISTE_MOB; i++){
             AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
         }
-
+        sprintf(str,"PV : %d/%d",joueur->pv, joueur->pv_max);
+        surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte
+        texturetexte = SDL_CreateTextureFromSurface(renderer, surface); // Créer une texture à partir de la surface
+        SDL_RenderCopy(renderer, texturetexte, NULL, &(SDL_Rect){80, 660, surface->w, surface->h}); // Afficher la texture sur le rendu
+        SDL_RenderCopy(renderer, pdvtexture, NULL, &pdv);
         // Mise à jour de l'affichage
         SDL_RenderPresent(renderer);
 
@@ -401,5 +412,9 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
     }
 
     // Libération des textures
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texturetexte);
     SDL_DestroyTexture(texture);
+    TTF_CloseFont(font);
+    TTF_Quit();
 }
