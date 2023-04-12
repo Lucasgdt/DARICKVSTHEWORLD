@@ -291,7 +291,7 @@ quit:
 int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
   // Initialisation de SDL_ttf
   TTF_Init();
-
+  printf("Tout en haut de ecran fin \n");
   SDL_Renderer * renderer = NULL;
   SDL_Texture *screenSurface = NULL;
   SDL_Texture *quitButtonTexture = NULL;
@@ -316,7 +316,6 @@ int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
     goto quit;
   }
   screenSurface = SDL_GetWindowSurface(window);
-
   background = IMG_LoadTexture(renderer,"ressources/Menu/Menu_Fin/backgroundfin.png");
     if (background == NULL) {
         printf("Unable to load image %s! SDL Error: %s\n", "ressources/Menu/Menu_Fin/backgroundfin.png", SDL_GetError());
@@ -335,7 +334,6 @@ int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
         printf("Unable to load image %s! SDL Error: %s\n", "ressources/Menu/Menu_Fin/QuitterFin.png", SDL_GetError());
         goto quit;
   }
-
 	// Bouton jouer
 
   playButtonTexture = IMG_LoadTexture(renderer,"ressources/Menu/Menu_Fin/JouerFin.png");
@@ -349,13 +347,8 @@ int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
         printf("Unable to load image %s! SDL Error: %s\n", "ressources/Menu/Menu_principal/Bouton/Jouer.png", SDL_GetError());
         goto quit;
   }
-
-  SDL_GetWindowSize(window, &w, &h);
-  SDL_Rect dest = {0, 0, w, h};
-  SDL_BlitScaled(background, NULL, screenSurface, &dest);
-  SDL_BlitScaled(quitButtonTexture, NULL, screenSurface, &quitButton);
-	SDL_BlitScaled(playButtonTexture, NULL, screenSurface, &playButton);
   SDL_UpdateWindowSurface(window);
+
 
   TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
   SDL_Color color = {255, 255, 255, 255}; // Définir la couleur du texte
@@ -363,7 +356,6 @@ int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
   sprintf(str,"Vous etes mort a la salle %d et vous avez tuer %d monstres",*nbsalle, *kill);
   SDL_Surface* surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte
   SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface); // Créer une texture à partir de la surface
-
   while (!quit) {
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {

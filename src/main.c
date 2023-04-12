@@ -42,14 +42,12 @@ int main(int argc, char *argv[]){
         }
         joueur(window, &nbsalle, &kill);
         fin = ecran_fin(window, &nbsalle, &kill);
-        printf("je sors \n");
     }
     else{
         goto quit;
     }
 
     while(fin == 1){
-        printf("dans while \n");
         joueur(window, &nbsalle, &kill);
         fin = ecran_fin(window, &nbsalle, &kill);
     }
