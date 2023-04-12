@@ -18,7 +18,92 @@
 #include "action.h"
 #include "menu.h"
 
+/**
+ * @brief Permet de mettre en pause le jeu, afin de soit reprendre le jeu, soit sauvegarder, soit quitter le jeu
+ * 
+ * @param renderer 
+ * @return int 
+ */
 
+int pause(SDL_Renderer * renderer){
+  printf("Pause \n");
+  int pressed = 1;
+  int x, y;
+  SDL_Event event;
+  SDL_Texture * EchapTexture = IMG_LoadTexture(renderer, "ressources/Menu/echapback.png");
+  SDL_Rect Echap;
+  SDL_Texture * playtexture = IMG_LoadTexture(renderer, "ressources/Menu/Menu_principal/Bouton/Jouer.png");
+  SDL_Rect play;
+  SDL_Texture * quittexture = IMG_LoadTexture(renderer, "ressources/Menu/Menu_principal/Bouton/Quitter.png");
+  SDL_Rect quit;
+  SDL_Texture * savetexture = IMG_LoadTexture(renderer, "ressources/Menu/Menu_principal/Bouton/Save.png");
+  SDL_Rect save;
+
+  EchapTexture = IMG_LoadTexture(renderer, "ressources/Menu/echapback.png");
+  if (!EchapTexture) {
+    printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
+    return 0;
+  }
+  Echap.h = 720;
+  Echap.w = 400;
+  Echap.x = 400;
+  Echap.y = 0;
+
+  play.h = 150;
+  play.w = 350;
+  play.x = 425;
+  play.y = 100;
+
+  save.h = 150;
+  save.w = 350;
+  save.x = 425;
+  save.y = 300;
+
+  quit.h = 150;
+  quit.w = 350;
+  quit.x = 425;
+  quit.y = 500;
+
+  while(pressed){
+    SDL_PollEvent(&event);
+    switch (event.type){
+      case SDL_KEYDOWN:
+        switch (event.key.keysym.sym)
+        {
+        case SDLK_ESCAPE:
+                pressed = 0;
+                break;
+          default:
+                break;
+        }
+      case SDL_MOUSEBUTTONUP:
+         if (event.button.button == SDL_BUTTON_LEFT){
+                SDL_GetMouseState(&x, &y);
+                if (x >= play.x && x  && y >= play.y && y <= play.y + play.h){
+                  return 1;
+                }
+                if (x >= save.x && x  && y >= save.y && y <= save.y + save.h){
+                  printf("Normalement ça save \n");
+                  return 2;
+                }
+                if (x >= quit.x && x  && y >= quit.y && y <= quit.y + quit.h){
+                  return 0;
+                }
+        break;
+        }
+
+    }
+    SDL_RenderCopy(renderer, EchapTexture, NULL, &Echap);
+    SDL_RenderCopy(renderer, playtexture, NULL, &play);
+    SDL_RenderCopy(renderer, savetexture, NULL, &save);
+    SDL_RenderCopy(renderer, quittexture, NULL, &quit);
+    SDL_RenderPresent(renderer);
+  }
+  SDL_DestroyTexture(EchapTexture);
+  SDL_DestroyTexture(playtexture);
+  SDL_DestroyTexture(savetexture);
+  SDL_DestroyTexture(quittexture);
+}
 
 /**
  * @brief Fonction permettant de gérer tout le jeu, c'est à dire, initialisation du joueur + mob + changement de salle etc ...
@@ -195,6 +280,12 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
           case SDLK_i:
             afficher_inv_SDL(renderer,inventaire,inv , inventaire_joueur, screenSurface, window, joueur_stat);
             break;
+          case SDLK_ESCAPE:
+            if(pause(renderer) == 0){
+              goto quit;
+            }
+
+            break;
         }
         break;
       case SDL_KEYUP:
@@ -315,7 +406,7 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   SDL_RenderPresent(renderer);
   }
 
-  
+
 quit:
   SDL_FreeSurface(surface);
   SDL_DestroyTexture(texture);
