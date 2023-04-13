@@ -525,3 +525,200 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
     TTF_CloseFont(font);
     TTF_Quit();
 }
+
+
+int boutique_aff(SDL_Renderer * renderer, SDL_Texture * boutique_sdl, SDL_Rect boutique, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){
+    // Initialisation de SDL_ttf
+    TTF_Init();
+    TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
+    SDL_Color color = {255, 255, 255, 255}; // Définir la couleur du texte
+
+    char str1[32];
+    sprintf(str1,"Vos piece : %d",perso->argent);
+    SDL_Surface* surface1 = TTF_RenderText_Solid(font, str1, color); // Créer une surface contenant le texte
+    SDL_Texture* texture1 = SDL_CreateTextureFromSurface(renderer, surface1); // Créer une texture à partir de la surface
+
+
+
+
+
+    int pressed = 1;
+    int x, y;
+    SDL_Event event;
+
+    objet_t * obj1 = create_objet();
+    objet_t * obj2 = create_objet();
+    objet_t * obj3 = create_objet();
+
+    // On genere un obj au pif
+
+    int somme_taux = 0;
+    // Calcule la somme des taux de chaque objet dans la liste
+    for (int i = 1; i < 15; i++) {
+        somme_taux += liste_objets[i].taux;
+    }
+    // Génère un nombre aléatoire entre 1 et la somme des taux
+    int choix1 = rand()%somme_taux + 1;
+    int choix2 = rand()%somme_taux + 1;
+    int choix3 = rand()%somme_taux + 1;
+    int prix[3];
+    for (int i = 0; i<3; i++){
+        prix[i] = rand()%50;
+    }
+    // Parcourt la liste des objets jusqu'à atteindre le taux correspondant au nombre aléatoire
+    for (int i = 1; i < 16; i++) {
+        choix1 -= liste_objets[i].taux;
+        if (choix1 <= 0) {
+            obj1->id = liste_objets[i].id;
+            break;
+        }
+    }
+    // Parcourt la liste des objets jusqu'à atteindre le taux correspondant au nombre aléatoire
+    for (int i = 1; i < 16; i++) {
+        choix2 -= liste_objets[i].taux;
+        if (choix2 <= 0) {
+            obj2->id = liste_objets[i].id;
+            break;
+        }
+    }
+    // Parcourt la liste des objets jusqu'à atteindre le taux correspondant au nombre aléatoire
+    for (int i = 1; i < 16; i++) {
+        choix3 -= liste_objets[i].taux;
+        if (choix3 <= 0) {
+            obj3->id = liste_objets[i].id;
+            break;
+        }
+    }
+    // A finir
+    Sprite * case_sdl[3];
+    for (int i = 0; i<3; i++){
+        case_sdl[i] = malloc(sizeof(texture_t));
+        case_sdl[i]->position.h = 150;
+        case_sdl[i]->position.w = 150;
+        case_sdl[i]->position.y = 440;
+    }
+    case_sdl[0]->position.x = 250;
+    case_sdl[0]->texture = IMG_LoadTexture(renderer, liste_objets[obj1->id-1].texture);
+    case_sdl[1]->position.x = 580;
+    case_sdl[1]->texture = IMG_LoadTexture(renderer, liste_objets[obj2->id-1].texture);
+    case_sdl[2]->position.x = 880;
+    case_sdl[2]->texture = IMG_LoadTexture(renderer, liste_objets[obj3->id-1].texture);
+
+    char str2[32];
+    sprintf(str2,"Prix : %d",prix[0]);
+    SDL_Surface* surface2 = TTF_RenderText_Solid(font, str2, color); // Créer une surface contenant le texte
+    SDL_Texture* texture2 = SDL_CreateTextureFromSurface(renderer, surface2); // Créer une texture à partir de la surface
+
+    char str3[32];
+    sprintf(str3,"Prix : %d",prix[1]);
+    SDL_Surface* surface3 = TTF_RenderText_Solid(font, str3, color); // Créer une surface contenant le texte
+    SDL_Texture* texture3 = SDL_CreateTextureFromSurface(renderer, surface3); // Créer une texture à partir de la surface
+
+    char str4[32];
+    sprintf(str4,"Prix : %d",prix[2]);
+    SDL_Surface* surface4 = TTF_RenderText_Solid(font, str4, color); // Créer une surface contenant le texte
+    SDL_Texture* texture4 = SDL_CreateTextureFromSurface(renderer, surface4); // Créer une texture à partir de la surface
+
+    while (pressed){
+        SDL_PollEvent(&event);
+        switch (event.type)
+        {
+        case SDL_KEYDOWN:
+            switch (event.key.keysym.sym)
+            {
+            case SDLK_ESCAPE:
+                pressed = 0;
+                break;
+
+            default:
+                break;
+            }
+            break;
+        case SDL_MOUSEBUTTONUP:
+        if (event.button.button == SDL_BUTTON_LEFT){
+                SDL_GetMouseState(&x, &y);
+                for (int i = 0; i<3; i++){
+                    if (x >= case_sdl[i]->position.x && x <= case_sdl[i]->position.x + case_sdl[i]->position.w && y >= case_sdl[i]->position.y && y <= case_sdl[i]->position.y + case_sdl[i]->position.h){
+                            if(inv_full(joueur)==0){
+                                printf("Inventaire plein veillez supprimer un objet de votre inventaire \n");
+                            }
+                            else{
+                                if (i == 0){
+                                    if(perso->argent >= prix[i]){
+                                        printf("Premiere case \n");
+                                        perso->argent -= prix[i];
+                                        loot(joueur, obj1);
+                                        case_sdl[i]->texture = NULL;
+                                    }
+                                    else{
+                                        printf("Pas assez d'argent ! \n");
+                                    }
+                                }
+                                if(i == 1){
+                                    if(perso->argent >= prix[i]){
+                                        printf("2 case \n");
+                                        perso->argent -= prix[i];
+                                        loot(joueur, obj2);
+                                        case_sdl[i]->texture = NULL;
+                                    }
+                                    else{
+                                        printf("Pas assez d'argent ! \n");
+                                    }
+                                }
+                                if(i == 2){
+                                    if(perso->argent >= prix[i]){
+                                        printf("3 case \n");
+                                        perso->argent -= prix[i];
+                                        loot(joueur, obj3);
+                                        case_sdl[i]->texture = NULL;
+                                    }
+                                    else{
+                                        printf("Pas assez d'argent ! \n");
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+        default:
+            break;
+        }
+        SDL_RenderClear(renderer);
+
+        SDL_SetRenderDrawColor(renderer, 0x4c, 0x30, 0x24, 0xFF);
+        SDL_RenderCopy(renderer, boutique_sdl, NULL, &boutique);
+        for(int i = 0; i<3; i++){
+            SDL_RenderCopy(renderer, case_sdl[i]->texture, NULL, &case_sdl[i]->position);
+        }
+        SDL_RenderCopy(renderer, texture1, NULL, &(SDL_Rect){250, 300, surface1->w, surface1->h}); // Afficher la texture sur le rendu
+        SDL_RenderCopy(renderer, texture2, NULL, &(SDL_Rect){230, 630, surface1->w, surface2->h}); // Afficher la texture sur le rendu
+        SDL_RenderCopy(renderer, texture3, NULL, &(SDL_Rect){550, 630, surface1->w, surface3->h}); // Afficher la texture sur le rendu
+        SDL_RenderCopy(renderer, texture4, NULL, &(SDL_Rect){850, 630, surface1->w, surface4->h}); // Afficher la texture sur le rendu
+        SDL_RenderPresent(renderer);
+
+    }
+    for (int i = 0; i<3; i++){
+        free(case_sdl[i]);
+        SDL_DestroyTexture(case_sdl[i]);
+        case_sdl[i]=NULL;
+    }
+    SDL_FreeSurface(surface1);
+    SDL_DestroyTexture(texture1);
+    SDL_FreeSurface(surface2);
+    SDL_DestroyTexture(texture2);
+    SDL_FreeSurface(surface3);
+    SDL_DestroyTexture(texture3);
+    SDL_FreeSurface(surface4);
+    SDL_DestroyTexture(texture4);
+    free(obj1);
+    obj1=NULL;
+    free(obj2);
+    obj2=NULL;
+    free(obj2);
+    obj2=NULL;
+
+    TTF_CloseFont(font);
+    TTF_Quit();
+}

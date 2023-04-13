@@ -18,6 +18,9 @@
 #include "action.h"
 #include "menu.h"
 
+
+
+
 /**
  * @brief Permet de mettre en pause le jeu, afin de soit reprendre le jeu, soit sauvegarder, soit quitter le jeu
  * 
@@ -131,6 +134,8 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   SDL_Texture * inventaire = NULL;
   SDL_Texture * pdvtexture = NULL;
   SDL_Rect pdv;
+  SDL_Texture * boutique_sdl = NULL;
+  SDL_Rect boutique;
 
 
   // Calcule de période
@@ -139,7 +144,7 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   int milliPeriod = (int)period;
   int sleep;
   int calcul[TAILLE_LISTE_MOB];
-
+  int calcul_shop;
 
 
   SDL_Event event;
@@ -194,6 +199,12 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
       printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
       goto quit;
     }
+  
+  boutique_sdl = IMG_LoadTexture(renderer, "ressources/Shop/interface.png");
+    if (!boutique_sdl) {
+      printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
+      goto quit;
+    }
   // Créer la texture de Darick
   skin = textureright;
 
@@ -202,7 +213,10 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   inv.w = 1280;
   inv.h = 720;
 
-
+  boutique.x = 0;
+  boutique.y = 0;
+  boutique.w = 1280;
+  boutique.h = 720;
 
   // Créer la map
   Index_t map;
@@ -283,8 +297,9 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
             vx = speed;
             break;
           case SDLK_x:
-            printf("Placement X : %d Y : %d \n",player->position.x, player->position.y);
-            printf("Placement2 X : %d Y : %d", shop_sdl->position.x, shop_sdl->position.y);
+            if (calcul_shop <= 100){
+              boutique_aff(renderer,boutique_sdl,boutique , inventaire_joueur, screenSurface, window, joueur_stat);
+            }
             break;
           case SDLK_i:
             afficher_inv_SDL(renderer,inventaire,inv , inventaire_joueur, screenSurface, window, joueur_stat);
@@ -390,6 +405,7 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
     
     if((*nbsalle)%5==0){
       // Delete sprite shop
+
       mob_t * boss = create_mob();
       boss->id = 4;
       ajuste(boss);
@@ -456,6 +472,7 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
     AfficherSprite(shop_sdl, renderer, shop_sdl->texture);
   }
 
+  calcul_shop = sqrt(pow(player->position.x - shop_sdl->position.x, 2) + pow(player->position.y - shop_sdl->position.y, 2));
 
   sprintf(str,"PV : %d/%d",joueur_stat->pv, joueur_stat->pv_max);
   surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte

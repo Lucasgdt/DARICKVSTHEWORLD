@@ -43,4 +43,6 @@ void loot_mob(inventaire_t * inventaire, personnage_t * personnage);
 
 int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect inv, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso);
 
+int boutique_aff(SDL_Renderer * renderer, SDL_Texture * boutique_sdl, SDL_Rect boutique, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso);
+
 #endif
