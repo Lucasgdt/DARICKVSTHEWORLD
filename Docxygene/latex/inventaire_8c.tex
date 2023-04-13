@@ -1,0 +1,325 @@
+\hypertarget{inventaire_8c}{}\doxysection{Référence du fichier inventaire.\+c}
+\label{inventaire_8c}\index{inventaire.c@{inventaire.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}inventaire.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}outil.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mob.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+objet\+\_\+t $\ast$ \mbox{\hyperlink{inventaire_8c_ab9d254e0954d2a092f59e67640084b2b}{create\+\_\+objet}} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}initialiser la création d\textquotesingle{}un objet n\textquotesingle{}ayant aucune statistique. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inventaire_8c_a5ea753255d67c72eb3f4de57aecb9560}{inventaire\+\_\+nb\+\_\+lire}} (inventaire\+\_\+t $\ast$const inventaire)
+\begin{DoxyCompactList}\small\item\em Fonction uniquement pour aider, sert uniquement à lire la taille d\textquotesingle{}un inventaire. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{inventaire_8c_a44a2e42cc20746ad971b6fd1bebb6796}{inventaire\+\_\+elem\+\_\+lire}} (inventaire\+\_\+t $\ast$const inventaire, const int ind)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de lire la case d\textquotesingle{}un inventaire, sert uniquement pour aider également. \end{DoxyCompactList}\item 
+inventaire\+\_\+t $\ast$ \mbox{\hyperlink{inventaire_8c_a67ab2fd8abb6203f2578238a54b40af3}{create\+\_\+inventaire}} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant de créer un inventaire, d\textquotesingle{}initialiser un inventaire. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inventaire_8c_ac535c62a1339c4e861a95af10ea0dd52}{inv\+\_\+full}} (inventaire\+\_\+t $\ast$personnage)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de vérifier si un inventaire est rempli. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inventaire_8c_ac64e97cb363141bad3d470ba87998166}{loot}} (inventaire\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, objet\+\_\+t $\ast$obj)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de donner un objet à un joueur en le placant dans son inventaire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inventaire_8c_a53450428d39317d9d9837ac426731791}{afficher\+\_\+inventaire}} (inventaire\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}})
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher la liste complète du contenu de l\textquotesingle{}inventaire, uniquement dans la console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inventaire_8c_a9423aba480b4fd2577b937e80243378c}{free\+\_\+objet}} (objet\+\_\+t $\ast$obj, texture\+\_\+t $\ast$obj\+\_\+sdl)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de supprimer un objet en mémoire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inventaire_8c_a1f834220d0afab6e38b344742aaba754}{supprimer\+\_\+objet\+\_\+inv}} (inventaire\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, objet\+\_\+t $\ast$obj, int i, texture\+\_\+t $\ast$obj\+\_\+sdl)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de supprimer un objet de l\textquotesingle{}inventaire du joueur à une case précise grâce à l\textquotesingle{}indice i. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inventaire_8c_a6965633cb86fbe6b73c394ee1634b3b5}{loot\+\_\+mob}} (inventaire\+\_\+t $\ast$inventaire, personnage\+\_\+t $\ast$personnage)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de donnée aléatoirement un objet provenant de la liste des objets de la base de donnée ayant en plus, le calcul en prenant compte le pourcentage de chance d\textquotesingle{}obtenir un objet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inventaire_8c_aaf4ac24457d774b8d5c4d54f623af2b1}{afficher\+\_\+inv\+\_\+\+SDL}} (SDL\+\_\+\+Renderer $\ast$renderer, SDL\+\_\+\+Texture $\ast$inventaire, SDL\+\_\+\+Rect inv, inventaire\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, SDL\+\_\+\+Surface $\ast$screen\+Surface, SDL\+\_\+\+Window $\ast$window, personnage\+\_\+t $\ast$perso)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher tout l\textquotesingle{}inventaire et d\textquotesingle{}agir avec tout en SDL, donc en liant visuel, et statistique. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inventaire_8c_a99f52878ddbff1b3068420bd900d6817}{boutique\+\_\+aff}} (SDL\+\_\+\+Renderer $\ast$renderer, SDL\+\_\+\+Texture $\ast$boutique\+\_\+sdl, SDL\+\_\+\+Rect boutique, inventaire\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, SDL\+\_\+\+Surface $\ast$screen\+Surface, SDL\+\_\+\+Window $\ast$window, personnage\+\_\+t $\ast$perso)
+\begin{DoxyCompactList}\small\item\em Permet d\textquotesingle{}ouvrir la boutique, de l\textquotesingle{}afficher, et d\textquotesingle{}intéragir avec lui, en générant des objets et un prix aléatoire. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+objet\+\_\+t \mbox{\hyperlink{inventaire_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}{liste\+\_\+objets}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Liste des objets présent dans le jeu. C\textquotesingle{}est une base de donnée des objets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{inventaire_8c_aaf4ac24457d774b8d5c4d54f623af2b1}\label{inventaire_8c_aaf4ac24457d774b8d5c4d54f623af2b1}} 
+\index{inventaire.c@{inventaire.c}!afficher\_inv\_SDL@{afficher\_inv\_SDL}}
+\index{afficher\_inv\_SDL@{afficher\_inv\_SDL}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_inv\_SDL()}{afficher\_inv\_SDL()}}
+{\footnotesize\ttfamily int afficher\+\_\+inv\+\_\+\+SDL (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{SDL\+\_\+\+Texture $\ast$}]{inventaire,  }\item[{SDL\+\_\+\+Rect}]{inv,  }\item[{inventaire\+\_\+t $\ast$}]{joueur,  }\item[{SDL\+\_\+\+Surface $\ast$}]{screen\+Surface,  }\item[{SDL\+\_\+\+Window $\ast$}]{window,  }\item[{personnage\+\_\+t $\ast$}]{perso }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher tout l\textquotesingle{}inventaire et d\textquotesingle{}agir avec tout en SDL, donc en liant visuel, et statistique. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & \\
+\hline
+{\em inventaire} & \\
+\hline
+{\em inv} & \\
+\hline
+{\em joueur} & \\
+\hline
+{\em screen\+Surface} & \\
+\hline
+{\em window} & \\
+\hline
+{\em perso} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_a53450428d39317d9d9837ac426731791}\label{inventaire_8c_a53450428d39317d9d9837ac426731791}} 
+\index{inventaire.c@{inventaire.c}!afficher\_inventaire@{afficher\_inventaire}}
+\index{afficher\_inventaire@{afficher\_inventaire}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_inventaire()}{afficher\_inventaire()}}
+{\footnotesize\ttfamily void afficher\+\_\+inventaire (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$}]{joueur }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher la liste complète du contenu de l\textquotesingle{}inventaire, uniquement dans la console. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em joueur} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{inventaire_8c_a99f52878ddbff1b3068420bd900d6817}\label{inventaire_8c_a99f52878ddbff1b3068420bd900d6817}} 
+\index{inventaire.c@{inventaire.c}!boutique\_aff@{boutique\_aff}}
+\index{boutique\_aff@{boutique\_aff}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{boutique\_aff()}{boutique\_aff()}}
+{\footnotesize\ttfamily int boutique\+\_\+aff (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{SDL\+\_\+\+Texture $\ast$}]{boutique\+\_\+sdl,  }\item[{SDL\+\_\+\+Rect}]{boutique,  }\item[{inventaire\+\_\+t $\ast$}]{joueur,  }\item[{SDL\+\_\+\+Surface $\ast$}]{screen\+Surface,  }\item[{SDL\+\_\+\+Window $\ast$}]{window,  }\item[{personnage\+\_\+t $\ast$}]{perso }\end{DoxyParamCaption})}
+
+
+
+Permet d\textquotesingle{}ouvrir la boutique, de l\textquotesingle{}afficher, et d\textquotesingle{}intéragir avec lui, en générant des objets et un prix aléatoire. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & \\
+\hline
+{\em boutique\+\_\+sdl} & \\
+\hline
+{\em boutique} & \\
+\hline
+{\em joueur} & \\
+\hline
+{\em screen\+Surface} & \\
+\hline
+{\em window} & \\
+\hline
+{\em perso} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_a67ab2fd8abb6203f2578238a54b40af3}\label{inventaire_8c_a67ab2fd8abb6203f2578238a54b40af3}} 
+\index{inventaire.c@{inventaire.c}!create\_inventaire@{create\_inventaire}}
+\index{create\_inventaire@{create\_inventaire}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{create\_inventaire()}{create\_inventaire()}}
+{\footnotesize\ttfamily inventaire\+\_\+t $\ast$ create\+\_\+inventaire (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de créer un inventaire, d\textquotesingle{}initialiser un inventaire. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Renvoie}
+inventaire\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_ab9d254e0954d2a092f59e67640084b2b}\label{inventaire_8c_ab9d254e0954d2a092f59e67640084b2b}} 
+\index{inventaire.c@{inventaire.c}!create\_objet@{create\_objet}}
+\index{create\_objet@{create\_objet}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{create\_objet()}{create\_objet()}}
+{\footnotesize\ttfamily objet\+\_\+t $\ast$ create\+\_\+objet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}initialiser la création d\textquotesingle{}un objet n\textquotesingle{}ayant aucune statistique. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Renvoie}
+objet\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_a9423aba480b4fd2577b937e80243378c}\label{inventaire_8c_a9423aba480b4fd2577b937e80243378c}} 
+\index{inventaire.c@{inventaire.c}!free\_objet@{free\_objet}}
+\index{free\_objet@{free\_objet}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{free\_objet()}{free\_objet()}}
+{\footnotesize\ttfamily void free\+\_\+objet (\begin{DoxyParamCaption}\item[{objet\+\_\+t $\ast$}]{obj,  }\item[{texture\+\_\+t $\ast$}]{obj\+\_\+sdl }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de supprimer un objet en mémoire. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em obj} & \\
+\hline
+{\em obj\+\_\+sdl} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{inventaire_8c_ac535c62a1339c4e861a95af10ea0dd52}\label{inventaire_8c_ac535c62a1339c4e861a95af10ea0dd52}} 
+\index{inventaire.c@{inventaire.c}!inv\_full@{inv\_full}}
+\index{inv\_full@{inv\_full}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{inv\_full()}{inv\_full()}}
+{\footnotesize\ttfamily int inv\+\_\+full (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$}]{personnage }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de vérifier si un inventaire est rempli. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em personnage} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_a44a2e42cc20746ad971b6fd1bebb6796}\label{inventaire_8c_a44a2e42cc20746ad971b6fd1bebb6796}} 
+\index{inventaire.c@{inventaire.c}!inventaire\_elem\_lire@{inventaire\_elem\_lire}}
+\index{inventaire\_elem\_lire@{inventaire\_elem\_lire}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{inventaire\_elem\_lire()}{inventaire\_elem\_lire()}}
+{\footnotesize\ttfamily void $\ast$ inventaire\+\_\+elem\+\_\+lire (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$const}]{inventaire,  }\item[{const int}]{ind }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de lire la case d\textquotesingle{}un inventaire, sert uniquement pour aider également. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em inventaire} & \\
+\hline
+{\em ind} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_a5ea753255d67c72eb3f4de57aecb9560}\label{inventaire_8c_a5ea753255d67c72eb3f4de57aecb9560}} 
+\index{inventaire.c@{inventaire.c}!inventaire\_nb\_lire@{inventaire\_nb\_lire}}
+\index{inventaire\_nb\_lire@{inventaire\_nb\_lire}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{inventaire\_nb\_lire()}{inventaire\_nb\_lire()}}
+{\footnotesize\ttfamily int inventaire\+\_\+nb\+\_\+lire (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$const}]{inventaire }\end{DoxyParamCaption})}
+
+
+
+Fonction uniquement pour aider, sert uniquement à lire la taille d\textquotesingle{}un inventaire. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em inventaire} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{inventaire_8c_ac64e97cb363141bad3d470ba87998166}\label{inventaire_8c_ac64e97cb363141bad3d470ba87998166}} 
+\index{inventaire.c@{inventaire.c}!loot@{loot}}
+\index{loot@{loot}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{loot()}{loot()}}
+{\footnotesize\ttfamily void loot (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$}]{joueur,  }\item[{objet\+\_\+t $\ast$}]{obj }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de donner un objet à un joueur en le placant dans son inventaire. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em joueur} & \\
+\hline
+{\em obj} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{inventaire_8c_a6965633cb86fbe6b73c394ee1634b3b5}\label{inventaire_8c_a6965633cb86fbe6b73c394ee1634b3b5}} 
+\index{inventaire.c@{inventaire.c}!loot\_mob@{loot\_mob}}
+\index{loot\_mob@{loot\_mob}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{loot\_mob()}{loot\_mob()}}
+{\footnotesize\ttfamily void loot\+\_\+mob (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$}]{inventaire,  }\item[{personnage\+\_\+t $\ast$}]{personnage }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de donnée aléatoirement un objet provenant de la liste des objets de la base de donnée ayant en plus, le calcul en prenant compte le pourcentage de chance d\textquotesingle{}obtenir un objet. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em inventaire} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{inventaire_8c_a1f834220d0afab6e38b344742aaba754}\label{inventaire_8c_a1f834220d0afab6e38b344742aaba754}} 
+\index{inventaire.c@{inventaire.c}!supprimer\_objet\_inv@{supprimer\_objet\_inv}}
+\index{supprimer\_objet\_inv@{supprimer\_objet\_inv}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{supprimer\_objet\_inv()}{supprimer\_objet\_inv()}}
+{\footnotesize\ttfamily void supprimer\+\_\+objet\+\_\+inv (\begin{DoxyParamCaption}\item[{inventaire\+\_\+t $\ast$}]{joueur,  }\item[{objet\+\_\+t $\ast$}]{obj,  }\item[{int}]{i,  }\item[{texture\+\_\+t $\ast$}]{obj\+\_\+sdl }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de supprimer un objet de l\textquotesingle{}inventaire du joueur à une case précise grâce à l\textquotesingle{}indice i. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em joueur} & \\
+\hline
+{\em obj} & \\
+\hline
+{\em i} & \\
+\hline
+{\em obj\+\_\+sdl} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{inventaire_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}\label{inventaire_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}} 
+\index{inventaire.c@{inventaire.c}!liste\_objets@{liste\_objets}}
+\index{liste\_objets@{liste\_objets}!inventaire.c@{inventaire.c}}
+\doxysubsubsection{\texorpdfstring{liste\_objets}{liste\_objets}}
+{\footnotesize\ttfamily objet\+\_\+t liste\+\_\+objets\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Liste des objets présent dans le jeu. C\textquotesingle{}est une base de donnée des objets. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}

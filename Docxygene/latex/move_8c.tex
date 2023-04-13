@@ -1,0 +1,450 @@
+\hypertarget{move_8c}{}\doxysection{Référence du fichier move.\+c}
+\label{move_8c}\index{move.c@{move.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mapstruct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}environnement.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}camera.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}move.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{move_8c_a3af35b2f3ecf099e959f98d3aaa558a5}{SGN}}(X)~(((X)==0)?(0)\+:(((X)$<$0)?(-\/1)\+:(1)))
+\item 
+\#define \mbox{\hyperlink{move_8c_adefab4344518e9d35a80d87c20c0fa48}{ABS}}(X)~((((X)$<$0)?(-\/(X))\+:(X)))
+\item 
+\#define \mbox{\hyperlink{move_8c_ae10ccb3508eda6543b36015cef5c8d5e}{AGGRO\+\_\+\+DISTANCE}}~300
+\end{DoxyCompactItemize}
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+Sprite $\ast$ \mbox{\hyperlink{move_8c_a726352d7d15c0a93a7d69f1f1b1ee683}{Initialiser\+Sprite}} (int x, int y, int w, int h, Map\+\_\+t $\ast$map)
+\begin{DoxyCompactList}\small\item\em Initialise un Sprite dans la map à une position donné \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_a532ad8ea86942bbc811b2fbc82fddf0f}{Libere\+Sprite}} (Sprite $\ast$sp)
+\begin{DoxyCompactList}\small\item\em Libère l\textquotesingle{}espace du Sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_addadb7d838252a3805f91517d3ae7a8d}{Afficher\+Sprite}} (Sprite $\ast$perso, SDL\+\_\+\+Renderer $\ast$renderer, SDL\+\_\+\+Texture $\ast$skin)
+\begin{DoxyCompactList}\small\item\em Affiche le sprite en fonction du Scrolling de la caméra. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move_8c_ad0938cecb5449f4b93b718643c746516}{Collision\+Decor}} (Sprite $\ast$perso, SDL\+\_\+\+Rect test)
+\begin{DoxyCompactList}\small\item\em Vérifie toute les cases à proximité du joueur pour localiser les murs ou la porte de sortie. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move_8c_a75aa6342b3d5192493d1daef6133be11}{Essai\+Deplacement}} (Sprite $\ast$perso, int vx, int vy)
+\begin{DoxyCompactList}\small\item\em Essaie de se déplacer vers le point d\textquotesingle{}arriver, si il y a un mur alors on affine le déplacement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_aef762179d867febc430bff4af2267885}{Affine}} (Sprite $\ast$perso, int vx, int vy)
+\begin{DoxyCompactList}\small\item\em Affine le déplacement pour se rapprocher au plus proche du mur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move_8c_ac34d3c8ac9dec7b99115100381c896e6}{Deplace\+Sprite}} (Sprite $\ast$perso, int vx, int vy)
+\begin{DoxyCompactList}\small\item\em Déplace le Sprite en suivant le vecteur donné \end{DoxyCompactList}\item 
+SDL\+\_\+\+Point \mbox{\hyperlink{move_8c_a71a6dc8ba80859446e1bad537448e3fb}{placement}} (Sprite $\ast$mob)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de placer les mobs sur la carte, plus particulièrement dans la zone de jeu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_afbda495c68e149dffb2d2c6c82fc04ee}{find\+\_\+end}} (Index\+\_\+t map, int $\ast$endX, int $\ast$endY)
+\begin{DoxyCompactList}\small\item\em Permet de trouver les coordonnées de la zone de sortie. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Point \mbox{\hyperlink{move_8c_a598c7f26f78d4d2dd6c4e409fd124024}{placement\+\_\+shop}} (Sprite $\ast$shop, SDL\+\_\+\+Point end)
+\begin{DoxyCompactList}\small\item\em Permet de place le PNJ à côté de la zone de sortie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_a7e5d81c4319c2dc09b43f2fea0c937c9}{init\+\_\+mob}} (Map\+\_\+t $\ast$map, SDL\+\_\+\+Renderer $\ast$renderer, mob\+\_\+liste\+\_\+t $\ast$mob\+\_\+liste, Sprite $\ast$mob\+\_\+sdl\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_a251195cd58c34bbb5536ff42c7e301c6}{free\+\_\+mob\+\_\+sdl}} (Sprite $\ast$mob\+\_\+sdl\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fonction permettant de supprimer complètement un mob dans une liste de Sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_aa17f8886b4c5aa2b94a11cf4a269108f}{deplacement\+\_\+mob\+V2}} (Sprite $\ast$mob\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]}, int i)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de faire déplacer un mob aléatoirement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_a3bf510eb03577820a4a8858707aecd8b}{mob\+\_\+aggro}} (Sprite $\ast$mob\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]}, int i, SDL\+\_\+\+Rect dest\+Rect)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de faire suivre un mob vers un joueur si le mob est assez proche du joueur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{move_8c_a2106fd41ef0d2198cdff84082843891c}{fonction\+\_\+calcul}} (SDL\+\_\+\+Rect dest\+Rect, Sprite $\ast$mob\+\_\+sdl\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]}, mob\+\_\+liste\+\_\+t $\ast$mob\+\_\+liste, int i)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de gérer la réaction d\textquotesingle{}un mob en vers en joueur à l\textquotesingle{}aide d\textquotesingle{}un calcul qui défini la distance entre un mob et un joueur. Soit le mob à un déplacement aléatoire, soit il suit le joueur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{move_8c_a44b3df4666bf4feac5d8af876d9d404f}{anim}} (SDL\+\_\+\+Renderer $\ast$renderer, Sprite $\ast$skin, personnage\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, Sprite $\ast$mob\+\_\+sdl\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]}, Map\+\_\+t $\ast$map, SDL\+\_\+\+Texture $\ast$pdvtexture, SDL\+\_\+\+Rect pdv, SDL\+\_\+\+Texture $\ast$shop\+\_\+sdl, SDL\+\_\+\+Rect shop)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de faire l\textquotesingle{}animation du joueur lors ce qu\textquotesingle{}il attaque. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des macros}
+\mbox{\Hypertarget{move_8c_adefab4344518e9d35a80d87c20c0fa48}\label{move_8c_adefab4344518e9d35a80d87c20c0fa48}} 
+\index{move.c@{move.c}!ABS@{ABS}}
+\index{ABS@{ABS}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{ABS}{ABS}}
+{\footnotesize\ttfamily \#define ABS(\begin{DoxyParamCaption}\item[{}]{X }\end{DoxyParamCaption})~((((X)$<$0)?(-\/(X))\+:(X)))}
+
+\mbox{\Hypertarget{move_8c_ae10ccb3508eda6543b36015cef5c8d5e}\label{move_8c_ae10ccb3508eda6543b36015cef5c8d5e}} 
+\index{move.c@{move.c}!AGGRO\_DISTANCE@{AGGRO\_DISTANCE}}
+\index{AGGRO\_DISTANCE@{AGGRO\_DISTANCE}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{AGGRO\_DISTANCE}{AGGRO\_DISTANCE}}
+{\footnotesize\ttfamily \#define AGGRO\+\_\+\+DISTANCE~300}
+
+\mbox{\Hypertarget{move_8c_a3af35b2f3ecf099e959f98d3aaa558a5}\label{move_8c_a3af35b2f3ecf099e959f98d3aaa558a5}} 
+\index{move.c@{move.c}!SGN@{SGN}}
+\index{SGN@{SGN}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{SGN}{SGN}}
+{\footnotesize\ttfamily \#define SGN(\begin{DoxyParamCaption}\item[{}]{X }\end{DoxyParamCaption})~(((X)==0)?(0)\+:(((X)$<$0)?(-\/1)\+:(1)))}
+
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{move_8c_addadb7d838252a3805f91517d3ae7a8d}\label{move_8c_addadb7d838252a3805f91517d3ae7a8d}} 
+\index{move.c@{move.c}!AfficherSprite@{AfficherSprite}}
+\index{AfficherSprite@{AfficherSprite}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{AfficherSprite()}{AfficherSprite()}}
+{\footnotesize\ttfamily void Afficher\+Sprite (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{perso,  }\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{SDL\+\_\+\+Texture $\ast$}]{skin }\end{DoxyParamCaption})}
+
+
+
+Affiche le sprite en fonction du Scrolling de la caméra. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em perso} & \\
+\hline
+{\em renderer} & \\
+\hline
+{\em skin} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_aef762179d867febc430bff4af2267885}\label{move_8c_aef762179d867febc430bff4af2267885}} 
+\index{move.c@{move.c}!Affine@{Affine}}
+\index{Affine@{Affine}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{Affine()}{Affine()}}
+{\footnotesize\ttfamily void Affine (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{perso,  }\item[{int}]{vx,  }\item[{int}]{vy }\end{DoxyParamCaption})}
+
+
+
+Affine le déplacement pour se rapprocher au plus proche du mur. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em perso} & \\
+\hline
+{\em vx} & \\
+\hline
+{\em vy} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_a44b3df4666bf4feac5d8af876d9d404f}\label{move_8c_a44b3df4666bf4feac5d8af876d9d404f}} 
+\index{move.c@{move.c}!anim@{anim}}
+\index{anim@{anim}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{anim()}{anim()}}
+{\footnotesize\ttfamily void anim (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{Sprite $\ast$}]{skin,  }\item[{personnage\+\_\+t $\ast$}]{joueur,  }\item[{Sprite $\ast$}]{mob\+\_\+sdl\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]},  }\item[{Map\+\_\+t $\ast$}]{map,  }\item[{SDL\+\_\+\+Texture $\ast$}]{pdvtexture,  }\item[{SDL\+\_\+\+Rect}]{pdv,  }\item[{SDL\+\_\+\+Texture $\ast$}]{shop\+\_\+sdl,  }\item[{SDL\+\_\+\+Rect}]{shop }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de faire l\textquotesingle{}animation du joueur lors ce qu\textquotesingle{}il attaque. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo \& Marwan 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & \\
+\hline
+{\em skin} & \\
+\hline
+{\em joueur} & \\
+\hline
+{\em mob\+\_\+sdl} & \\
+\hline
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_ad0938cecb5449f4b93b718643c746516}\label{move_8c_ad0938cecb5449f4b93b718643c746516}} 
+\index{move.c@{move.c}!CollisionDecor@{CollisionDecor}}
+\index{CollisionDecor@{CollisionDecor}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{CollisionDecor()}{CollisionDecor()}}
+{\footnotesize\ttfamily int Collision\+Decor (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{perso,  }\item[{SDL\+\_\+\+Rect}]{test }\end{DoxyParamCaption})}
+
+
+
+Vérifie toute les cases à proximité du joueur pour localiser les murs ou la porte de sortie. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em perso} & \\
+\hline
+{\em test} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{move_8c_aa17f8886b4c5aa2b94a11cf4a269108f}\label{move_8c_aa17f8886b4c5aa2b94a11cf4a269108f}} 
+\index{move.c@{move.c}!deplacement\_mobV2@{deplacement\_mobV2}}
+\index{deplacement\_mobV2@{deplacement\_mobV2}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{deplacement\_mobV2()}{deplacement\_mobV2()}}
+{\footnotesize\ttfamily void deplacement\+\_\+mob\+V2 (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{mob\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]},  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de faire déplacer un mob aléatoirement. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_ac34d3c8ac9dec7b99115100381c896e6}\label{move_8c_ac34d3c8ac9dec7b99115100381c896e6}} 
+\index{move.c@{move.c}!DeplaceSprite@{DeplaceSprite}}
+\index{DeplaceSprite@{DeplaceSprite}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{DeplaceSprite()}{DeplaceSprite()}}
+{\footnotesize\ttfamily int Deplace\+Sprite (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{perso,  }\item[{int}]{vx,  }\item[{int}]{vy }\end{DoxyParamCaption})}
+
+
+
+Déplace le Sprite en suivant le vecteur donné 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em perso} & \\
+\hline
+{\em vx} & \\
+\hline
+{\em vy} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{move_8c_a75aa6342b3d5192493d1daef6133be11}\label{move_8c_a75aa6342b3d5192493d1daef6133be11}} 
+\index{move.c@{move.c}!EssaiDeplacement@{EssaiDeplacement}}
+\index{EssaiDeplacement@{EssaiDeplacement}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{EssaiDeplacement()}{EssaiDeplacement()}}
+{\footnotesize\ttfamily int Essai\+Deplacement (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{perso,  }\item[{int}]{vx,  }\item[{int}]{vy }\end{DoxyParamCaption})}
+
+
+
+Essaie de se déplacer vers le point d\textquotesingle{}arriver, si il y a un mur alors on affine le déplacement. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em perso} & \\
+\hline
+{\em vx} & \\
+\hline
+{\em vy} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{move_8c_afbda495c68e149dffb2d2c6c82fc04ee}\label{move_8c_afbda495c68e149dffb2d2c6c82fc04ee}} 
+\index{move.c@{move.c}!find\_end@{find\_end}}
+\index{find\_end@{find\_end}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{find\_end()}{find\_end()}}
+{\footnotesize\ttfamily void find\+\_\+end (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map,  }\item[{int $\ast$}]{endX,  }\item[{int $\ast$}]{endY }\end{DoxyParamCaption})}
+
+
+
+Permet de trouver les coordonnées de la zone de sortie. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+{\em endX} & \\
+\hline
+{\em endY} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_a2106fd41ef0d2198cdff84082843891c}\label{move_8c_a2106fd41ef0d2198cdff84082843891c}} 
+\index{move.c@{move.c}!fonction\_calcul@{fonction\_calcul}}
+\index{fonction\_calcul@{fonction\_calcul}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{fonction\_calcul()}{fonction\_calcul()}}
+{\footnotesize\ttfamily int fonction\+\_\+calcul (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Rect}]{dest\+Rect,  }\item[{Sprite $\ast$}]{mob\+\_\+sdl\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]},  }\item[{mob\+\_\+liste\+\_\+t $\ast$}]{mob\+\_\+liste,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de gérer la réaction d\textquotesingle{}un mob en vers en joueur à l\textquotesingle{}aide d\textquotesingle{}un calcul qui défini la distance entre un mob et un joueur. Soit le mob à un déplacement aléatoire, soit il suit le joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em dest\+Rect} & \\
+\hline
+{\em mob\+\_\+sdl} & \\
+\hline
+{\em mob\+\_\+liste} & \\
+\hline
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{move_8c_a251195cd58c34bbb5536ff42c7e301c6}\label{move_8c_a251195cd58c34bbb5536ff42c7e301c6}} 
+\index{move.c@{move.c}!free\_mob\_sdl@{free\_mob\_sdl}}
+\index{free\_mob\_sdl@{free\_mob\_sdl}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{free\_mob\_sdl()}{free\_mob\_sdl()}}
+{\footnotesize\ttfamily void free\+\_\+mob\+\_\+sdl (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{mob\+\_\+sdl\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de supprimer complètement un mob dans une liste de Sprite. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob\+\_\+sdl} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_a7e5d81c4319c2dc09b43f2fea0c937c9}\label{move_8c_a7e5d81c4319c2dc09b43f2fea0c937c9}} 
+\index{move.c@{move.c}!init\_mob@{init\_mob}}
+\index{init\_mob@{init\_mob}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{init\_mob()}{init\_mob()}}
+{\footnotesize\ttfamily void init\+\_\+mob (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{map,  }\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{mob\+\_\+liste\+\_\+t $\ast$}]{mob\+\_\+liste,  }\item[{Sprite $\ast$}]{mob\+\_\+sdl\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo \& Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+{\em renderer} & \\
+\hline
+{\em mob\+\_\+liste} & \\
+\hline
+{\em mob\+\_\+sdl} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_a726352d7d15c0a93a7d69f1f1b1ee683}\label{move_8c_a726352d7d15c0a93a7d69f1f1b1ee683}} 
+\index{move.c@{move.c}!InitialiserSprite@{InitialiserSprite}}
+\index{InitialiserSprite@{InitialiserSprite}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{InitialiserSprite()}{InitialiserSprite()}}
+{\footnotesize\ttfamily Sprite $\ast$ Initialiser\+Sprite (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{w,  }\item[{int}]{h,  }\item[{Map\+\_\+t $\ast$}]{map }\end{DoxyParamCaption})}
+
+
+
+Initialise un Sprite dans la map à une position donné 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & \\
+\hline
+{\em y} & \\
+\hline
+{\em w} & \\
+\hline
+{\em h} & \\
+\hline
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Sprite$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{move_8c_a532ad8ea86942bbc811b2fbc82fddf0f}\label{move_8c_a532ad8ea86942bbc811b2fbc82fddf0f}} 
+\index{move.c@{move.c}!LibereSprite@{LibereSprite}}
+\index{LibereSprite@{LibereSprite}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{LibereSprite()}{LibereSprite()}}
+{\footnotesize\ttfamily void Libere\+Sprite (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{sp }\end{DoxyParamCaption})}
+
+
+
+Libère l\textquotesingle{}espace du Sprite. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em sp} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_a3bf510eb03577820a4a8858707aecd8b}\label{move_8c_a3bf510eb03577820a4a8858707aecd8b}} 
+\index{move.c@{move.c}!mob\_aggro@{mob\_aggro}}
+\index{mob\_aggro@{mob\_aggro}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{mob\_aggro()}{mob\_aggro()}}
+{\footnotesize\ttfamily void mob\+\_\+aggro (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{mob\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]},  }\item[{int}]{i,  }\item[{SDL\+\_\+\+Rect}]{dest\+Rect }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de faire suivre un mob vers un joueur si le mob est assez proche du joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob} & \\
+\hline
+{\em i} & \\
+\hline
+{\em dest\+Rect} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{move_8c_a71a6dc8ba80859446e1bad537448e3fb}\label{move_8c_a71a6dc8ba80859446e1bad537448e3fb}} 
+\index{move.c@{move.c}!placement@{placement}}
+\index{placement@{placement}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{placement()}{placement()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Point placement (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{mob }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de placer les mobs sur la carte, plus particulièrement dans la zone de jeu. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo \& Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+SDL\+\_\+\+Point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{move_8c_a598c7f26f78d4d2dd6c4e409fd124024}\label{move_8c_a598c7f26f78d4d2dd6c4e409fd124024}} 
+\index{move.c@{move.c}!placement\_shop@{placement\_shop}}
+\index{placement\_shop@{placement\_shop}!move.c@{move.c}}
+\doxysubsubsection{\texorpdfstring{placement\_shop()}{placement\_shop()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Point placement\+\_\+shop (\begin{DoxyParamCaption}\item[{Sprite $\ast$}]{shop,  }\item[{SDL\+\_\+\+Point}]{end }\end{DoxyParamCaption})}
+
+
+
+Permet de place le PNJ à côté de la zone de sortie. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em shop} & \\
+\hline
+{\em end} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+SDL\+\_\+\+Point 
+\end{DoxyReturn}

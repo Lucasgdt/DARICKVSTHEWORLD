@@ -1,0 +1,82 @@
+\hypertarget{camera_8c}{}\doxysection{Référence du fichier camera.\+c}
+\label{camera_8c}\index{camera.c@{camera.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}environnement.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{camera_8c_aa102049730111de9319a8e488859d04a}{Focus\+Scroll\+Box}} (Map\+\_\+t $\ast$loaded\+\_\+map, Sprite $\ast$sp)
+\begin{DoxyCompactList}\small\item\em Permet de fixer la caméra sur le joueur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{camera_8c_ad3754a8695655ab23f8f8503b626c3a4}{Clamp\+Scroll}} (Map\+\_\+t $\ast$loaded\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Bloque la caméra aux limites de la map. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{camera_8c_a97fd1297666d7adb6006a2c92cecfd15}{Update\+Scroll}} (Map\+\_\+t $\ast$loaded\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Actualise la position de la caméra en fonction de celle du joueur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{camera_8c_ad3754a8695655ab23f8f8503b626c3a4}\label{camera_8c_ad3754a8695655ab23f8f8503b626c3a4}} 
+\index{camera.c@{camera.c}!ClampScroll@{ClampScroll}}
+\index{ClampScroll@{ClampScroll}!camera.c@{camera.c}}
+\doxysubsubsection{\texorpdfstring{ClampScroll()}{ClampScroll()}}
+{\footnotesize\ttfamily void Clamp\+Scroll (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Bloque la caméra aux limites de la map. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{camera_8c_aa102049730111de9319a8e488859d04a}\label{camera_8c_aa102049730111de9319a8e488859d04a}} 
+\index{camera.c@{camera.c}!FocusScrollBox@{FocusScrollBox}}
+\index{FocusScrollBox@{FocusScrollBox}!camera.c@{camera.c}}
+\doxysubsubsection{\texorpdfstring{FocusScrollBox()}{FocusScrollBox()}}
+{\footnotesize\ttfamily int Focus\+Scroll\+Box (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map,  }\item[{Sprite $\ast$}]{sp }\end{DoxyParamCaption})}
+
+
+
+Permet de fixer la caméra sur le joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+{\em sp} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{camera_8c_a97fd1297666d7adb6006a2c92cecfd15}\label{camera_8c_a97fd1297666d7adb6006a2c92cecfd15}} 
+\index{camera.c@{camera.c}!UpdateScroll@{UpdateScroll}}
+\index{UpdateScroll@{UpdateScroll}!camera.c@{camera.c}}
+\doxysubsubsection{\texorpdfstring{UpdateScroll()}{UpdateScroll()}}
+{\footnotesize\ttfamily int Update\+Scroll (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Actualise la position de la caméra en fonction de celle du joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}

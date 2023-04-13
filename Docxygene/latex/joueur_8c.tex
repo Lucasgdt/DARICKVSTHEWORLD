@@ -1,0 +1,100 @@
+\hypertarget{joueur_8c}{}\doxysection{Référence du fichier joueur.\+c}
+\label{joueur_8c}\index{joueur.c@{joueur.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}move.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inventaire.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}personnage.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}environnement.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}map.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}camera.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mapstruct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}outil.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}action.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{joueur_8c_aa170b88c907c27593c0c8ee194b274f1}{pause}} (SDL\+\_\+\+Renderer $\ast$renderer)
+\begin{DoxyCompactList}\small\item\em Permet de mettre en pause le jeu, afin de soit reprendre le jeu, soit sauvegarder, soit quitter le jeu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}} (SDL\+\_\+\+Window $\ast$window, int $\ast$nbsalle, int $\ast$kill)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de gérer tout le jeu, c\textquotesingle{}est à dire, initialisation du joueur + mob + changement de salle etc ... \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{joueur_8c_a32bd2752a86f9a7755bd3fe3edb8c6f6}{ecran\+\_\+fin}} (SDL\+\_\+\+Window $\ast$window, int $\ast$nbsalle, int $\ast$kill)
+\begin{DoxyCompactList}\small\item\em Permet d\textquotesingle{}afficher l\textquotesingle{}écran de fin du jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{joueur_8c_a32bd2752a86f9a7755bd3fe3edb8c6f6}\label{joueur_8c_a32bd2752a86f9a7755bd3fe3edb8c6f6}} 
+\index{joueur.c@{joueur.c}!ecran\_fin@{ecran\_fin}}
+\index{ecran\_fin@{ecran\_fin}!joueur.c@{joueur.c}}
+\doxysubsubsection{\texorpdfstring{ecran\_fin()}{ecran\_fin()}}
+{\footnotesize\ttfamily int ecran\+\_\+fin (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Window $\ast$}]{window,  }\item[{int $\ast$}]{nbsalle,  }\item[{int $\ast$}]{kill }\end{DoxyParamCaption})}
+
+
+
+Permet d\textquotesingle{}afficher l\textquotesingle{}écran de fin du jeu. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em window} & \\
+\hline
+{\em nbsalle} & \\
+\hline
+{\em kill} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}\label{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}} 
+\index{joueur.c@{joueur.c}!joueur@{joueur}}
+\index{joueur@{joueur}!joueur.c@{joueur.c}}
+\doxysubsubsection{\texorpdfstring{joueur()}{joueur()}}
+{\footnotesize\ttfamily int joueur (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Window $\ast$}]{window,  }\item[{int $\ast$}]{nbsalle,  }\item[{int $\ast$}]{kill }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de gérer tout le jeu, c\textquotesingle{}est à dire, initialisation du joueur + mob + changement de salle etc ... 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo \& Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em window} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{joueur_8c_aa170b88c907c27593c0c8ee194b274f1}\label{joueur_8c_aa170b88c907c27593c0c8ee194b274f1}} 
+\index{joueur.c@{joueur.c}!pause@{pause}}
+\index{pause@{pause}!joueur.c@{joueur.c}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily int pause (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})}
+
+
+
+Permet de mettre en pause le jeu, afin de soit reprendre le jeu, soit sauvegarder, soit quitter le jeu. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em renderer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}

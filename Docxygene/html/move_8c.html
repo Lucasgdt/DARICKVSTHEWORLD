@@ -1,0 +1,928 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DARICKVSTHEWORLD: Référence du fichier move.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">DARICKVSTHEWORLD<span id="projectnumber">&#160;final version</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier move.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_image.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_ttf.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;joueur.h&quot;</code><br />
+<code>#include &quot;mapstruct.h&quot;</code><br />
+<code>#include &quot;environnement.h&quot;</code><br />
+<code>#include &quot;mob.h&quot;</code><br />
+<code>#include &quot;camera.h&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;move.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a3af35b2f3ecf099e959f98d3aaa558a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a3af35b2f3ecf099e959f98d3aaa558a5">SGN</a>(X)&#160;&#160;&#160;(((X)==0)?(0):(((X)&lt;0)?(-1):(1)))</td></tr>
+<tr class="separator:a3af35b2f3ecf099e959f98d3aaa558a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adefab4344518e9d35a80d87c20c0fa48"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#adefab4344518e9d35a80d87c20c0fa48">ABS</a>(X)&#160;&#160;&#160;((((X)&lt;0)?(-(X)):(X)))</td></tr>
+<tr class="separator:adefab4344518e9d35a80d87c20c0fa48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae10ccb3508eda6543b36015cef5c8d5e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#ae10ccb3508eda6543b36015cef5c8d5e">AGGRO_DISTANCE</a>&#160;&#160;&#160;300</td></tr>
+<tr class="separator:ae10ccb3508eda6543b36015cef5c8d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a726352d7d15c0a93a7d69f1f1b1ee683"><td class="memItemLeft" align="right" valign="top">Sprite *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a726352d7d15c0a93a7d69f1f1b1ee683">InitialiserSprite</a> (int x, int y, int w, int h, Map_t *map)</td></tr>
+<tr class="memdesc:a726352d7d15c0a93a7d69f1f1b1ee683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise un Sprite dans la map à une position donné  <br /></td></tr>
+<tr class="separator:a726352d7d15c0a93a7d69f1f1b1ee683"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a532ad8ea86942bbc811b2fbc82fddf0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a532ad8ea86942bbc811b2fbc82fddf0f">LibereSprite</a> (Sprite *sp)</td></tr>
+<tr class="memdesc:a532ad8ea86942bbc811b2fbc82fddf0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère l'espace du Sprite.  <br /></td></tr>
+<tr class="separator:a532ad8ea86942bbc811b2fbc82fddf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addadb7d838252a3805f91517d3ae7a8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#addadb7d838252a3805f91517d3ae7a8d">AfficherSprite</a> (Sprite *perso, SDL_Renderer *renderer, SDL_Texture *skin)</td></tr>
+<tr class="memdesc:addadb7d838252a3805f91517d3ae7a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le sprite en fonction du Scrolling de la caméra.  <br /></td></tr>
+<tr class="separator:addadb7d838252a3805f91517d3ae7a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0938cecb5449f4b93b718643c746516"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#ad0938cecb5449f4b93b718643c746516">CollisionDecor</a> (Sprite *perso, SDL_Rect test)</td></tr>
+<tr class="memdesc:ad0938cecb5449f4b93b718643c746516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie toute les cases à proximité du joueur pour localiser les murs ou la porte de sortie.  <br /></td></tr>
+<tr class="separator:ad0938cecb5449f4b93b718643c746516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75aa6342b3d5192493d1daef6133be11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a75aa6342b3d5192493d1daef6133be11">EssaiDeplacement</a> (Sprite *perso, int vx, int vy)</td></tr>
+<tr class="memdesc:a75aa6342b3d5192493d1daef6133be11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Essaie de se déplacer vers le point d'arriver, si il y a un mur alors on affine le déplacement.  <br /></td></tr>
+<tr class="separator:a75aa6342b3d5192493d1daef6133be11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef762179d867febc430bff4af2267885"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#aef762179d867febc430bff4af2267885">Affine</a> (Sprite *perso, int vx, int vy)</td></tr>
+<tr class="memdesc:aef762179d867febc430bff4af2267885"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affine le déplacement pour se rapprocher au plus proche du mur.  <br /></td></tr>
+<tr class="separator:aef762179d867febc430bff4af2267885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac34d3c8ac9dec7b99115100381c896e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#ac34d3c8ac9dec7b99115100381c896e6">DeplaceSprite</a> (Sprite *perso, int vx, int vy)</td></tr>
+<tr class="memdesc:ac34d3c8ac9dec7b99115100381c896e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplace le Sprite en suivant le vecteur donné  <br /></td></tr>
+<tr class="separator:ac34d3c8ac9dec7b99115100381c896e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a6dc8ba80859446e1bad537448e3fb"><td class="memItemLeft" align="right" valign="top">SDL_Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a71a6dc8ba80859446e1bad537448e3fb">placement</a> (Sprite *mob)</td></tr>
+<tr class="memdesc:a71a6dc8ba80859446e1bad537448e3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de placer les mobs sur la carte, plus particulièrement dans la zone de jeu.  <br /></td></tr>
+<tr class="separator:a71a6dc8ba80859446e1bad537448e3fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbda495c68e149dffb2d2c6c82fc04ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#afbda495c68e149dffb2d2c6c82fc04ee">find_end</a> (Index_t map, int *endX, int *endY)</td></tr>
+<tr class="memdesc:afbda495c68e149dffb2d2c6c82fc04ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de trouver les coordonnées de la zone de sortie.  <br /></td></tr>
+<tr class="separator:afbda495c68e149dffb2d2c6c82fc04ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a598c7f26f78d4d2dd6c4e409fd124024"><td class="memItemLeft" align="right" valign="top">SDL_Point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a598c7f26f78d4d2dd6c4e409fd124024">placement_shop</a> (Sprite *shop, SDL_Point end)</td></tr>
+<tr class="memdesc:a598c7f26f78d4d2dd6c4e409fd124024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de place le PNJ à côté de la zone de sortie.  <br /></td></tr>
+<tr class="separator:a598c7f26f78d4d2dd6c4e409fd124024"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5d81c4319c2dc09b43f2fea0c937c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a7e5d81c4319c2dc09b43f2fea0c937c9">init_mob</a> (Map_t *map, SDL_Renderer *renderer, mob_liste_t *mob_liste, Sprite *mob_sdl[TAILLE_LISTE_MOB])</td></tr>
+<tr class="memdesc:a7e5d81c4319c2dc09b43f2fea0c937c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures.  <br /></td></tr>
+<tr class="separator:a7e5d81c4319c2dc09b43f2fea0c937c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a251195cd58c34bbb5536ff42c7e301c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a251195cd58c34bbb5536ff42c7e301c6">free_mob_sdl</a> (Sprite *mob_sdl[TAILLE_LISTE_MOB])</td></tr>
+<tr class="memdesc:a251195cd58c34bbb5536ff42c7e301c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de supprimer complètement un mob dans une liste de Sprite.  <br /></td></tr>
+<tr class="separator:a251195cd58c34bbb5536ff42c7e301c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa17f8886b4c5aa2b94a11cf4a269108f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#aa17f8886b4c5aa2b94a11cf4a269108f">deplacement_mobV2</a> (Sprite *mob[TAILLE_LISTE_MOB], int i)</td></tr>
+<tr class="memdesc:aa17f8886b4c5aa2b94a11cf4a269108f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de faire déplacer un mob aléatoirement.  <br /></td></tr>
+<tr class="separator:aa17f8886b4c5aa2b94a11cf4a269108f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bf510eb03577820a4a8858707aecd8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a3bf510eb03577820a4a8858707aecd8b">mob_aggro</a> (Sprite *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect)</td></tr>
+<tr class="memdesc:a3bf510eb03577820a4a8858707aecd8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de faire suivre un mob vers un joueur si le mob est assez proche du joueur.  <br /></td></tr>
+<tr class="separator:a3bf510eb03577820a4a8858707aecd8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2106fd41ef0d2198cdff84082843891c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a2106fd41ef0d2198cdff84082843891c">fonction_calcul</a> (SDL_Rect destRect, Sprite *mob_sdl[TAILLE_LISTE_MOB], mob_liste_t *mob_liste, int i)</td></tr>
+<tr class="memdesc:a2106fd41ef0d2198cdff84082843891c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de gérer la réaction d'un mob en vers en joueur à l'aide d'un calcul qui défini la distance entre un mob et un joueur. Soit le mob à un déplacement aléatoire, soit il suit le joueur.  <br /></td></tr>
+<tr class="separator:a2106fd41ef0d2198cdff84082843891c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44b3df4666bf4feac5d8af876d9d404f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="move_8c.html#a44b3df4666bf4feac5d8af876d9d404f">anim</a> (SDL_Renderer *renderer, Sprite *skin, personnage_t *<a class="el" href="joueur_8c.html#a2c54a87c4bc8ebeb88944a600b4d21f6">joueur</a>, Sprite *mob_sdl[TAILLE_LISTE_MOB], Map_t *map, SDL_Texture *pdvtexture, SDL_Rect pdv, SDL_Texture *shop_sdl, SDL_Rect shop)</td></tr>
+<tr class="memdesc:a44b3df4666bf4feac5d8af876d9d404f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de faire l'animation du joueur lors ce qu'il attaque.  <br /></td></tr>
+<tr class="separator:a44b3df4666bf4feac5d8af876d9d404f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des macros</h2>
+<a id="adefab4344518e9d35a80d87c20c0fa48" name="adefab4344518e9d35a80d87c20c0fa48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adefab4344518e9d35a80d87c20c0fa48">&#9670;&#160;</a></span>ABS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ABS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td>&#160;&#160;&#160;((((X)&lt;0)?(-(X)):(X)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae10ccb3508eda6543b36015cef5c8d5e" name="ae10ccb3508eda6543b36015cef5c8d5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10ccb3508eda6543b36015cef5c8d5e">&#9670;&#160;</a></span>AGGRO_DISTANCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AGGRO_DISTANCE&#160;&#160;&#160;300</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3af35b2f3ecf099e959f98d3aaa558a5" name="a3af35b2f3ecf099e959f98d3aaa558a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3af35b2f3ecf099e959f98d3aaa558a5">&#9670;&#160;</a></span>SGN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SGN</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">X</td><td>)</td>
+          <td>&#160;&#160;&#160;(((X)==0)?(0):(((X)&lt;0)?(-1):(1)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="addadb7d838252a3805f91517d3ae7a8d" name="addadb7d838252a3805f91517d3ae7a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addadb7d838252a3805f91517d3ae7a8d">&#9670;&#160;</a></span>AfficherSprite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AfficherSprite </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>perso</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *&#160;</td>
+          <td class="paramname"><em>skin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche le sprite en fonction du Scrolling de la caméra. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">perso</td><td></td></tr>
+    <tr><td class="paramname">renderer</td><td></td></tr>
+    <tr><td class="paramname">skin</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aef762179d867febc430bff4af2267885" name="aef762179d867febc430bff4af2267885"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef762179d867febc430bff4af2267885">&#9670;&#160;</a></span>Affine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Affine </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>perso</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affine le déplacement pour se rapprocher au plus proche du mur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">perso</td><td></td></tr>
+    <tr><td class="paramname">vx</td><td></td></tr>
+    <tr><td class="paramname">vy</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a44b3df4666bf4feac5d8af876d9d404f" name="a44b3df4666bf4feac5d8af876d9d404f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b3df4666bf4feac5d8af876d9d404f">&#9670;&#160;</a></span>anim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void anim </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>skin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">personnage_t *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob_sdl</em>[TAILLE_LISTE_MOB], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *&#160;</td>
+          <td class="paramname"><em>pdvtexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>pdv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *&#160;</td>
+          <td class="paramname"><em>shop_sdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>shop</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de faire l'animation du joueur lors ce qu'il attaque. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo &amp; Marwan </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td></td></tr>
+    <tr><td class="paramname">skin</td><td></td></tr>
+    <tr><td class="paramname">joueur</td><td></td></tr>
+    <tr><td class="paramname">mob_sdl</td><td></td></tr>
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad0938cecb5449f4b93b718643c746516" name="ad0938cecb5449f4b93b718643c746516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0938cecb5449f4b93b718643c746516">&#9670;&#160;</a></span>CollisionDecor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CollisionDecor </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>perso</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>test</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie toute les cases à proximité du joueur pour localiser les murs ou la porte de sortie. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">perso</td><td></td></tr>
+    <tr><td class="paramname">test</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="aa17f8886b4c5aa2b94a11cf4a269108f" name="aa17f8886b4c5aa2b94a11cf4a269108f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa17f8886b4c5aa2b94a11cf4a269108f">&#9670;&#160;</a></span>deplacement_mobV2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void deplacement_mobV2 </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob</em>[TAILLE_LISTE_MOB], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de faire déplacer un mob aléatoirement. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mob</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac34d3c8ac9dec7b99115100381c896e6" name="ac34d3c8ac9dec7b99115100381c896e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac34d3c8ac9dec7b99115100381c896e6">&#9670;&#160;</a></span>DeplaceSprite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DeplaceSprite </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>perso</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Déplace le Sprite en suivant le vecteur donné </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">perso</td><td></td></tr>
+    <tr><td class="paramname">vx</td><td></td></tr>
+    <tr><td class="paramname">vy</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a75aa6342b3d5192493d1daef6133be11" name="a75aa6342b3d5192493d1daef6133be11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75aa6342b3d5192493d1daef6133be11">&#9670;&#160;</a></span>EssaiDeplacement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EssaiDeplacement </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>perso</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Essaie de se déplacer vers le point d'arriver, si il y a un mur alors on affine le déplacement. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">perso</td><td></td></tr>
+    <tr><td class="paramname">vx</td><td></td></tr>
+    <tr><td class="paramname">vy</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="afbda495c68e149dffb2d2c6c82fc04ee" name="afbda495c68e149dffb2d2c6c82fc04ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbda495c68e149dffb2d2c6c82fc04ee">&#9670;&#160;</a></span>find_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void find_end </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>endX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>endY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de trouver les coordonnées de la zone de sortie. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+    <tr><td class="paramname">endX</td><td></td></tr>
+    <tr><td class="paramname">endY</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2106fd41ef0d2198cdff84082843891c" name="a2106fd41ef0d2198cdff84082843891c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2106fd41ef0d2198cdff84082843891c">&#9670;&#160;</a></span>fonction_calcul()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int fonction_calcul </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>destRect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob_sdl</em>[TAILLE_LISTE_MOB], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mob_liste_t *&#160;</td>
+          <td class="paramname"><em>mob_liste</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de gérer la réaction d'un mob en vers en joueur à l'aide d'un calcul qui défini la distance entre un mob et un joueur. Soit le mob à un déplacement aléatoire, soit il suit le joueur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">destRect</td><td></td></tr>
+    <tr><td class="paramname">mob_sdl</td><td></td></tr>
+    <tr><td class="paramname">mob_liste</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a251195cd58c34bbb5536ff42c7e301c6" name="a251195cd58c34bbb5536ff42c7e301c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a251195cd58c34bbb5536ff42c7e301c6">&#9670;&#160;</a></span>free_mob_sdl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void free_mob_sdl </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob_sdl</em>[TAILLE_LISTE_MOB]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de supprimer complètement un mob dans une liste de Sprite. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mob_sdl</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7e5d81c4319c2dc09b43f2fea0c937c9" name="a7e5d81c4319c2dc09b43f2fea0c937c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e5d81c4319c2dc09b43f2fea0c937c9">&#9670;&#160;</a></span>init_mob()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_mob </td>
+          <td>(</td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mob_liste_t *&#160;</td>
+          <td class="paramname"><em>mob_liste</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob_sdl</em>[TAILLE_LISTE_MOB]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo &amp; Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+    <tr><td class="paramname">renderer</td><td></td></tr>
+    <tr><td class="paramname">mob_liste</td><td></td></tr>
+    <tr><td class="paramname">mob_sdl</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a726352d7d15c0a93a7d69f1f1b1ee683" name="a726352d7d15c0a93a7d69f1f1b1ee683"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726352d7d15c0a93a7d69f1f1b1ee683">&#9670;&#160;</a></span>InitialiserSprite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Sprite * InitialiserSprite </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise un Sprite dans la map à une position donné </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td></td></tr>
+    <tr><td class="paramname">y</td><td></td></tr>
+    <tr><td class="paramname">w</td><td></td></tr>
+    <tr><td class="paramname">h</td><td></td></tr>
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Sprite* </dd></dl>
+
+</div>
+</div>
+<a id="a532ad8ea86942bbc811b2fbc82fddf0f" name="a532ad8ea86942bbc811b2fbc82fddf0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a532ad8ea86942bbc811b2fbc82fddf0f">&#9670;&#160;</a></span>LibereSprite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LibereSprite </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>sp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Libère l'espace du Sprite. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sp</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3bf510eb03577820a4a8858707aecd8b" name="a3bf510eb03577820a4a8858707aecd8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bf510eb03577820a4a8858707aecd8b">&#9670;&#160;</a></span>mob_aggro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mob_aggro </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob</em>[TAILLE_LISTE_MOB], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>destRect</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de faire suivre un mob vers un joueur si le mob est assez proche du joueur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mob</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
+    <tr><td class="paramname">destRect</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a71a6dc8ba80859446e1bad537448e3fb" name="a71a6dc8ba80859446e1bad537448e3fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a6dc8ba80859446e1bad537448e3fb">&#9670;&#160;</a></span>placement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Point placement </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>mob</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de placer les mobs sur la carte, plus particulièrement dans la zone de jeu. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo &amp; Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mob</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>SDL_Point </dd></dl>
+
+</div>
+</div>
+<a id="a598c7f26f78d4d2dd6c4e409fd124024" name="a598c7f26f78d4d2dd6c4e409fd124024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a598c7f26f78d4d2dd6c4e409fd124024">&#9670;&#160;</a></span>placement_shop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Point placement_shop </td>
+          <td>(</td>
+          <td class="paramtype">Sprite *&#160;</td>
+          <td class="paramname"><em>shop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Point&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de place le PNJ à côté de la zone de sortie. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shop</td><td></td></tr>
+    <tr><td class="paramname">end</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>SDL_Point </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

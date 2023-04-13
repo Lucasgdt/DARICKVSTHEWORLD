@@ -1,0 +1,267 @@
+\hypertarget{environnement_8c}{}\doxysection{Référence du fichier environnement.\+c}
+\label{environnement_8c}\index{environnement.c@{environnement.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}environnement.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}move.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}camera.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Surface $\ast$ \mbox{\hyperlink{environnement_8c_a37195780794e1ce0a0ae1b01bc1bba40}{Load\+Image16}} (const char $\ast$img)
+\begin{DoxyCompactList}\small\item\em Fonction qui charge une image en SDL\+\_\+\+Surface. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_ae1921a6804e114e2c1d681f87b38650f}{Load\+Map\+\_\+tileset}} (Map\+\_\+t $\ast$loaded\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Fonction qui initialise la place nécessaire à la création de la map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_a71e209d8f30bd5f73b07136f3fe6c7ad}{Load\+Map\+\_\+level}} (Index\+\_\+t map, Map\+\_\+t $\ast$loaded\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Fonction qui charge la map d\textquotesingle{}entier dans notre map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_a1c31faf59b0536fe3bd6fdf3a13e5500}{Load\+Map\+Rect}} (Map\+\_\+t $\ast$loaded\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Fonction qui initialise la place nécessaire à la map de tiles. \end{DoxyCompactList}\item 
+Map\+\_\+t $\ast$ \mbox{\hyperlink{environnement_8c_a86a142f4aa3c1ad0305db8fe2477eb8f}{Load\+Map}} (Index\+\_\+t map)
+\begin{DoxyCompactList}\small\item\em Fonction qui appelle Load\+Map\+\_\+tileset et Load\+Map\+\_\+level pour chargé entièrement la map. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{environnement_8c_a9a30a97d3120a7b6b9074f4c5ee4b323}{Show\+Map}} (Map\+\_\+t $\ast$loaded\+\_\+map, SDL\+\_\+\+Renderer $\ast$renderer)
+\begin{DoxyCompactList}\small\item\em Fonction qui affiche la map sur le rendu, et determine les éléments mur. \end{DoxyCompactList}\item 
+Index\+\_\+t \mbox{\hyperlink{environnement_8c_a0ca102fb52958e184229b5b156c0fcfa}{initialize\+\_\+map}} ()
+\begin{DoxyCompactList}\small\item\em Fonction qui initialise la map Index\+\_\+t. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_ade945578075593b75194276ad73bf344}{add\+\_\+rooms}} (Index\+\_\+t map)
+\begin{DoxyCompactList}\small\item\em Créer des \char`\"{}salles\char`\"{} de taille aléatoire et dont la position dépend de la précedente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_a25051f8640b95df273394764c4131f64}{add\+\_\+wall}} (Index\+\_\+t map)
+\begin{DoxyCompactList}\small\item\em Positionne les murs autour des salles de sol. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_a88a8267c45f91376bd3880b25c70d328}{add\+\_\+end}} (Index\+\_\+t map)
+\begin{DoxyCompactList}\small\item\em ajoute l\textquotesingle{}escalier de fin de map \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{environnement_8c_af64e59aa020eacdcd9ffaa232b646e32}{Update\+Map}} (Index\+\_\+t map)
+\begin{DoxyCompactList}\small\item\em Créer la map. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{environnement_8c_a58a10da4d225c1ae0d9895b088f0205e}{Free\+Map}} (Map\+\_\+t $\ast$loaded\+\_\+map)
+\begin{DoxyCompactList}\small\item\em Libère l\textquotesingle{}espace alloué pour la map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{environnement_8c_a88a8267c45f91376bd3880b25c70d328}\label{environnement_8c_a88a8267c45f91376bd3880b25c70d328}} 
+\index{environnement.c@{environnement.c}!add\_end@{add\_end}}
+\index{add\_end@{add\_end}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{add\_end()}{add\_end()}}
+{\footnotesize\ttfamily void add\+\_\+end (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map }\end{DoxyParamCaption})}
+
+
+
+ajoute l\textquotesingle{}escalier de fin de map 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{environnement_8c_ade945578075593b75194276ad73bf344}\label{environnement_8c_ade945578075593b75194276ad73bf344}} 
+\index{environnement.c@{environnement.c}!add\_rooms@{add\_rooms}}
+\index{add\_rooms@{add\_rooms}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{add\_rooms()}{add\_rooms()}}
+{\footnotesize\ttfamily void add\+\_\+rooms (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map }\end{DoxyParamCaption})}
+
+
+
+Créer des \char`\"{}salles\char`\"{} de taille aléatoire et dont la position dépend de la précedente. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{environnement_8c_a25051f8640b95df273394764c4131f64}\label{environnement_8c_a25051f8640b95df273394764c4131f64}} 
+\index{environnement.c@{environnement.c}!add\_wall@{add\_wall}}
+\index{add\_wall@{add\_wall}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{add\_wall()}{add\_wall()}}
+{\footnotesize\ttfamily void add\+\_\+wall (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map }\end{DoxyParamCaption})}
+
+
+
+Positionne les murs autour des salles de sol. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{environnement_8c_a58a10da4d225c1ae0d9895b088f0205e}\label{environnement_8c_a58a10da4d225c1ae0d9895b088f0205e}} 
+\index{environnement.c@{environnement.c}!FreeMap@{FreeMap}}
+\index{FreeMap@{FreeMap}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{FreeMap()}{FreeMap()}}
+{\footnotesize\ttfamily int Free\+Map (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Libère l\textquotesingle{}espace alloué pour la map. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{environnement_8c_a0ca102fb52958e184229b5b156c0fcfa}\label{environnement_8c_a0ca102fb52958e184229b5b156c0fcfa}} 
+\index{environnement.c@{environnement.c}!initialize\_map@{initialize\_map}}
+\index{initialize\_map@{initialize\_map}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{initialize\_map()}{initialize\_map()}}
+{\footnotesize\ttfamily Index\+\_\+t initialize\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction qui initialise la map Index\+\_\+t. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{environnement_8c_a37195780794e1ce0a0ae1b01bc1bba40}\label{environnement_8c_a37195780794e1ce0a0ae1b01bc1bba40}} 
+\index{environnement.c@{environnement.c}!LoadImage16@{LoadImage16}}
+\index{LoadImage16@{LoadImage16}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{LoadImage16()}{LoadImage16()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Surface $\ast$ Load\+Image16 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{img }\end{DoxyParamCaption})}
+
+
+
+Fonction qui charge une image en SDL\+\_\+\+Surface. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em img} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+SDL\+\_\+\+Surface$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{environnement_8c_a86a142f4aa3c1ad0305db8fe2477eb8f}\label{environnement_8c_a86a142f4aa3c1ad0305db8fe2477eb8f}} 
+\index{environnement.c@{environnement.c}!LoadMap@{LoadMap}}
+\index{LoadMap@{LoadMap}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{LoadMap()}{LoadMap()}}
+{\footnotesize\ttfamily Map\+\_\+t $\ast$ Load\+Map (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map }\end{DoxyParamCaption})}
+
+
+
+Fonction qui appelle Load\+Map\+\_\+tileset et Load\+Map\+\_\+level pour chargé entièrement la map. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Map\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{environnement_8c_a71e209d8f30bd5f73b07136f3fe6c7ad}\label{environnement_8c_a71e209d8f30bd5f73b07136f3fe6c7ad}} 
+\index{environnement.c@{environnement.c}!LoadMap\_level@{LoadMap\_level}}
+\index{LoadMap\_level@{LoadMap\_level}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{LoadMap\_level()}{LoadMap\_level()}}
+{\footnotesize\ttfamily void Load\+Map\+\_\+level (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map,  }\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Fonction qui charge la map d\textquotesingle{}entier dans notre map. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+{\em loaded\+\_\+map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{environnement_8c_ae1921a6804e114e2c1d681f87b38650f}\label{environnement_8c_ae1921a6804e114e2c1d681f87b38650f}} 
+\index{environnement.c@{environnement.c}!LoadMap\_tileset@{LoadMap\_tileset}}
+\index{LoadMap\_tileset@{LoadMap\_tileset}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{LoadMap\_tileset()}{LoadMap\_tileset()}}
+{\footnotesize\ttfamily void Load\+Map\+\_\+tileset (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Fonction qui initialise la place nécessaire à la création de la map. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{environnement_8c_a1c31faf59b0536fe3bd6fdf3a13e5500}\label{environnement_8c_a1c31faf59b0536fe3bd6fdf3a13e5500}} 
+\index{environnement.c@{environnement.c}!LoadMapRect@{LoadMapRect}}
+\index{LoadMapRect@{LoadMapRect}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{LoadMapRect()}{LoadMapRect()}}
+{\footnotesize\ttfamily void Load\+Map\+Rect (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map }\end{DoxyParamCaption})}
+
+
+
+Fonction qui initialise la place nécessaire à la map de tiles. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{environnement_8c_a9a30a97d3120a7b6b9074f4c5ee4b323}\label{environnement_8c_a9a30a97d3120a7b6b9074f4c5ee4b323}} 
+\index{environnement.c@{environnement.c}!ShowMap@{ShowMap}}
+\index{ShowMap@{ShowMap}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{ShowMap()}{ShowMap()}}
+{\footnotesize\ttfamily int Show\+Map (\begin{DoxyParamCaption}\item[{Map\+\_\+t $\ast$}]{loaded\+\_\+map,  }\item[{SDL\+\_\+\+Renderer $\ast$}]{renderer }\end{DoxyParamCaption})}
+
+
+
+Fonction qui affiche la map sur le rendu, et determine les éléments mur. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em loaded\+\_\+map} & \\
+\hline
+{\em renderer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{environnement_8c_af64e59aa020eacdcd9ffaa232b646e32}\label{environnement_8c_af64e59aa020eacdcd9ffaa232b646e32}} 
+\index{environnement.c@{environnement.c}!UpdateMap@{UpdateMap}}
+\index{UpdateMap@{UpdateMap}!environnement.c@{environnement.c}}
+\doxysubsubsection{\texorpdfstring{UpdateMap()}{UpdateMap()}}
+{\footnotesize\ttfamily void Update\+Map (\begin{DoxyParamCaption}\item[{Index\+\_\+t}]{map }\end{DoxyParamCaption})}
+
+
+
+Créer la map. 
+
+\begin{DoxyAuthor}{Auteur}
+Lucas 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em map} & \\
+\hline
+\end{DoxyParams}

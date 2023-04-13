@@ -1,0 +1,100 @@
+\hypertarget{action_8c}{}\doxysection{Référence du fichier action.\+c}
+\label{action_8c}\index{action.c@{action.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}joueur.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}action.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{action_8c_ac9d7f3981fb7c52701e72e265a4252bd}{joueur\+\_\+attaque}} (personnage\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, mob\+\_\+t $\ast$mob)
+\begin{DoxyCompactList}\small\item\em Permet de pouvoir infliger des dégâts à un mob. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{action_8c_a2b2cbeda41467f2516aa664ca81e6db7}{mob\+\_\+attaque}} (personnage\+\_\+t $\ast$\mbox{\hyperlink{joueur_8c_a2c54a87c4bc8ebeb88944a600b4d21f6}{joueur}}, mob\+\_\+t $\ast$mob, int compteur)
+\begin{DoxyCompactList}\small\item\em Permet d\textquotesingle{}infliger des dégâts au joueur provenant d\textquotesingle{}un mob. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+objet\+\_\+t \mbox{\hyperlink{action_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}{liste\+\_\+objets}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Liste des objets présent dans le jeu. C\textquotesingle{}est une base de donnée des objets. \end{DoxyCompactList}\item 
+mob\+\_\+t \mbox{\hyperlink{action_8c_af7bba0cd1a0edc000dc99d456c76535d}{liste\+\_\+mobs}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{action_8c_ac9d7f3981fb7c52701e72e265a4252bd}\label{action_8c_ac9d7f3981fb7c52701e72e265a4252bd}} 
+\index{action.c@{action.c}!joueur\_attaque@{joueur\_attaque}}
+\index{joueur\_attaque@{joueur\_attaque}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{joueur\_attaque()}{joueur\_attaque()}}
+{\footnotesize\ttfamily void joueur\+\_\+attaque (\begin{DoxyParamCaption}\item[{personnage\+\_\+t $\ast$}]{joueur,  }\item[{mob\+\_\+t $\ast$}]{mob }\end{DoxyParamCaption})}
+
+
+
+Permet de pouvoir infliger des dégâts à un mob. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em joueur} & \\
+\hline
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{action_8c_a2b2cbeda41467f2516aa664ca81e6db7}\label{action_8c_a2b2cbeda41467f2516aa664ca81e6db7}} 
+\index{action.c@{action.c}!mob\_attaque@{mob\_attaque}}
+\index{mob\_attaque@{mob\_attaque}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{mob\_attaque()}{mob\_attaque()}}
+{\footnotesize\ttfamily int mob\+\_\+attaque (\begin{DoxyParamCaption}\item[{personnage\+\_\+t $\ast$}]{joueur,  }\item[{mob\+\_\+t $\ast$}]{mob,  }\item[{int}]{compteur }\end{DoxyParamCaption})}
+
+
+
+Permet d\textquotesingle{}infliger des dégâts au joueur provenant d\textquotesingle{}un mob. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em joueur} & \\
+\hline
+{\em mob} & \\
+\hline
+{\em compteur} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{action_8c_af7bba0cd1a0edc000dc99d456c76535d}\label{action_8c_af7bba0cd1a0edc000dc99d456c76535d}} 
+\index{action.c@{action.c}!liste\_mobs@{liste\_mobs}}
+\index{liste\_mobs@{liste\_mobs}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{liste\_mobs}{liste\_mobs}}
+{\footnotesize\ttfamily mob\+\_\+t liste\+\_\+mobs\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+\mbox{\Hypertarget{action_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}\label{action_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}} 
+\index{action.c@{action.c}!liste\_objets@{liste\_objets}}
+\index{liste\_objets@{liste\_objets}!action.c@{action.c}}
+\doxysubsubsection{\texorpdfstring{liste\_objets}{liste\_objets}}
+{\footnotesize\ttfamily objet\+\_\+t liste\+\_\+objets\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Liste des objets présent dans le jeu. C\textquotesingle{}est une base de donnée des objets. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}

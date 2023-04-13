@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DARICKVSTHEWORLD: Référence du fichier inventaire.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">DARICKVSTHEWORLD<span id="projectnumber">&#160;final version</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier inventaire.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_image.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_ttf.h&gt;</code><br />
+<code>#include &quot;inventaire.h&quot;</code><br />
+<code>#include &quot;outil.h&quot;</code><br />
+<code>#include &quot;mob.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:ab9d254e0954d2a092f59e67640084b2b"><td class="memItemLeft" align="right" valign="top">objet_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#ab9d254e0954d2a092f59e67640084b2b">create_objet</a> ()</td></tr>
+<tr class="memdesc:ab9d254e0954d2a092f59e67640084b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'initialiser la création d'un objet n'ayant aucune statistique.  <br /></td></tr>
+<tr class="separator:ab9d254e0954d2a092f59e67640084b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ea753255d67c72eb3f4de57aecb9560"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a5ea753255d67c72eb3f4de57aecb9560">inventaire_nb_lire</a> (inventaire_t *const inventaire)</td></tr>
+<tr class="memdesc:a5ea753255d67c72eb3f4de57aecb9560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction uniquement pour aider, sert uniquement à lire la taille d'un inventaire.  <br /></td></tr>
+<tr class="separator:a5ea753255d67c72eb3f4de57aecb9560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a2e42cc20746ad971b6fd1bebb6796"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a44a2e42cc20746ad971b6fd1bebb6796">inventaire_elem_lire</a> (inventaire_t *const inventaire, const int ind)</td></tr>
+<tr class="memdesc:a44a2e42cc20746ad971b6fd1bebb6796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de lire la case d'un inventaire, sert uniquement pour aider également.  <br /></td></tr>
+<tr class="separator:a44a2e42cc20746ad971b6fd1bebb6796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67ab2fd8abb6203f2578238a54b40af3"><td class="memItemLeft" align="right" valign="top">inventaire_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a67ab2fd8abb6203f2578238a54b40af3">create_inventaire</a> ()</td></tr>
+<tr class="memdesc:a67ab2fd8abb6203f2578238a54b40af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de créer un inventaire, d'initialiser un inventaire.  <br /></td></tr>
+<tr class="separator:a67ab2fd8abb6203f2578238a54b40af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac535c62a1339c4e861a95af10ea0dd52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#ac535c62a1339c4e861a95af10ea0dd52">inv_full</a> (inventaire_t *personnage)</td></tr>
+<tr class="memdesc:ac535c62a1339c4e861a95af10ea0dd52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de vérifier si un inventaire est rempli.  <br /></td></tr>
+<tr class="separator:ac535c62a1339c4e861a95af10ea0dd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64e97cb363141bad3d470ba87998166"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#ac64e97cb363141bad3d470ba87998166">loot</a> (inventaire_t *<a class="el" href="joueur_8c.html#a2c54a87c4bc8ebeb88944a600b4d21f6">joueur</a>, objet_t *obj)</td></tr>
+<tr class="memdesc:ac64e97cb363141bad3d470ba87998166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de donner un objet à un joueur en le placant dans son inventaire.  <br /></td></tr>
+<tr class="separator:ac64e97cb363141bad3d470ba87998166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53450428d39317d9d9837ac426731791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a53450428d39317d9d9837ac426731791">afficher_inventaire</a> (inventaire_t *<a class="el" href="joueur_8c.html#a2c54a87c4bc8ebeb88944a600b4d21f6">joueur</a>)</td></tr>
+<tr class="memdesc:a53450428d39317d9d9837ac426731791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'afficher la liste complète du contenu de l'inventaire, uniquement dans la console.  <br /></td></tr>
+<tr class="separator:a53450428d39317d9d9837ac426731791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9423aba480b4fd2577b937e80243378c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a9423aba480b4fd2577b937e80243378c">free_objet</a> (objet_t *obj, texture_t *obj_sdl)</td></tr>
+<tr class="memdesc:a9423aba480b4fd2577b937e80243378c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de supprimer un objet en mémoire.  <br /></td></tr>
+<tr class="separator:a9423aba480b4fd2577b937e80243378c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f834220d0afab6e38b344742aaba754"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a1f834220d0afab6e38b344742aaba754">supprimer_objet_inv</a> (inventaire_t *<a class="el" href="joueur_8c.html#a2c54a87c4bc8ebeb88944a600b4d21f6">joueur</a>, objet_t *obj, int i, texture_t *obj_sdl)</td></tr>
+<tr class="memdesc:a1f834220d0afab6e38b344742aaba754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de supprimer un objet de l'inventaire du joueur à une case précise grâce à l'indice i.  <br /></td></tr>
+<tr class="separator:a1f834220d0afab6e38b344742aaba754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6965633cb86fbe6b73c394ee1634b3b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a6965633cb86fbe6b73c394ee1634b3b5">loot_mob</a> (inventaire_t *inventaire, personnage_t *personnage)</td></tr>
+<tr class="memdesc:a6965633cb86fbe6b73c394ee1634b3b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant de donnée aléatoirement un objet provenant de la liste des objets de la base de donnée ayant en plus, le calcul en prenant compte le pourcentage de chance d'obtenir un objet.  <br /></td></tr>
+<tr class="separator:a6965633cb86fbe6b73c394ee1634b3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4ac24457d774b8d5c4d54f623af2b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#aaf4ac24457d774b8d5c4d54f623af2b1">afficher_inv_SDL</a> (SDL_Renderer *renderer, SDL_Texture *inventaire, SDL_Rect inv, inventaire_t *<a class="el" href="joueur_8c.html#a2c54a87c4bc8ebeb88944a600b4d21f6">joueur</a>, SDL_Surface *screenSurface, SDL_Window *window, personnage_t *perso)</td></tr>
+<tr class="memdesc:aaf4ac24457d774b8d5c4d54f623af2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction permettant d'afficher tout l'inventaire et d'agir avec tout en SDL, donc en liant visuel, et statistique.  <br /></td></tr>
+<tr class="separator:aaf4ac24457d774b8d5c4d54f623af2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99f52878ddbff1b3068420bd900d6817"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a99f52878ddbff1b3068420bd900d6817">boutique_aff</a> (SDL_Renderer *renderer, SDL_Texture *boutique_sdl, SDL_Rect boutique, inventaire_t *<a class="el" href="joueur_8c.html#a2c54a87c4bc8ebeb88944a600b4d21f6">joueur</a>, SDL_Surface *screenSurface, SDL_Window *window, personnage_t *perso)</td></tr>
+<tr class="memdesc:a99f52878ddbff1b3068420bd900d6817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ouvrir la boutique, de l'afficher, et d'intéragir avec lui, en générant des objets et un prix aléatoire.  <br /></td></tr>
+<tr class="separator:a99f52878ddbff1b3068420bd900d6817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8061a7fe9385e8cc7617cfdfb4ec9278"><td class="memItemLeft" align="right" valign="top">objet_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inventaire_8c.html#a8061a7fe9385e8cc7617cfdfb4ec9278">liste_objets</a> []</td></tr>
+<tr class="memdesc:a8061a7fe9385e8cc7617cfdfb4ec9278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liste des objets présent dans le jeu. C'est une base de donnée des objets.  <br /></td></tr>
+<tr class="separator:a8061a7fe9385e8cc7617cfdfb4ec9278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="aaf4ac24457d774b8d5c4d54f623af2b1" name="aaf4ac24457d774b8d5c4d54f623af2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf4ac24457d774b8d5c4d54f623af2b1">&#9670;&#160;</a></span>afficher_inv_SDL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int afficher_inv_SDL </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *&#160;</td>
+          <td class="paramname"><em>inventaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>inv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>screenSurface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">personnage_t *&#160;</td>
+          <td class="paramname"><em>perso</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'afficher tout l'inventaire et d'agir avec tout en SDL, donc en liant visuel, et statistique. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td></td></tr>
+    <tr><td class="paramname">inventaire</td><td></td></tr>
+    <tr><td class="paramname">inv</td><td></td></tr>
+    <tr><td class="paramname">joueur</td><td></td></tr>
+    <tr><td class="paramname">screenSurface</td><td></td></tr>
+    <tr><td class="paramname">window</td><td></td></tr>
+    <tr><td class="paramname">perso</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a53450428d39317d9d9837ac426731791" name="a53450428d39317d9d9837ac426731791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53450428d39317d9d9837ac426731791">&#9670;&#160;</a></span>afficher_inventaire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficher_inventaire </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>joueur</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'afficher la liste complète du contenu de l'inventaire, uniquement dans la console. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joueur</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a99f52878ddbff1b3068420bd900d6817" name="a99f52878ddbff1b3068420bd900d6817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99f52878ddbff1b3068420bd900d6817">&#9670;&#160;</a></span>boutique_aff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int boutique_aff </td>
+          <td>(</td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Texture *&#160;</td>
+          <td class="paramname"><em>boutique_sdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>boutique</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>screenSurface</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Window *&#160;</td>
+          <td class="paramname"><em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">personnage_t *&#160;</td>
+          <td class="paramname"><em>perso</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'ouvrir la boutique, de l'afficher, et d'intéragir avec lui, en générant des objets et un prix aléatoire. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">renderer</td><td></td></tr>
+    <tr><td class="paramname">boutique_sdl</td><td></td></tr>
+    <tr><td class="paramname">boutique</td><td></td></tr>
+    <tr><td class="paramname">joueur</td><td></td></tr>
+    <tr><td class="paramname">screenSurface</td><td></td></tr>
+    <tr><td class="paramname">window</td><td></td></tr>
+    <tr><td class="paramname">perso</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a67ab2fd8abb6203f2578238a54b40af3" name="a67ab2fd8abb6203f2578238a54b40af3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67ab2fd8abb6203f2578238a54b40af3">&#9670;&#160;</a></span>create_inventaire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">inventaire_t * create_inventaire </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de créer un inventaire, d'initialiser un inventaire. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>inventaire_t* </dd></dl>
+
+</div>
+</div>
+<a id="ab9d254e0954d2a092f59e67640084b2b" name="ab9d254e0954d2a092f59e67640084b2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9d254e0954d2a092f59e67640084b2b">&#9670;&#160;</a></span>create_objet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">objet_t * create_objet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant d'initialiser la création d'un objet n'ayant aucune statistique. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>objet_t* </dd></dl>
+
+</div>
+</div>
+<a id="a9423aba480b4fd2577b937e80243378c" name="a9423aba480b4fd2577b937e80243378c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9423aba480b4fd2577b937e80243378c">&#9670;&#160;</a></span>free_objet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void free_objet </td>
+          <td>(</td>
+          <td class="paramtype">objet_t *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">texture_t *&#160;</td>
+          <td class="paramname"><em>obj_sdl</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de supprimer un objet en mémoire. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">obj</td><td></td></tr>
+    <tr><td class="paramname">obj_sdl</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac535c62a1339c4e861a95af10ea0dd52" name="ac535c62a1339c4e861a95af10ea0dd52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac535c62a1339c4e861a95af10ea0dd52">&#9670;&#160;</a></span>inv_full()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int inv_full </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>personnage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de vérifier si un inventaire est rempli. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">personnage</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a44a2e42cc20746ad971b6fd1bebb6796" name="a44a2e42cc20746ad971b6fd1bebb6796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a2e42cc20746ad971b6fd1bebb6796">&#9670;&#160;</a></span>inventaire_elem_lire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * inventaire_elem_lire </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *const&#160;</td>
+          <td class="paramname"><em>inventaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>ind</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de lire la case d'un inventaire, sert uniquement pour aider également. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inventaire</td><td></td></tr>
+    <tr><td class="paramname">ind</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void* </dd></dl>
+
+</div>
+</div>
+<a id="a5ea753255d67c72eb3f4de57aecb9560" name="a5ea753255d67c72eb3f4de57aecb9560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ea753255d67c72eb3f4de57aecb9560">&#9670;&#160;</a></span>inventaire_nb_lire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int inventaire_nb_lire </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *const&#160;</td>
+          <td class="paramname"><em>inventaire</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction uniquement pour aider, sert uniquement à lire la taille d'un inventaire. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inventaire</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="ac64e97cb363141bad3d470ba87998166" name="ac64e97cb363141bad3d470ba87998166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac64e97cb363141bad3d470ba87998166">&#9670;&#160;</a></span>loot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loot </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">objet_t *&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de donner un objet à un joueur en le placant dans son inventaire. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joueur</td><td></td></tr>
+    <tr><td class="paramname">obj</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6965633cb86fbe6b73c394ee1634b3b5" name="a6965633cb86fbe6b73c394ee1634b3b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6965633cb86fbe6b73c394ee1634b3b5">&#9670;&#160;</a></span>loot_mob()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loot_mob </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>inventaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">personnage_t *&#160;</td>
+          <td class="paramname"><em>personnage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de donnée aléatoirement un objet provenant de la liste des objets de la base de donnée ayant en plus, le calcul en prenant compte le pourcentage de chance d'obtenir un objet. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inventaire</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1f834220d0afab6e38b344742aaba754" name="a1f834220d0afab6e38b344742aaba754"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f834220d0afab6e38b344742aaba754">&#9670;&#160;</a></span>supprimer_objet_inv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void supprimer_objet_inv </td>
+          <td>(</td>
+          <td class="paramtype">inventaire_t *&#160;</td>
+          <td class="paramname"><em>joueur</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">objet_t *&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">texture_t *&#160;</td>
+          <td class="paramname"><em>obj_sdl</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction permettant de supprimer un objet de l'inventaire du joueur à une case précise grâce à l'indice i. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">joueur</td><td></td></tr>
+    <tr><td class="paramname">obj</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
+    <tr><td class="paramname">obj_sdl</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a8061a7fe9385e8cc7617cfdfb4ec9278" name="a8061a7fe9385e8cc7617cfdfb4ec9278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8061a7fe9385e8cc7617cfdfb4ec9278">&#9670;&#160;</a></span>liste_objets</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">objet_t liste_objets[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Liste des objets présent dans le jeu. C'est une base de donnée des objets. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Mathéo </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

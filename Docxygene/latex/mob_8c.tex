@@ -1,0 +1,243 @@
+\hypertarget{mob_8c}{}\doxysection{Référence du fichier mob.\+c}
+\label{mob_8c}\index{mob.c@{mob.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}mob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mapstruct.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+mob\+\_\+t $\ast$ \mbox{\hyperlink{mob_8c_a5a40d278c97d5fd9c10c7ba6b538f904}{create\+\_\+mob}} ()
+\begin{DoxyCompactList}\small\item\em Permet de créer et initialiser un mob à 0, sans prendre les parametres de la liste. \end{DoxyCompactList}\item 
+mob\+\_\+t $\ast$ \mbox{\hyperlink{mob_8c_aa844c721d46313ef123c003cd6d66bf5}{ajuste}} (mob\+\_\+t $\ast$mob)
+\begin{DoxyCompactList}\small\item\em Fonction afin d\textquotesingle{}ajuster les statistiques à un mob créer correspondant à la liste des mobs. \end{DoxyCompactList}\item 
+mob\+\_\+liste\+\_\+t $\ast$ \mbox{\hyperlink{mob_8c_afb7eb14928d43affd9b950e89368d502}{create\+\_\+liste\+\_\+mob}} ()
+\begin{DoxyCompactList}\small\item\em Créer une liste de mob et initialise tout à 0;. \end{DoxyCompactList}\item 
+mob\+\_\+liste\+\_\+t $\ast$ \mbox{\hyperlink{mob_8c_a3387022bb57d006d92f4323fece615f2}{ajouter\+\_\+mob}} (mob\+\_\+liste\+\_\+t $\ast$liste\+\_\+des\+\_\+mobs, mob\+\_\+t $\ast$mob)
+\begin{DoxyCompactList}\small\item\em Ajout d\textquotesingle{}un mob à la liste de mob. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mob_8c_aa76e6be9c13900ab60687203e5c87faf}{afficher\+\_\+liste\+\_\+mob}} (mob\+\_\+liste\+\_\+t $\ast$liste)
+\begin{DoxyCompactList}\small\item\em Affiche l\textquotesingle{}intégralité des noms des mobs présents dans la liste. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mob_8c_aa4ec1460a508ca805b7e56331ed37c60}{afficher\+\_\+stat\+\_\+mob}} (mob\+\_\+t $\ast$mob)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher les statistiques d\textquotesingle{}un mob. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mob_8c_a8103e2d4e53f8b2460da8a5a1388c487}{delete\+\_\+mob}} (mob\+\_\+liste\+\_\+t $\ast$liste\+\_\+des\+\_\+mobs, int i, Sprite $\ast$mob\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]})
+\begin{DoxyCompactList}\small\item\em Fonction supprimant un mob d\textquotesingle{}une liste et affichant le nom du mob supprimer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{mob_8c_a87951bcbb11ea6a086237560714a141d}{mob\+\_\+existe}} (mob\+\_\+t $\ast$mob)
+\begin{DoxyCompactList}\small\item\em Fonction afin de savoir si le mob existe. \end{DoxyCompactList}\item 
+mob\+\_\+liste\+\_\+t $\ast$ \mbox{\hyperlink{mob_8c_adcab0d035bbe03a29f933079a61366e3}{vider\+\_\+liste\+\_\+mob}} (mob\+\_\+liste\+\_\+t $\ast$mob\+\_\+liste, Sprite $\ast$mob\+\_\+sdl\mbox{[}TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]})
+\begin{DoxyCompactList}\small\item\em Permet de supprimer tout les mobs, encore présent dans la liste des mobs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+mob\+\_\+t \mbox{\hyperlink{mob_8c_af7bba0cd1a0edc000dc99d456c76535d}{liste\+\_\+mobs}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{mob_8c_aa76e6be9c13900ab60687203e5c87faf}\label{mob_8c_aa76e6be9c13900ab60687203e5c87faf}} 
+\index{mob.c@{mob.c}!afficher\_liste\_mob@{afficher\_liste\_mob}}
+\index{afficher\_liste\_mob@{afficher\_liste\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_liste\_mob()}{afficher\_liste\_mob()}}
+{\footnotesize\ttfamily void afficher\+\_\+liste\+\_\+mob (\begin{DoxyParamCaption}\item[{mob\+\_\+liste\+\_\+t $\ast$}]{liste }\end{DoxyParamCaption})}
+
+
+
+Affiche l\textquotesingle{}intégralité des noms des mobs présents dans la liste. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em liste} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mob_8c_aa4ec1460a508ca805b7e56331ed37c60}\label{mob_8c_aa4ec1460a508ca805b7e56331ed37c60}} 
+\index{mob.c@{mob.c}!afficher\_stat\_mob@{afficher\_stat\_mob}}
+\index{afficher\_stat\_mob@{afficher\_stat\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_stat\_mob()}{afficher\_stat\_mob()}}
+{\footnotesize\ttfamily void afficher\+\_\+stat\+\_\+mob (\begin{DoxyParamCaption}\item[{mob\+\_\+t $\ast$}]{mob }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher les statistiques d\textquotesingle{}un mob. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mob_8c_a3387022bb57d006d92f4323fece615f2}\label{mob_8c_a3387022bb57d006d92f4323fece615f2}} 
+\index{mob.c@{mob.c}!ajouter\_mob@{ajouter\_mob}}
+\index{ajouter\_mob@{ajouter\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{ajouter\_mob()}{ajouter\_mob()}}
+{\footnotesize\ttfamily mob\+\_\+liste\+\_\+t $\ast$ ajouter\+\_\+mob (\begin{DoxyParamCaption}\item[{mob\+\_\+liste\+\_\+t $\ast$}]{liste\+\_\+des\+\_\+mobs,  }\item[{mob\+\_\+t $\ast$}]{mob }\end{DoxyParamCaption})}
+
+
+
+Ajout d\textquotesingle{}un mob à la liste de mob. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em liste\+\_\+des\+\_\+mobs} & \\
+\hline
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mob\+\_\+liste\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mob_8c_aa844c721d46313ef123c003cd6d66bf5}\label{mob_8c_aa844c721d46313ef123c003cd6d66bf5}} 
+\index{mob.c@{mob.c}!ajuste@{ajuste}}
+\index{ajuste@{ajuste}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{ajuste()}{ajuste()}}
+{\footnotesize\ttfamily mob\+\_\+t $\ast$ ajuste (\begin{DoxyParamCaption}\item[{mob\+\_\+t $\ast$}]{mob }\end{DoxyParamCaption})}
+
+
+
+Fonction afin d\textquotesingle{}ajuster les statistiques à un mob créer correspondant à la liste des mobs. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mob\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mob_8c_afb7eb14928d43affd9b950e89368d502}\label{mob_8c_afb7eb14928d43affd9b950e89368d502}} 
+\index{mob.c@{mob.c}!create\_liste\_mob@{create\_liste\_mob}}
+\index{create\_liste\_mob@{create\_liste\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{create\_liste\_mob()}{create\_liste\_mob()}}
+{\footnotesize\ttfamily mob\+\_\+liste\+\_\+t $\ast$ create\+\_\+liste\+\_\+mob (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Créer une liste de mob et initialise tout à 0;. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Renvoie}
+mob\+\_\+liste\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mob_8c_a5a40d278c97d5fd9c10c7ba6b538f904}\label{mob_8c_a5a40d278c97d5fd9c10c7ba6b538f904}} 
+\index{mob.c@{mob.c}!create\_mob@{create\_mob}}
+\index{create\_mob@{create\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{create\_mob()}{create\_mob()}}
+{\footnotesize\ttfamily mob\+\_\+t $\ast$ create\+\_\+mob (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Permet de créer et initialiser un mob à 0, sans prendre les parametres de la liste. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Renvoie}
+mob\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mob_8c_a8103e2d4e53f8b2460da8a5a1388c487}\label{mob_8c_a8103e2d4e53f8b2460da8a5a1388c487}} 
+\index{mob.c@{mob.c}!delete\_mob@{delete\_mob}}
+\index{delete\_mob@{delete\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{delete\_mob()}{delete\_mob()}}
+{\footnotesize\ttfamily void delete\+\_\+mob (\begin{DoxyParamCaption}\item[{mob\+\_\+liste\+\_\+t $\ast$}]{liste\+\_\+des\+\_\+mobs,  }\item[{int}]{i,  }\item[{Sprite $\ast$}]{mob\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Fonction supprimant un mob d\textquotesingle{}une liste et affichant le nom du mob supprimer. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em liste\+\_\+des\+\_\+mobs} & \\
+\hline
+{\em i} & \\
+\hline
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mob_8c_a87951bcbb11ea6a086237560714a141d}\label{mob_8c_a87951bcbb11ea6a086237560714a141d}} 
+\index{mob.c@{mob.c}!mob\_existe@{mob\_existe}}
+\index{mob\_existe@{mob\_existe}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{mob\_existe()}{mob\_existe()}}
+{\footnotesize\ttfamily int mob\+\_\+existe (\begin{DoxyParamCaption}\item[{mob\+\_\+t $\ast$}]{mob }\end{DoxyParamCaption})}
+
+
+
+Fonction afin de savoir si le mob existe. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mob_8c_adcab0d035bbe03a29f933079a61366e3}\label{mob_8c_adcab0d035bbe03a29f933079a61366e3}} 
+\index{mob.c@{mob.c}!vider\_liste\_mob@{vider\_liste\_mob}}
+\index{vider\_liste\_mob@{vider\_liste\_mob}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{vider\_liste\_mob()}{vider\_liste\_mob()}}
+{\footnotesize\ttfamily mob\+\_\+liste\+\_\+t $\ast$ vider\+\_\+liste\+\_\+mob (\begin{DoxyParamCaption}\item[{mob\+\_\+liste\+\_\+t $\ast$}]{mob\+\_\+liste,  }\item[{Sprite $\ast$}]{mob\+\_\+sdl\mbox{[}\+TAILLE\+\_\+\+LISTE\+\_\+\+MOB\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Permet de supprimer tout les mobs, encore présent dans la liste des mobs. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em mob\+\_\+liste} & \\
+\hline
+{\em mob\+\_\+sdl} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+mob\+\_\+liste\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{mob_8c_af7bba0cd1a0edc000dc99d456c76535d}\label{mob_8c_af7bba0cd1a0edc000dc99d456c76535d}} 
+\index{mob.c@{mob.c}!liste\_mobs@{liste\_mobs}}
+\index{liste\_mobs@{liste\_mobs}!mob.c@{mob.c}}
+\doxysubsubsection{\texorpdfstring{liste\_mobs}{liste\_mobs}}
+{\footnotesize\ttfamily mob\+\_\+t liste\+\_\+mobs\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Valeur initiale \+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{1,\ \textcolor{stringliteral}{"{}Gobelin"{}},\ \textcolor{stringliteral}{"{}ressources/Mobs/Mob.png"{}},\ 1,\ 0,\ 0,\ 1,\ 20,\ 0\},}
+\DoxyCodeLine{\ \ \ \ \{2,\ \textcolor{stringliteral}{"{}Gnome"{}},\ \textcolor{stringliteral}{"{}ressources/Mobs/Mob4.png"{}},\ 1,\ 10,\ 0,\ 1,\ 20,\ 300\},}
+\DoxyCodeLine{\ \ \ \ \{3,\ \textcolor{stringliteral}{"{}Azir"{}},\ \textcolor{stringliteral}{"{}daricksword.png"{}},\ 1,\ 20,\ 0,\ 1,\ 200,\ 0\},}
+\DoxyCodeLine{\ \ \ \ \{4,\ \textcolor{stringliteral}{"{}Boss"{}},\ \textcolor{stringliteral}{"{}ressources/Mobs/Mob5.png"{}},\ 3,\ 20,\ 0,\ 1,\ 2000,\ 0\},}
+\DoxyCodeLine{\ \ \ \ \{5,\ \textcolor{stringliteral}{"{}SHOP"{}},\ \textcolor{stringliteral}{"{}ressources/Mobs/Mob2.png"{}},\ 3,\ 20,\ 0,\ 1,\ 2000,\ 0\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}

@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DARICKVSTHEWORLD: Référence du fichier environnement.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">DARICKVSTHEWORLD<span id="projectnumber">&#160;final version</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Chargement...</div>
+<div class="SRStatus" id="Searching">Recherche...</div>
+<div class="SRStatus" id="NoMatches">Aucune correspondance</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle"><div class="title">Référence du fichier environnement.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL.h&gt;</code><br />
+<code>#include &lt;SDL2/SDL_image.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;environnement.h&quot;</code><br />
+<code>#include &quot;move.h&quot;</code><br />
+<code>#include &quot;camera.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a37195780794e1ce0a0ae1b01bc1bba40"><td class="memItemLeft" align="right" valign="top">SDL_Surface *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a37195780794e1ce0a0ae1b01bc1bba40">LoadImage16</a> (const char *img)</td></tr>
+<tr class="memdesc:a37195780794e1ce0a0ae1b01bc1bba40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui charge une image en SDL_Surface.  <br /></td></tr>
+<tr class="separator:a37195780794e1ce0a0ae1b01bc1bba40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1921a6804e114e2c1d681f87b38650f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#ae1921a6804e114e2c1d681f87b38650f">LoadMap_tileset</a> (Map_t *loaded_map)</td></tr>
+<tr class="memdesc:ae1921a6804e114e2c1d681f87b38650f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui initialise la place nécessaire à la création de la map.  <br /></td></tr>
+<tr class="separator:ae1921a6804e114e2c1d681f87b38650f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71e209d8f30bd5f73b07136f3fe6c7ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a71e209d8f30bd5f73b07136f3fe6c7ad">LoadMap_level</a> (Index_t map, Map_t *loaded_map)</td></tr>
+<tr class="memdesc:a71e209d8f30bd5f73b07136f3fe6c7ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui charge la map d'entier dans notre map.  <br /></td></tr>
+<tr class="separator:a71e209d8f30bd5f73b07136f3fe6c7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c31faf59b0536fe3bd6fdf3a13e5500"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a1c31faf59b0536fe3bd6fdf3a13e5500">LoadMapRect</a> (Map_t *loaded_map)</td></tr>
+<tr class="memdesc:a1c31faf59b0536fe3bd6fdf3a13e5500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui initialise la place nécessaire à la map de tiles.  <br /></td></tr>
+<tr class="separator:a1c31faf59b0536fe3bd6fdf3a13e5500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a142f4aa3c1ad0305db8fe2477eb8f"><td class="memItemLeft" align="right" valign="top">Map_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a86a142f4aa3c1ad0305db8fe2477eb8f">LoadMap</a> (Index_t map)</td></tr>
+<tr class="memdesc:a86a142f4aa3c1ad0305db8fe2477eb8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui appelle LoadMap_tileset et LoadMap_level pour chargé entièrement la map.  <br /></td></tr>
+<tr class="separator:a86a142f4aa3c1ad0305db8fe2477eb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a30a97d3120a7b6b9074f4c5ee4b323"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a9a30a97d3120a7b6b9074f4c5ee4b323">ShowMap</a> (Map_t *loaded_map, SDL_Renderer *renderer)</td></tr>
+<tr class="memdesc:a9a30a97d3120a7b6b9074f4c5ee4b323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui affiche la map sur le rendu, et determine les éléments mur.  <br /></td></tr>
+<tr class="separator:a9a30a97d3120a7b6b9074f4c5ee4b323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ca102fb52958e184229b5b156c0fcfa"><td class="memItemLeft" align="right" valign="top">Index_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a0ca102fb52958e184229b5b156c0fcfa">initialize_map</a> ()</td></tr>
+<tr class="memdesc:a0ca102fb52958e184229b5b156c0fcfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui initialise la map Index_t.  <br /></td></tr>
+<tr class="separator:a0ca102fb52958e184229b5b156c0fcfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade945578075593b75194276ad73bf344"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#ade945578075593b75194276ad73bf344">add_rooms</a> (Index_t map)</td></tr>
+<tr class="memdesc:ade945578075593b75194276ad73bf344"><td class="mdescLeft">&#160;</td><td class="mdescRight">Créer des "salles" de taille aléatoire et dont la position dépend de la précedente.  <br /></td></tr>
+<tr class="separator:ade945578075593b75194276ad73bf344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25051f8640b95df273394764c4131f64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a25051f8640b95df273394764c4131f64">add_wall</a> (Index_t map)</td></tr>
+<tr class="memdesc:a25051f8640b95df273394764c4131f64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positionne les murs autour des salles de sol.  <br /></td></tr>
+<tr class="separator:a25051f8640b95df273394764c4131f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88a8267c45f91376bd3880b25c70d328"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a88a8267c45f91376bd3880b25c70d328">add_end</a> (Index_t map)</td></tr>
+<tr class="memdesc:a88a8267c45f91376bd3880b25c70d328"><td class="mdescLeft">&#160;</td><td class="mdescRight">ajoute l'escalier de fin de map  <br /></td></tr>
+<tr class="separator:a88a8267c45f91376bd3880b25c70d328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64e59aa020eacdcd9ffaa232b646e32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#af64e59aa020eacdcd9ffaa232b646e32">UpdateMap</a> (Index_t map)</td></tr>
+<tr class="memdesc:af64e59aa020eacdcd9ffaa232b646e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Créer la map.  <br /></td></tr>
+<tr class="separator:af64e59aa020eacdcd9ffaa232b646e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a10da4d225c1ae0d9895b088f0205e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="environnement_8c.html#a58a10da4d225c1ae0d9895b088f0205e">FreeMap</a> (Map_t *loaded_map)</td></tr>
+<tr class="memdesc:a58a10da4d225c1ae0d9895b088f0205e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère l'espace alloué pour la map.  <br /></td></tr>
+<tr class="separator:a58a10da4d225c1ae0d9895b088f0205e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a88a8267c45f91376bd3880b25c70d328" name="a88a8267c45f91376bd3880b25c70d328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a8267c45f91376bd3880b25c70d328">&#9670;&#160;</a></span>add_end()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void add_end </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ajoute l'escalier de fin de map </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ade945578075593b75194276ad73bf344" name="ade945578075593b75194276ad73bf344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade945578075593b75194276ad73bf344">&#9670;&#160;</a></span>add_rooms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void add_rooms </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Créer des "salles" de taille aléatoire et dont la position dépend de la précedente. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a25051f8640b95df273394764c4131f64" name="a25051f8640b95df273394764c4131f64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25051f8640b95df273394764c4131f64">&#9670;&#160;</a></span>add_wall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void add_wall </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Positionne les murs autour des salles de sol. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a58a10da4d225c1ae0d9895b088f0205e" name="a58a10da4d225c1ae0d9895b088f0205e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a10da4d225c1ae0d9895b088f0205e">&#9670;&#160;</a></span>FreeMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int FreeMap </td>
+          <td>(</td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>loaded_map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Libère l'espace alloué pour la map. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loaded_map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="a0ca102fb52958e184229b5b156c0fcfa" name="a0ca102fb52958e184229b5b156c0fcfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ca102fb52958e184229b5b156c0fcfa">&#9670;&#160;</a></span>initialize_map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Index_t initialize_map </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui initialise la map Index_t. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+
+</div>
+</div>
+<a id="a37195780794e1ce0a0ae1b01bc1bba40" name="a37195780794e1ce0a0ae1b01bc1bba40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37195780794e1ce0a0ae1b01bc1bba40">&#9670;&#160;</a></span>LoadImage16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Surface * LoadImage16 </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>img</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui charge une image en SDL_Surface. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">img</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>SDL_Surface* </dd></dl>
+
+</div>
+</div>
+<a id="a86a142f4aa3c1ad0305db8fe2477eb8f" name="a86a142f4aa3c1ad0305db8fe2477eb8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a142f4aa3c1ad0305db8fe2477eb8f">&#9670;&#160;</a></span>LoadMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Map_t * LoadMap </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui appelle LoadMap_tileset et LoadMap_level pour chargé entièrement la map. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Map_t* </dd></dl>
+
+</div>
+</div>
+<a id="a71e209d8f30bd5f73b07136f3fe6c7ad" name="a71e209d8f30bd5f73b07136f3fe6c7ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71e209d8f30bd5f73b07136f3fe6c7ad">&#9670;&#160;</a></span>LoadMap_level()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadMap_level </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>loaded_map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui charge la map d'entier dans notre map. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+    <tr><td class="paramname">loaded_map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae1921a6804e114e2c1d681f87b38650f" name="ae1921a6804e114e2c1d681f87b38650f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1921a6804e114e2c1d681f87b38650f">&#9670;&#160;</a></span>LoadMap_tileset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadMap_tileset </td>
+          <td>(</td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>loaded_map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui initialise la place nécessaire à la création de la map. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loaded_map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1c31faf59b0536fe3bd6fdf3a13e5500" name="a1c31faf59b0536fe3bd6fdf3a13e5500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c31faf59b0536fe3bd6fdf3a13e5500">&#9670;&#160;</a></span>LoadMapRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadMapRect </td>
+          <td>(</td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>loaded_map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui initialise la place nécessaire à la map de tiles. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loaded_map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a30a97d3120a7b6b9074f4c5ee4b323" name="a9a30a97d3120a7b6b9074f4c5ee4b323"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a30a97d3120a7b6b9074f4c5ee4b323">&#9670;&#160;</a></span>ShowMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ShowMap </td>
+          <td>(</td>
+          <td class="paramtype">Map_t *&#160;</td>
+          <td class="paramname"><em>loaded_map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Renderer *&#160;</td>
+          <td class="paramname"><em>renderer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui affiche la map sur le rendu, et determine les éléments mur. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loaded_map</td><td></td></tr>
+    <tr><td class="paramname">renderer</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+
+</div>
+</div>
+<a id="af64e59aa020eacdcd9ffaa232b646e32" name="af64e59aa020eacdcd9ffaa232b646e32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af64e59aa020eacdcd9ffaa232b646e32">&#9670;&#160;</a></span>UpdateMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UpdateMap </td>
+          <td>(</td>
+          <td class="paramtype">Index_t&#160;</td>
+          <td class="paramname"><em>map</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Créer la map. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Lucas </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

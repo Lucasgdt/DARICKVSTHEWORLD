@@ -1,0 +1,126 @@
+\hypertarget{personnage_8c}{}\doxysection{Référence du fichier personnage.\+c}
+\label{personnage_8c}\index{personnage.c@{personnage.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}personnage.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}outil.\+h\char`\"{}}\newline
+\doxysubsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+personnage\+\_\+t $\ast$ \mbox{\hyperlink{personnage_8c_a09092d1a57d64404191765b8f414ba2e}{create\+\_\+personnage}} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}initialiser un joueur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{personnage_8c_a6aeaef0e65013f68b38113d61838e645}{equiper}} (personnage\+\_\+t $\ast$personnage, objet\+\_\+t $\ast$obj, inventaire\+\_\+t $\ast$inv, int indice, texture\+\_\+t $\ast$obj\+\_\+sdl)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}équiper un objet présent dans l\textquotesingle{}inventaire du joueur soit à l\textquotesingle{}emplacement d\textquotesingle{}une arme, soit à l\textquotesingle{}emplacement de l\textquotesingle{}armure ou bien consommer une potion de soin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{personnage_8c_a2ffff5cdc1df59172017086ed5da366b}{retirer}} (personnage\+\_\+t $\ast$personnage, objet\+\_\+t $\ast$obj, inventaire\+\_\+t $\ast$inv)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de retirer un objet équiper sur un joueur, en l\textquotesingle{}ajoutant dans l\textquotesingle{}inventaire et en retirant les statistiques de l\textquotesingle{}objet présent sur le joueur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{personnage_8c_a6dafa8acbf8a50707f1da8c0d4c19f12}{afficher\+\_\+stat\+\_\+joueur}} (personnage\+\_\+t $\ast$personnage)
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}afficher toute les statistiques du joueur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+objet\+\_\+t \mbox{\hyperlink{personnage_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}{liste\+\_\+objets}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Liste des objets présent dans le jeu. C\textquotesingle{}est une base de donnée des objets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions}
+\mbox{\Hypertarget{personnage_8c_a6dafa8acbf8a50707f1da8c0d4c19f12}\label{personnage_8c_a6dafa8acbf8a50707f1da8c0d4c19f12}} 
+\index{personnage.c@{personnage.c}!afficher\_stat\_joueur@{afficher\_stat\_joueur}}
+\index{afficher\_stat\_joueur@{afficher\_stat\_joueur}!personnage.c@{personnage.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_stat\_joueur()}{afficher\_stat\_joueur()}}
+{\footnotesize\ttfamily void afficher\+\_\+stat\+\_\+joueur (\begin{DoxyParamCaption}\item[{personnage\+\_\+t $\ast$}]{personnage }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}afficher toute les statistiques du joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em personnage} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{personnage_8c_a09092d1a57d64404191765b8f414ba2e}\label{personnage_8c_a09092d1a57d64404191765b8f414ba2e}} 
+\index{personnage.c@{personnage.c}!create\_personnage@{create\_personnage}}
+\index{create\_personnage@{create\_personnage}!personnage.c@{personnage.c}}
+\doxysubsubsection{\texorpdfstring{create\_personnage()}{create\_personnage()}}
+{\footnotesize\ttfamily personnage\+\_\+t $\ast$ create\+\_\+personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}initialiser un joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Renvoie}
+personnage\+\_\+t$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{personnage_8c_a6aeaef0e65013f68b38113d61838e645}\label{personnage_8c_a6aeaef0e65013f68b38113d61838e645}} 
+\index{personnage.c@{personnage.c}!equiper@{equiper}}
+\index{equiper@{equiper}!personnage.c@{personnage.c}}
+\doxysubsubsection{\texorpdfstring{equiper()}{equiper()}}
+{\footnotesize\ttfamily void equiper (\begin{DoxyParamCaption}\item[{personnage\+\_\+t $\ast$}]{personnage,  }\item[{objet\+\_\+t $\ast$}]{obj,  }\item[{inventaire\+\_\+t $\ast$}]{inv,  }\item[{int}]{indice,  }\item[{texture\+\_\+t $\ast$}]{obj\+\_\+sdl }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant d\textquotesingle{}équiper un objet présent dans l\textquotesingle{}inventaire du joueur soit à l\textquotesingle{}emplacement d\textquotesingle{}une arme, soit à l\textquotesingle{}emplacement de l\textquotesingle{}armure ou bien consommer une potion de soin. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em personnage} & \\
+\hline
+{\em obj} & \\
+\hline
+{\em inv} & \\
+\hline
+{\em indice} & \\
+\hline
+{\em obj\+\_\+sdl} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{personnage_8c_a2ffff5cdc1df59172017086ed5da366b}\label{personnage_8c_a2ffff5cdc1df59172017086ed5da366b}} 
+\index{personnage.c@{personnage.c}!retirer@{retirer}}
+\index{retirer@{retirer}!personnage.c@{personnage.c}}
+\doxysubsubsection{\texorpdfstring{retirer()}{retirer()}}
+{\footnotesize\ttfamily void retirer (\begin{DoxyParamCaption}\item[{personnage\+\_\+t $\ast$}]{personnage,  }\item[{objet\+\_\+t $\ast$}]{obj,  }\item[{inventaire\+\_\+t $\ast$}]{inv }\end{DoxyParamCaption})}
+
+
+
+Fonction permettant de retirer un objet équiper sur un joueur, en l\textquotesingle{}ajoutant dans l\textquotesingle{}inventaire et en retirant les statistiques de l\textquotesingle{}objet présent sur le joueur. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Paramètres}
+{\em personnage} & \\
+\hline
+{\em obj} & \\
+\hline
+{\em inv} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentation des variables}
+\mbox{\Hypertarget{personnage_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}\label{personnage_8c_a8061a7fe9385e8cc7617cfdfb4ec9278}} 
+\index{personnage.c@{personnage.c}!liste\_objets@{liste\_objets}}
+\index{liste\_objets@{liste\_objets}!personnage.c@{personnage.c}}
+\doxysubsubsection{\texorpdfstring{liste\_objets}{liste\_objets}}
+{\footnotesize\ttfamily objet\+\_\+t liste\+\_\+objets\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Liste des objets présent dans le jeu. C\textquotesingle{}est une base de donnée des objets. 
+
+\begin{DoxyAuthor}{Auteur}
+Mathéo 
+\end{DoxyAuthor}
