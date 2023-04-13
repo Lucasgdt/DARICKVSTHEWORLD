@@ -13,8 +13,10 @@
 
 mob_t liste_mobs[] = {
     {1, "Gobelin", "ressources/Mobs/Mob.png", 1, 0, 0, 1, 20, 0},
-    {2, "Gnome", "ressources/Mobs/Mob2.png", 1, 10, 0, 1, 20, 300},
-    {3, "Azir", "daricksword.png", 1, 20, 0, 1, 200, 0}
+    {2, "Gnome", "ressources/Mobs/Mob4.png", 1, 10, 0, 1, 20, 300},
+    {3, "Azir", "daricksword.png", 1, 20, 0, 1, 200, 0},
+    {4, "Boss", "ressources/Mobs/Mob5.png", 3, 20, 0, 1, 2000, 0},
+    {5, "SHOP", "ressources/Mobs/Mob2.png", 3, 20, 0, 1, 2000, 0}
 };
 
 /**

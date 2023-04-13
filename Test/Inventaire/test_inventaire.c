@@ -16,10 +16,11 @@ int main(int argc, char * argv[]){
     objet_t * potion = create_objet();
     objet_t * epee = create_objet();
     objet_t * armure = create_objet();
+    objet_t * trop = create_objet();
     potion->id = 6;
     epee->id = 17;
     armure->id = 12;
-
+    trop->id = 1;
 
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -45,6 +46,9 @@ int main(int argc, char * argv[]){
     loot(inventaire_joueur, potion);
     loot(inventaire_joueur, epee);
     loot(inventaire_joueur, armure);
+    for (int i = 0; i<TAILLE_INV; i++){
+        loot(inventaire_joueur, trop);
+    }
 
     inventaire = IMG_LoadTexture(renderer, "ressources/Inventaire/Inventaire.png");
     if (!inventaire) {

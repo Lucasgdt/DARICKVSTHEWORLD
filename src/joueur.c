@@ -248,9 +248,17 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   Sprite * mob_sdl[TAILLE_LISTE_MOB];
   init_mob(loaded_map, renderer, mob_liste, mob_sdl);
 
+  Sprite * shop_sdl = malloc(sizeof(Sprite));
+  mob_t * shop = create_mob();
+  shop->id = 5;
+  ajuste(shop);
+  shop_sdl->texture = IMG_LoadTexture(renderer, "ressources/Mobs/Mob2.png");
+
 
   // Boucle de récupération des events
   screenSurface = SDL_GetWindowSurface(window);
+
+
   while (!quit) {
     SDL_PollEvent(&event);
     lastTick = SDL_GetTicks();
@@ -275,7 +283,8 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
             vx = speed;
             break;
           case SDLK_x:
-            afficher_stat_joueur(joueur_stat);
+            printf("Placement X : %d Y : %d \n",player->position.x, player->position.y);
+            printf("Placement2 X : %d Y : %d", shop_sdl->position.x, shop_sdl->position.y);
             break;
           case SDLK_i:
             afficher_inv_SDL(renderer,inventaire,inv , inventaire_joueur, screenSurface, window, joueur_stat);
@@ -322,11 +331,22 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
                         }
                     }
                     if (mob_liste->liste[i]->pv <= 0){
+                      if(mob_liste->liste[i]->id == 4){
+                        printf("BOSS MORT \n");
                         (*kill)++;
                         loot_mob(inventaire_joueur, joueur_stat);
                         delete_mob(mob_liste, i, mob_sdl);
                         free(mob_liste->liste[i]);
                         mob_liste->liste[i] = NULL;
+                      }
+                      else{
+                        (*kill)++;
+                        loot_mob(inventaire_joueur, joueur_stat);
+                        delete_mob(mob_liste, i, mob_sdl);
+                        free(mob_liste->liste[i]);
+                        mob_liste->liste[i] = NULL;
+                      }
+
                     }
                 }
             }
@@ -366,17 +386,62 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
         }
     }
     (*nbsalle)++;
-    vider_liste_mob(mob_liste, mob_sdl);
-    for (int i = 0; i<TAILLE_LISTE_MOB; i++){
-      mob_t * mob = create_mob();
-      mob->id = 1;
-      ajuste(mob);
-      mob->pv = mob->pv*(*nbsalle);
-      ajouter_mob(mob_liste, mob);
+    vider_liste_mob(mob_liste, mob_sdl); 
+    
+    if((*nbsalle)%5==0){
+      // Delete sprite shop
+      mob_t * boss = create_mob();
+      boss->id = 4;
+      ajuste(boss);
+      ajouter_mob(mob_liste, boss);
+      for (int i = 1; i<TAILLE_LISTE_MOB; i++){
+        mob_t * mob = create_mob();
+        mob->id = 1;
+        ajuste(mob);
+        mob->pv = mob->pv*(*nbsalle);
+        ajouter_mob(mob_liste, mob);
+      }
+    }
+    else{
+      for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+        mob_t * mob = create_mob();
+        mob->id = 1;
+        ajuste(mob);
+        mob->pv = mob->pv*(*nbsalle);
+        ajouter_mob(mob_liste, mob);
+      }
     }
     UpdateMap(map);
+
     loaded_map = LoadMap(map);
     LoadMapRect(loaded_map);
+
+    if((*nbsalle)%5==4){
+
+      int endX = 0;
+      int endY = 0;
+      find_end(map, &endX, &endY);
+
+      printf("X : %d Y : %d \n",endX, endY);
+      SDL_Point end;
+      end.x = endX;
+      end.y = endY;
+
+      int mobx, moby;
+      SDL_Point MobPose;
+
+      shop_sdl->position.h = DARICK_SIZE;
+      shop_sdl->position.w = DARICK_SIZE;
+
+      shop_sdl->m = loaded_map;
+
+      MobPose = placement_shop(shop_sdl, end);
+
+      mobx = MobPose.x;
+      moby = MobPose.y;
+      shop_sdl->position.x = mobx * ZOOM;
+      shop_sdl->position.y = moby * ZOOM;
+    }
     player = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
     init_mob(loaded_map, renderer, mob_liste, mob_sdl);
     FocusScrollBox(loaded_map, player);
@@ -387,6 +452,10 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   for (int i = 0; i < TAILLE_LISTE_MOB; i++) {
     AfficherSprite(mob_sdl[i], renderer, mob_sdl[i]->texture);
   }
+  if((*nbsalle)%5==4){
+    AfficherSprite(shop_sdl, renderer, shop_sdl->texture);
+  }
+
 
   sprintf(str,"PV : %d/%d",joueur_stat->pv, joueur_stat->pv_max);
   surface = TTF_RenderText_Solid(font, str, color); // Créer une surface contenant le texte

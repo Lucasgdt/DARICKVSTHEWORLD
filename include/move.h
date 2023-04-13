@@ -19,6 +19,8 @@ int CollisionDecor(Sprite* perso, SDL_Rect test);
 int EssaiDeplacement(Sprite* perso,int vx,int vy);
 void Affine(Sprite* perso,int vx,int vy);
 int DeplaceSprite(Sprite* perso,int vx, int vy);
+void find_end(Index_t map, int * endX, int * endY);
+SDL_Point placement_shop(Sprite * shop, SDL_Point end);
 void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_LISTE_MOB]);
 void deplacement_mobV2(Sprite * mob[TAILLE_LISTE_MOB], int i);
 void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]);

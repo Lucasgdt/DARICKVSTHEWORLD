@@ -194,6 +194,57 @@ SDL_Point placement(Sprite * mob){
     return temp;
 }
 
+void find_end(Index_t map, int * endX, int * endY){
+    for(int i = 0; i < map.tileX; i++){
+        for(int j = 0; j < map.tileY; j++){
+            if(map.intmap[i][j] == 9){
+                printf("Je suis la \n");
+                (*endX) = i;
+                (*endY) = j;
+                return;
+            }
+        }
+    }
+}
+
+
+SDL_Point placement_shop(Sprite * shop, SDL_Point end){
+    SDL_Point temp;
+    temp.x = end.x;
+    temp.y = end.y;
+
+    printf("Test \n");
+
+    shop->m->schema[temp.x][temp.y] = 9;
+
+    printf("Test 2 apres truyc \n");
+
+    if(shop->m->schema[temp.x+1][temp.y+1] == 1){
+        printf("premier if \n");
+        temp.x+=1;
+        temp.y+=1;
+        return temp;
+    }
+    else if(shop->m->schema[temp.x-1][temp.y+1] == 1){
+        printf("2 if \n");
+        temp.x-=1;
+        temp.y+=1;
+        return temp;
+    }
+    else if(shop->m->schema[temp.x+1][temp.y-1] == 1){
+        printf("3 if \n");
+        temp.x+=1;
+        temp.y-=1;
+        return temp;
+    }
+    else if(shop->m->schema[temp.x-1][temp.y-1] == 1){
+        printf("4 if \n");
+        temp.x-=1;
+        temp.y-=1;
+        return temp;
+    }
+}
+
 /**
  * @brief Fonction permettant d'initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures.
  * 
@@ -210,8 +261,16 @@ void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Spr
     SDL_Point MobPose;
 	for (i = 0; i<TAILLE_LISTE_MOB; i++){
         mob_sdl[i] = malloc(sizeof(Sprite));
-        mob_sdl[i]->position.h = DARICK_SIZE;
-        mob_sdl[i]->position.w = DARICK_SIZE;
+
+        if(mob_liste->liste[i]->id == 4){
+            mob_sdl[i]->position.h = 240;
+            mob_sdl[i]->position.w = 240;
+        }
+        else{
+            mob_sdl[i]->position.h = DARICK_SIZE;
+            mob_sdl[i]->position.w = DARICK_SIZE;
+        }
+
         mob_sdl[i]->texture = IMG_LoadTexture(renderer, liste_mobs[mob_liste->liste[i]->id-1].texture);
 		mob_sdl[i]->m = map;
         MobPose = placement(mob_sdl[i]);
