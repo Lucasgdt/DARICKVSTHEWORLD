@@ -8,7 +8,7 @@
 
 /**
  * @brief Permet de fixer la caméra sur le joueur
- * 
+ * @author Lucas
  * @param loaded_map 
  * @param sp 
  * @return int 
@@ -22,7 +22,7 @@ int FocusScrollBox(Map_t * loaded_map, Sprite * sp)
 
 /**
  * @brief Bloque la caméra aux limites de la map
- * 
+ * @author Lucas
  * @param loaded_map 
  */
 
@@ -42,7 +42,7 @@ void ClampScroll(Map_t * loaded_map)
 
 /**
  * @brief Actualise la position de la caméra en fonction de celle du joueur
- * 
+ * @author Lucas
  * @param loaded_map 
  * @return int 
  */

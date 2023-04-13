@@ -6,6 +6,12 @@
 #include "move.h"
 #include "menu.h"
 
+/**
+ * @brief Permet d'ouvrir le menu principal, afin de soit jouer, soit quitter le jeu
+ * @author Mathéo
+ * @return int 
+ */
+
 int menu() {
     
     SDL_Window *window = NULL;

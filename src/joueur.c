@@ -23,7 +23,7 @@
 
 /**
  * @brief Permet de mettre en pause le jeu, afin de soit reprendre le jeu, soit sauvegarder, soit quitter le jeu
- * 
+ * @author Mathéo
  * @param renderer 
  * @return int 
  */
@@ -110,13 +110,18 @@ int pause(SDL_Renderer * renderer){
 
 /**
  * @brief Fonction permettant de gérer tout le jeu, c'est à dire, initialisation du joueur + mob + changement de salle etc ...
- * 
+ * @author Mathéo & Lucas
  * @param window 
  * @return int 
  */
 
 
 int joueur(SDL_Window *window, int * nbsalle, int * kill){
+
+  /* -------------------------------------------------------------------------- */
+  /*                        Initialisation des variables                        */
+  /* -------------------------------------------------------------------------- */
+
   // Initialisation de SDL_ttf
   TTF_Init();
   TTF_Font * font = TTF_OpenFont("ressources/Font/font.ttf",24);
@@ -159,9 +164,16 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   *kill = 0;
   *nbsalle = 1;
 
+ /* -------------------------------------------------------------------------- */
+ /*               Initialisation des variables pour le personnage              */
+ /* -------------------------------------------------------------------------- */
 
   inventaire_t * inventaire_joueur = create_inventaire();
   personnage_t * joueur_stat = create_personnage();
+
+  /* -------------------------------------------------------------------------- */
+  /*                           Initialisation des mobs                          */
+  /* -------------------------------------------------------------------------- */
 
   mob_liste_t * mob_liste = create_liste_mob();
   for (int i = 0; i<TAILLE_LISTE_MOB; i++){
@@ -172,7 +184,9 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   }
 
 
-
+  /* -------------------------------------------------------------------------- */
+  /*                         Initialisation des textures                        */
+  /* -------------------------------------------------------------------------- */
 
   // Créer le rendu
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -205,6 +219,11 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
       printf("Texture could not be loaded! SDL Error: %s\n", SDL_GetError());
       goto quit;
     }
+
+  /* -------------------------------------------------------------------------- */
+  /*                   Initialisation des positions des menus                   */
+  /* -------------------------------------------------------------------------- */
+
   // Créer la texture de Darick
   skin = textureright;
 
@@ -218,6 +237,10 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   boutique.w = 1280;
   boutique.h = 720;
 
+ /* -------------------------------------------------------------------------- */
+ /*                          Initialisation de la map                          */
+ /* -------------------------------------------------------------------------- */
+
   // Créer la map
   Index_t map;
   map = initialize_map();
@@ -229,7 +252,9 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   player = InitialiserSprite(300, 300, DARICK_SIZE, DARICK_SIZE, loaded_map);
 
 
-
+  /* -------------------------------------------------------------------------- */
+  /*                         Initialisation de la camera                        */
+  /* -------------------------------------------------------------------------- */
 
   //Initialisation de la camera
 
@@ -256,11 +281,15 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   pdv.y = 650;
 
   /* -------------------------------------------------------------------------- */
-  /*                           Initialisation des mobs                          */
+  /*                      Initialisation des mobs en sprite                     */
   /* -------------------------------------------------------------------------- */
 
   Sprite * mob_sdl[TAILLE_LISTE_MOB];
   init_mob(loaded_map, renderer, mob_liste, mob_sdl);
+
+  /* -------------------------------------------------------------------------- */
+  /*                     Initialisation du PNJ pour le shop                     */
+  /* -------------------------------------------------------------------------- */
 
   Sprite * shop_sdl = malloc(sizeof(Sprite));
   mob_t * shop = create_mob();
@@ -272,6 +301,10 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   // Boucle de récupération des events
   screenSurface = SDL_GetWindowSurface(window);
 
+
+  /* -------------------------------------------------------------------------- */
+  /*                        Debut de la boucle pour jouer                       */
+  /* -------------------------------------------------------------------------- */
 
   while (!quit) {
     SDL_PollEvent(&event);
@@ -365,10 +398,14 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
                     }
                 }
             }
-            anim(renderer, player, joueur_stat, mob_sdl, loaded_map, pdvtexture, pdv);
+            anim(renderer, player, joueur_stat, mob_sdl, loaded_map, pdvtexture, pdv, shop_sdl->texture, shop_sdl->position);
         }
         break;
     }
+
+  /* -------------------------------------------------------------------------- */
+  /*              Calcul de la distance entre le joueur et les mobs             */
+  /* -------------------------------------------------------------------------- */
 
     srand(time(NULL)); // Reinitialise les valeurs généré aléatoirement afin de ne pas avoir le meme deplacement pour chaque mob + enleve un bug de tremblement des mobs
     for (int i = 0; i<TAILLE_LISTE_MOB; i++){
@@ -393,7 +430,10 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
   // Chargement de la map
   ShowMap(loaded_map, renderer);
 
-  //Deplacement
+  /* -------------------------------------------------------------------------- */
+  /*                         Reset de la map et des mobs                        */
+  /* -------------------------------------------------------------------------- */
+
   if(DeplaceSprite(player, vx, vy) == -1){
     for(int i = 0; i < map.tileX; i++){
         for(int j = 0; j < map.tileY; j++){
@@ -463,6 +503,10 @@ int joueur(SDL_Window *window, int * nbsalle, int * kill){
     FocusScrollBox(loaded_map, player);
   }
 
+  /* -------------------------------------------------------------------------- */
+  /*            Affichage de tout les élements présents sur la carte            */
+  /* -------------------------------------------------------------------------- */
+
   AfficherSprite(player, renderer, skin);
 
   for (int i = 0; i < TAILLE_LISTE_MOB; i++) {
@@ -502,12 +546,31 @@ quit:
   LibereSprite(player);
   SDL_DestroyTexture(textureright);
   SDL_DestroyTexture(textureleft);
+  for (int i = 0; i<TAILLE_LISTE_MOB; i++){
+    free(mob_sdl[i]);
+    SDL_DestroyTexture(mob_sdl[i]->texture);
+    mob_sdl[i] = NULL;
+  }
+  free(shop_sdl);
+  SDL_DestroyTexture(shop_sdl->texture);
+  shop_sdl = NULL;
   //Libéré le rendu
   SDL_DestroyRenderer(renderer);
   TTF_CloseFont(font);
   TTF_Quit();
   return 0;
 }
+
+
+
+/**
+ * @brief Permet d'afficher l'écran de fin du jeu
+ * @author Mathéo
+ * @param window 
+ * @param nbsalle 
+ * @param kill 
+ * @return int 
+ */
 
 int ecran_fin(SDL_Window * window, int * nbsalle, int * kill){
   // Initialisation de SDL_ttf

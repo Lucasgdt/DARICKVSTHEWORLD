@@ -9,10 +9,26 @@
 extern objet_t liste_objets[];
 extern mob_t liste_mobs[];
 
+/**
+ * @brief Permet de pouvoir infliger des dégâts à un mob
+ * @author Mathéo
+ * @param joueur 
+ * @param mob 
+ */
+
 void joueur_attaque(personnage_t * joueur, mob_t * mob){
     printf("Vous avez mis %d de degats à %s \n",joueur->degats,liste_mobs[mob->id - 1].nom);
     mob->pv-=joueur->degats;
 }
+
+/**
+ * @brief Permet d'infliger des dégâts au joueur provenant d'un mob
+ * @author Mathéo
+ * @param joueur 
+ * @param mob 
+ * @param compteur 
+ * @return int 
+ */
 
 int mob_attaque(personnage_t * joueur, mob_t * mob, int compteur){
     int choix;

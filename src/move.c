@@ -18,7 +18,7 @@
 
 /**
  * @brief Initialise un Sprite dans la map à une position donné
- * 
+ * @author Lucas
  * @param x 
  * @param y 
  * @param w 
@@ -40,7 +40,7 @@ Sprite* InitialiserSprite(int x,int y,int w,int h, Map_t* map)
 
 /**
  * @brief Libère l'espace du Sprite
- * 
+ * @author Lucas
  * @param sp 
  */
 
@@ -51,7 +51,7 @@ void LibereSprite(Sprite* sp)
 
 /**
  * @brief Affiche le sprite en fonction du Scrolling de la caméra
- * 
+ * @author Lucas
  * @param perso 
  * @param renderer 
  * @param skin 
@@ -69,7 +69,7 @@ void AfficherSprite(Sprite* perso,SDL_Renderer* renderer, SDL_Texture * skin)
 
 /**
  * @brief Vérifie toute les cases à proximité du joueur pour localiser les murs ou la porte de sortie
- * 
+ * @author Lucas
  * @param perso 
  * @param test 
  * @return int 
@@ -101,7 +101,7 @@ int CollisionDecor(Sprite* perso, SDL_Rect test)
 
 /**
  * @brief Essaie de se déplacer vers le point d'arriver, si il y a un mur alors on affine le déplacement
- * 
+ * @author Lucas
  * @param perso 
  * @param vx 
  * @param vy 
@@ -128,7 +128,7 @@ int EssaiDeplacement(Sprite* perso,int vx,int vy)
 
 /**
  * @brief Affine le déplacement pour se rapprocher au plus proche du mur
- * 
+ * @author Lucas
  * @param perso 
  * @param vx 
  * @param vy 
@@ -151,7 +151,7 @@ void Affine(Sprite* perso,int vx,int vy)
 
 /**
  * @brief Déplace le Sprite en suivant le vecteur donné
- * 
+ * @author Lucas
  * @param perso 
  * @param vx 
  * @param vy 
@@ -178,7 +178,7 @@ int DeplaceSprite(Sprite* perso,int vx, int vy)
 
 /**
  * @brief Fonction permettant de placer les mobs sur la carte, plus particulièrement dans la zone de jeu
- * 
+ * @author Mathéo & Lucas
  * @param mob 
  * @return SDL_Point 
  */
@@ -194,11 +194,18 @@ SDL_Point placement(Sprite * mob){
     return temp;
 }
 
+/**
+ * @brief Permet de trouver les coordonnées de la zone de sortie
+ * @author Mathéo
+ * @param map 
+ * @param endX 
+ * @param endY 
+ */
+
 void find_end(Index_t map, int * endX, int * endY){
     for(int i = 0; i < map.tileX; i++){
         for(int j = 0; j < map.tileY; j++){
             if(map.intmap[i][j] == 9){
-                printf("Je suis la \n");
                 (*endX) = i;
                 (*endY) = j;
                 return;
@@ -207,38 +214,39 @@ void find_end(Index_t map, int * endX, int * endY){
     }
 }
 
+/**
+ * @brief Permet de place le PNJ à côté de la zone de sortie
+ * @author Mathéo
+ * @param shop 
+ * @param end 
+ * @return SDL_Point 
+ */
 
 SDL_Point placement_shop(Sprite * shop, SDL_Point end){
     SDL_Point temp;
     temp.x = end.x;
     temp.y = end.y;
 
-    printf("Test \n");
 
     shop->m->schema[temp.x][temp.y] = 9;
 
-    printf("Test 2 apres truyc \n");
 
     if(shop->m->schema[temp.x+1][temp.y+1] == 1){
-        printf("premier if \n");
         temp.x+=1;
         temp.y+=1;
         return temp;
     }
     else if(shop->m->schema[temp.x-1][temp.y+1] == 1){
-        printf("2 if \n");
         temp.x-=1;
         temp.y+=1;
         return temp;
     }
     else if(shop->m->schema[temp.x+1][temp.y-1] == 1){
-        printf("3 if \n");
         temp.x+=1;
         temp.y-=1;
         return temp;
     }
     else if(shop->m->schema[temp.x-1][temp.y-1] == 1){
-        printf("4 if \n");
         temp.x-=1;
         temp.y-=1;
         return temp;
@@ -247,7 +255,7 @@ SDL_Point placement_shop(Sprite * shop, SDL_Point end){
 
 /**
  * @brief Fonction permettant d'initialiser chaque mob dans une liste, en mettant leurs tailles, leurs placements sur la carte, la carte, ainsi que leurs textures.
- * 
+ * @author Mathéo & Lucas
  * @param map 
  * @param renderer 
  * @param mob_liste 
@@ -283,7 +291,7 @@ void init_mob(Map_t * map, SDL_Renderer * renderer, mob_liste_t * mob_liste, Spr
 
 /**
  * @brief Fonction permettant de supprimer complètement un mob dans une liste de Sprite
- * 
+ * @author Mathéo
  * @param mob_sdl 
  */
 
@@ -296,7 +304,7 @@ void free_mob_sdl(Sprite * mob_sdl[TAILLE_LISTE_MOB]){
 
 /**
  * @brief Fonction permettant de faire déplacer un mob aléatoirement
- * 
+ * @author Mathéo
  * @param mob 
  * @param i 
  */
@@ -322,7 +330,7 @@ void deplacement_mobV2(Sprite * mob[TAILLE_LISTE_MOB], int i){
 
 /**
  * @brief Fonction permettant de faire suivre un mob vers un joueur si le mob est assez proche du joueur
- * 
+ * @author Mathéo
  * @param mob 
  * @param i 
  * @param destRect 
@@ -352,7 +360,7 @@ void mob_aggro(Sprite *mob[TAILLE_LISTE_MOB], int i, SDL_Rect destRect) {
 
 /**
  * @brief Fonction permettant de gérer la réaction d'un mob en vers en joueur à l'aide d'un calcul qui défini la distance entre un mob et un joueur. Soit le mob à un déplacement aléatoire, soit il suit le joueur
- * 
+ * @author Mathéo
  * @param destRect 
  * @param mob_sdl 
  * @param mob_liste 
@@ -378,7 +386,7 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
 
 /**
  * @brief Fonction permettant de faire l'animation du joueur lors ce qu'il attaque
- * 
+ * @author Mathéo & Marwan
  * @param renderer 
  * @param skin 
  * @param joueur 
@@ -387,7 +395,7 @@ int fonction_calcul(SDL_Rect destRect, Sprite * mob_sdl[TAILLE_LISTE_MOB], mob_l
  */
 
 
-void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map, SDL_Texture * pdvtexture, SDL_Rect pdv) {
+void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite * mob_sdl[TAILLE_LISTE_MOB], Map_t * map, SDL_Texture * pdvtexture, SDL_Rect pdv, SDL_Texture * shop_sdl, SDL_Rect shop) {
     int NB_TYPES_ARMES = 6;
     int MAX_IMAGES_ARMES = 11;
     int epee_baton = 6;
@@ -459,6 +467,7 @@ void anim(SDL_Renderer *renderer, Sprite * skin, personnage_t * joueur, Sprite *
         texturetexte = SDL_CreateTextureFromSurface(renderer, surface); // Créer une texture à partir de la surface
         SDL_RenderCopy(renderer, texturetexte, NULL, &(SDL_Rect){80, 660, surface->w, surface->h}); // Afficher la texture sur le rendu
         SDL_RenderCopy(renderer, pdvtexture, NULL, &pdv);
+        SDL_RenderCopy(renderer, shop_sdl, NULL, &shop);
         // Mise à jour de l'affichage
         SDL_RenderPresent(renderer);
 

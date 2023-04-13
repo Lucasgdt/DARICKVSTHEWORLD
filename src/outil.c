@@ -2,7 +2,7 @@
 
 /**
  * @brief Liste des objets présent dans le jeu. C'est une base de donnée des objets
- * 
+ * @author Mathéo
  */
 
 objet_t liste_objets[] = {

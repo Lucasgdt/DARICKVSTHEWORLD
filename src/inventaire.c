@@ -29,7 +29,7 @@ extern objet_t liste_objets[];
 
 /**
  * @brief Fonction permettant d'initialiser la création d'un objet n'ayant aucune statistique
- * 
+ * @author Mathéo
  * @return objet_t* 
  */
 
@@ -50,7 +50,7 @@ objet_t * create_objet(){
 
 /**
  * @brief Fonction uniquement pour aider, sert uniquement à lire la taille d'un inventaire
- * 
+ * @author Mathéo
  * @param inventaire 
  * @return int 
  */
@@ -65,7 +65,7 @@ int inventaire_nb_lire( inventaire_t * const inventaire )
 
 /**
  * @brief Fonction permettant de lire la case d'un inventaire, sert uniquement pour aider également
- * 
+ * @author Mathéo
  * @param inventaire 
  * @param ind 
  * @return void* 
@@ -86,7 +86,7 @@ void * inventaire_elem_lire( inventaire_t * const inventaire  , const int ind )
 
 /**
  * @brief Fonction permettant de créer un inventaire, d'initialiser un inventaire
- * 
+ * @author Mathéo
  * @return inventaire_t* 
  */
 
@@ -108,7 +108,7 @@ inventaire_t * create_inventaire() {
 
 /**
  * @brief Fonction permettant de vérifier si un inventaire est rempli 
- * 
+ * @author Mathéo
  * @param personnage 
  * @return int 
  */
@@ -130,7 +130,7 @@ int inv_full(inventaire_t * personnage){
 
 /**
  * @brief Fonction permettant de donner un objet à un joueur en le placant dans son inventaire
- * 
+ * @author Mathéo
  * @param joueur 
  * @param obj 
  */
@@ -167,7 +167,7 @@ void loot(inventaire_t * joueur, objet_t * obj){
 
 /**
  * @brief Fonction permettant d'afficher la liste complète du contenu de l'inventaire, uniquement dans la console
- * 
+ * @author Mathéo
  * @param joueur 
  */
 
@@ -188,7 +188,7 @@ void afficher_inventaire(inventaire_t * joueur){
 
 /**
  * @brief Fonction permettant de supprimer un objet en mémoire
- * 
+ * @author Mathéo
  * @param obj 
  * @param obj_sdl 
  */
@@ -203,7 +203,7 @@ void free_objet(objet_t * obj, texture_t * obj_sdl){
 
 /**
  * @brief Fonction permettant de supprimer un objet de l'inventaire du joueur à une case précise grâce à l'indice i
- * 
+ * @author Mathéo
  * @param joueur 
  * @param obj 
  * @param i 
@@ -238,7 +238,7 @@ void supprimer_objet_inv(inventaire_t * joueur, objet_t * obj, int i, texture_t 
 
 /**
  * @brief Fonction permettant de donnée aléatoirement un objet provenant de la liste des objets de la base de donnée ayant en plus, le calcul en prenant compte le pourcentage de chance d'obtenir un objet
- * 
+ * @author Mathéo
  * @param inventaire 
  */
 
@@ -284,7 +284,7 @@ void loot_mob(inventaire_t * inventaire, personnage_t * personnage){
 
 /**
  * @brief Fonction permettant d'afficher tout l'inventaire et d'agir avec tout en SDL, donc en liant visuel, et statistique.
- * 
+ * @author Mathéo
  * @param renderer 
  * @param inventaire 
  * @param inv 
@@ -526,6 +526,18 @@ int afficher_inv_SDL(SDL_Renderer * renderer, SDL_Texture * inventaire, SDL_Rect
     TTF_Quit();
 }
 
+/**
+ * @brief Permet d'ouvrir la boutique, de l'afficher, et d'intéragir avec lui, en générant des objets et un prix aléatoire
+ * @author Mathéo
+ * @param renderer 
+ * @param boutique_sdl 
+ * @param boutique 
+ * @param joueur 
+ * @param screenSurface 
+ * @param window 
+ * @param perso 
+ * @return int 
+ */
 
 int boutique_aff(SDL_Renderer * renderer, SDL_Texture * boutique_sdl, SDL_Rect boutique, inventaire_t * joueur, SDL_Surface * screenSurface, SDL_Window *window, personnage_t * perso){
     // Initialisation de SDL_ttf

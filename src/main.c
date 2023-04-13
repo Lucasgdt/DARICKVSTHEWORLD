@@ -15,7 +15,7 @@
 
 /**
  * @brief Fonction main, permettant de démarré le menu principal afin de pouvoir jouer ou non
- * 
+ * @author Mathéo & Lucas
  * @param argc 
  * @param argv 
  * @return int 

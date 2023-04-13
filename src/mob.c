@@ -8,7 +8,7 @@
 #include "mapstruct.h"
 /**
  * @brief Liste des mobs contenenant les noms des monstres, les textures, ainsi que leurs statistiques
- * 
+ * @author Mathéo
  */
 
 mob_t liste_mobs[] = {
@@ -21,7 +21,7 @@ mob_t liste_mobs[] = {
 
 /**
  * @brief Permet de créer et initialiser un mob à 0, sans prendre les parametres de la liste
- * 
+ * @author Mathéo
  * @return mob_t* 
  */
 
@@ -40,7 +40,7 @@ mob_t * create_mob() {
 
 /**
  * @brief Fonction afin d'ajuster les statistiques à un mob créer correspondant à la liste des mobs
- * 
+ * @author Mathéo
  * @param mob 
  * @return mob_t* 
  */
@@ -60,7 +60,7 @@ mob_t * ajuste(mob_t * mob){
 
 /**
  * @brief Créer une liste de mob et initialise tout à 0;
- * 
+ * @author Mathéo
  * @return mob_liste_t* 
  */
 
@@ -80,7 +80,7 @@ mob_liste_t * create_liste_mob(){
 
 /**
  * @brief Ajout d'un mob à la liste de mob
- * 
+ * @author Mathéo
  * @param liste_des_mobs 
  * @param mob 
  * @return mob_liste_t* 
@@ -106,7 +106,7 @@ mob_liste_t * ajouter_mob(mob_liste_t * liste_des_mobs, mob_t * mob){
 }
 /**
  * @brief Affiche l'intégralité des noms des mobs présents dans la liste
- * 
+ * @author Mathéo
  * @param liste 
  */
 void afficher_liste_mob(mob_liste_t * liste){
@@ -126,7 +126,7 @@ void afficher_liste_mob(mob_liste_t * liste){
 
 /**
  * @brief Fonction permettant d'afficher les statistiques d'un mob
- * 
+ * @author Mathéo
  * @param mob 
  */
 
@@ -144,7 +144,7 @@ void afficher_stat_mob(mob_t * mob){
 
 /**
  * @brief Fonction supprimant un mob d'une liste et affichant le nom du mob supprimer
- * 
+ * @author Mathéo
  * @param liste_des_mobs 
  * @param i 
  * @param mob 
@@ -161,7 +161,7 @@ void delete_mob(mob_liste_t * liste_des_mobs, int i, Sprite * mob[TAILLE_LISTE_M
 
 /**
  * @brief Fonction afin de savoir si le mob existe
- * 
+ * @author Mathéo
  * @param mob 
  * @return int 
  */
@@ -174,6 +174,14 @@ int mob_existe(mob_t * mob) {
         return 1;
     }
 }
+
+/**
+ * @brief Permet de supprimer tout les mobs, encore présent dans la liste des mobs
+ * @author Mathéo
+ * @param mob_liste 
+ * @param mob_sdl 
+ * @return mob_liste_t* 
+ */
 
 mob_liste_t * vider_liste_mob(mob_liste_t * mob_liste, Sprite * mob_sdl[TAILLE_LISTE_MOB]){
     int i;

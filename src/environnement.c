@@ -9,7 +9,7 @@
 
 /**
  * @brief Fonction qui charge une image en SDL_Surface
- * 
+ * @author Lucas
  * @param img 
  * @return SDL_Surface* 
  */
@@ -23,7 +23,7 @@ SDL_Surface* LoadImage16(const char* img)
 
 /**
  * @brief Fonction qui initialise la place nécessaire à la création de la map
- * 
+ * @author Lucas
  * @param loaded_map 
  */
 
@@ -56,7 +56,7 @@ void LoadMap_tileset(Map_t* loaded_map){
 
 /**
  * @brief Fonction qui charge la map d'entier dans notre map
- * 
+ * @author Lucas
  * @param map 
  * @param loaded_map 
  */
@@ -79,7 +79,7 @@ void LoadMap_level(Index_t map, Map_t * loaded_map)
 }
 /**
  * @brief Fonction qui initialise la place nécessaire à la map de tiles
- * 
+ * @author Lucas
  * @param loaded_map 
  */
 
@@ -93,7 +93,7 @@ void LoadMapRect(Map_t * loaded_map)
 
 /**
  * @brief Fonction qui appelle LoadMap_tileset et LoadMap_level pour chargé entièrement la map
- * 
+ * @author Lucas
  * @param map 
  * @return Map_t* 
  */
@@ -113,7 +113,7 @@ Map_t * LoadMap(Index_t map)
 
 /**
  * @brief Fonction qui affiche la map sur le rendu, et determine les éléments mur
- * 
+ * @author Lucas
  * @param loaded_map 
  * @param renderer 
  * @return int 
@@ -205,7 +205,7 @@ int ShowMap(Map_t * loaded_map, SDL_Renderer* renderer)
 
 /**
  * @brief Fonction qui initialise la map Index_t
- * 
+ * @author Lucas
  */
 
 /*  Initialisation du map remplis de vide  */
@@ -236,7 +236,7 @@ Index_t initialize_map() {
 
 /**
  * @brief Créer des "salles" de taille aléatoire et dont la position dépend de la précedente
- * 
+ * @author Lucas
  * @param map 
  */
 
@@ -276,7 +276,7 @@ void add_rooms(Index_t map) {
 
 /**
  * @brief Positionne les murs autour des salles de sol
- * 
+ * @author Lucas
  * @param map 
  */
 
@@ -329,7 +329,7 @@ void add_wall(Index_t map){
 
 /**
  * @brief ajoute l'escalier de fin de map
- * 
+ * @author Lucas
  * @param map 
  */
 
@@ -348,7 +348,7 @@ void add_end( Index_t map ){
 
 /**
  * @brief Créer la map
- * 
+ * @author Lucas
  * @param map 
  */
 
@@ -367,7 +367,7 @@ void UpdateMap(Index_t map){
 
 /**
  * @brief Libère l'espace alloué pour la map
- * 
+ * @author Lucas
  * @param loaded_map 
  * @return int 
  */

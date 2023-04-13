@@ -11,7 +11,7 @@ extern objet_t liste_objets[];
 
 /**
  * @brief Fonction permettant d'initialiser un joueur.
- * 
+ * @author Mathéo
  * @return personnage_t* 
  */
 
@@ -30,7 +30,7 @@ personnage_t * create_personnage() {
 
 /**
  * @brief Fonction permettant d'équiper un objet présent dans l'inventaire du joueur soit à l'emplacement d'une arme, soit à l'emplacement de l'armure ou bien consommer une potion de soin
- * 
+ * @author Mathéo
  * @param personnage 
  * @param obj 
  * @param inv 
@@ -75,7 +75,7 @@ void equiper(personnage_t * personnage, objet_t * obj, inventaire_t * inv, int i
 
 /**
  * @brief Fonction permettant de retirer un objet équiper sur un joueur, en l'ajoutant dans l'inventaire et en retirant les statistiques de l'objet présent sur le joueur
- * 
+ * @author Mathéo
  * @param personnage 
  * @param obj 
  * @param inv 
@@ -101,7 +101,7 @@ void retirer (personnage_t * personnage, objet_t * obj, inventaire_t * inv){
 
 /**
  * @brief Fonction permettant d'afficher toute les statistiques du joueur
- * 
+ * @author Mathéo
  * @param personnage 
  */
 
